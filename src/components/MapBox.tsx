@@ -17,18 +17,21 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   const mapItemId = `map-${Math.random()
     .toString(16)
     .substr(2, 8)}`
-  const cb = () => {
-    const google = (window as any).google
-    const map = new (google as any).maps.Map(
-      document.getElementById(mapItemId),
-      {
-        center: {lat: centerLat, lng: centerLon},
-        zoom: zoomLevel,
-      },
-    )
-  }
-  ;(window as any).mapBoxCreatedCallback = cb
-  const loaded = useGoogleAPI(apiKey, 'mapBoxCreatedCallback')
+  const loaded = useGoogleAPI(apiKey)
+  useEffect(
+    () => {
+      if (!loaded) return
+      const google = (window as any).google
+      const map = new (google as any).maps.Map(
+        document.getElementById(mapItemId),
+        {
+          center: {lat: centerLat, lng: centerLon},
+          zoom: zoomLevel,
+        },
+      )
+    },
+    [loaded],
+  )
   return (
     <div>
       {loaded ? <h1>This is a map</h1> : 'Loading...'}
