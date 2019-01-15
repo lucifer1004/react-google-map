@@ -1,9 +1,8 @@
 import React from 'react'
 import {storiesOf} from '@storybook/react'
-import MapBox from '../components/MapBox'
+import DefaultMapBox from './components/DefaultMapBox'
+import MapBoxDefaultNotes from './notes/mapbox-default.md'
 
-storiesOf('MapBox', module)
-  .add('basic', () => (
-    <MapBox apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g" />
-  ))
-  .add('basic2', () => <MapBox apiKey="" />)
+storiesOf('MapBox', module).add('default', () => <DefaultMapBox />, {
+  notes: {markdown: MapBoxDefaultNotes},
+})

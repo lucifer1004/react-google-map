@@ -23,6 +23,7 @@
     "lint-staged": "8.1.0",
     "prettier": "1.15.3",
     "react-docgen-typescript": "1.12.3",
+    "react-live": "^1.12.0",
     "react-scripts": "2.1.3",
     "react-styleguidist": "8.0.6",
     "react-testing-library": "5.4.4",
@@ -35,7 +36,8 @@
     "eject": "react-scripts eject",
     "styleguide": "styleguidist server",
     "styleguide:build": "styleguidist build",
-    "storybook": "start-storybook -p 3000 -c .storybook"
+    "storybook": "start-storybook -p 3000 -c .storybook",
+    "storybook:build": "build-storybook -c .storybook -o .out"
   },
   "eslintConfig": {
     "extends": "react-app",
