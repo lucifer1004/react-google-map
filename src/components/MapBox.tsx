@@ -1,23 +1,38 @@
 import React, {useEffect} from 'react'
-import useGoogleAPI from '../hooks/useGoogleAPI'
-
-interface MapBoxProps {
-  apiKey: string
-  centerLat?: number
-  centerLon?: number
-  zoomLevel?: number
-}
+import {useGoogleAPI} from '../hooks'
+import {GMAP_LIB_NAMES} from '../common/constants'
+import {MapBoxProps} from '../common/types'
 
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
   apiKey,
   centerLat = 39,
   centerLon = 116,
   zoomLevel = 10,
+  style = {
+    width: '100vw',
+    height: '90vh',
+  },
+  useDrawing = false,
+  useGeometry = false,
+  usePlaces = false,
+  useVisualization = false,
 }) => {
   const mapItemId = `map-${Math.random()
     .toString(16)
     .substr(2, 8)}`
-  const loaded = useGoogleAPI(apiKey)
+  const libraries = {
+    drawing: useDrawing,
+    geometry: useGeometry,
+    places: usePlaces,
+    visualization: useVisualization,
+  }
+  const libraryParam = GMAP_LIB_NAMES.filter(
+    library => libraries[library],
+  ).join(',')
+  const loaded = useGoogleAPI(
+    apiKey,
+    libraryParam === '' ? libraryParam : `&libraries=${libraryParam}`,
+  )
   useEffect(
     () => {
       if (!loaded) return
@@ -35,13 +50,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   return (
     <div>
       {loaded ? <h1>This is a map</h1> : 'Loading...'}
-      <div
-        id={mapItemId}
-        style={{
-          width: '100vw',
-          height: '90vh',
-        }}
-      />
+      <div id={mapItemId} style={style} />
     </div>
   )
 }
