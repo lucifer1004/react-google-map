@@ -6,8 +6,8 @@
   "license": "MIT",
   "dependencies": {
     "loadjs": "3.5.5",
-    "react": "16.8.0-alpha.0",
-    "react-dom": "16.8.0-alpha.0"
+    "react": "16.8.0-alpha.1",
+    "react-dom": "16.8.0-alpha.1"
   },
   "devDependencies": {
     "@storybook/react": "4.1.6",
