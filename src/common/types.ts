@@ -1,1 +1,1 @@
-export type A = 'AA' | 'AAA'
+export declare var google: null
