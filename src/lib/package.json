@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "cp ../../*.md . && rm -rf dist && microbundle && rm -rf .rts2_cache_*",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "postpublish": "rm -rf dist"
   },
   "eslintConfig": {
     "extends": "react-app",

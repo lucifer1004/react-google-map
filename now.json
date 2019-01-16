@@ -1,0 +1,39 @@
+{
+  "name": "react-google-map",
+  "alias": "react-google-map.gabriel-wu.com",
+  "version": 2,
+  "builds": [
+    {"src": "build/**", "use": "@now/static"},
+    {"src": "doc/**", "use": "@now/static"}
+  ],
+  "routes": [
+    {
+      "src": "/sb_dll/(.*)",
+      "dest": "/doc/sb_dll/$1"
+    },
+    {
+      "src": "/main(.*)",
+      "dest": "/doc/main$1"
+    },
+    {
+      "src": "/runtime(.*)",
+      "dest": "/doc/runtime$1"
+    },
+    {
+      "src": "/vendors(.*)",
+      "dest": "/doc/vendors$1"
+    },
+    {
+      "src": "/iframe(.*)",
+      "dest": "/doc/iframe$1"
+    },
+    {
+      "src": "/doc(.*)",
+      "dest": "/doc/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/build/$1"
+    }
+  ]
+}

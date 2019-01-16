@@ -12,6 +12,7 @@
 # production
 /build
 /dist
+/doc
 /src/lib/dist
 /src/lib/*.md
 
