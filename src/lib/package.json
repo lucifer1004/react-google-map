@@ -1,44 +1,20 @@
 {
   "name": "@lucifer1004/react-google-map",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Google Map component for React.",
   "repository": "git@github.com:lucifer1004/react-gmap.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
   "source": "index.ts",
-  "main": "../../dist/index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "loadjs": "3.5.5",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },
-  "devDependencies": {
-    "@types/jest": "23.3.12",
-    "@types/loadjs": "3.5.0",
-    "@types/node": "10.12.18",
-    "@types/react": "16.7.18",
-    "@types/react-dom": "16.0.11",
-    "eslint-plugin-prettier": "3.0.1",
-    "husky": "1.3.1",
-    "jest-dom": "3.0.0",
-    "lint-staged": "8.1.0",
-    "microbundle": "0.9.0",
-    "prettier": "1.15.3",
-    "react-scripts": "2.1.3",
-    "react-testing-library": "5.4.4",
-    "typescript": "3.2.2"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:lib": "rm -rf dist && microbundle",
-    "prepublish": "yarn build:lib",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
-    "storybook": "start-storybook -p 3000 -c .storybook",
-    "storybook:build": "build-storybook -c .storybook -o .out"
+    "build": "cp ../../*.md . && rm -rf dist && microbundle && rm -rf .rts2_cache_*",
+    "prepublish": "yarn build"
   },
   "eslintConfig": {
     "extends": "react-app",
