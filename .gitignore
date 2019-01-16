@@ -4,12 +4,16 @@
 /node_modules
 /.pnp
 .pnp.js
+*_cache*
 
 # testing
 /coverage
 
 # production
 /build
+/dist
+/src/lib/dist
+/src/lib/*.md
 
 # misc
 .DS_Store
@@ -23,3 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 .out
+.cache

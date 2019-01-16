@@ -1,6 +1,6 @@
 import React from 'react'
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live'
-import MapBox from '../../components/MapBox'
+import {MapBox} from '../../lib/'
 
 const scope = {MapBox}
 
