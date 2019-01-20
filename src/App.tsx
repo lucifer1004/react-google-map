@@ -5,8 +5,7 @@ export default () => (
   <div className="App">
     <header className="App-header">
       <MapBox
-        apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g"
-        // apiKey=""
+        apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
         zoomLevel={14}
         useDrawing={true}
         useGeometry={true}

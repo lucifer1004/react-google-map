@@ -6,12 +6,14 @@
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^6.2.0",
     "loadjs": "3.5.5",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },
   "devDependencies": {
     "@storybook/react": "4.1.7",
+    "@types/googlemaps": "3.30.16",
     "@types/jest": "23.3.13",
     "@types/loadjs": "3.5.0",
     "@types/node": "10.12.18",

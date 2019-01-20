@@ -16,6 +16,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
+  LoadingComponent = () => <h1>This is a map</h1>,
 }) => {
   const mapItemId = `map-${Math.random()
     .toString(16)
@@ -36,20 +37,16 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   useEffect(
     () => {
       if (!loaded) return
-      const google = (window as any).google
-      const map = new (google as any).maps.Map(
-        document.getElementById(mapItemId),
-        {
-          center: {lat: centerLat, lng: centerLon},
-          zoom: zoomLevel,
-        },
-      )
+      const map = new google.maps.Map(document.getElementById(mapItemId), {
+        center: {lat: centerLat, lng: centerLon},
+        zoom: zoomLevel,
+      })
     },
     [loaded],
   )
   return (
     <div>
-      {loaded ? <h1>This is a map</h1> : 'Loading...'}
+      {loaded ? <LoadingComponent /> : 'Loading...'}
       <div id={mapItemId} style={style} />
     </div>
   )

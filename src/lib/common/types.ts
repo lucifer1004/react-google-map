@@ -4,6 +4,7 @@ export interface MapBoxProps {
   centerLon?: number
   zoomLevel?: number
   style?: object
+  LoadingComponent?: React.FunctionComponent
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
