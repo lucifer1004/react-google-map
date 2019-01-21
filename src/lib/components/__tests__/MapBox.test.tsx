@@ -5,20 +5,35 @@ import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
 import MapBox from '../MapBox'
 
-describe('MapBox', () => {
-  beforeEach(() => {
-    Object.defineProperty(global, 'google', {
-      value: {
-        maps: {
-          Map: class {
-            constructor(arg1: any, arg2: any) {
-              return
-            }
-          },
+const defineGlobalVariable = () => {
+  Object.defineProperty(global, 'google', {
+    value: {
+      maps: {
+        Map: class {
+          zoom: number
+          center: google.maps.LatLngLiteral
+          setZoom(zoom: number): void {}
+          setCenter(center: google.maps.LatLngLiteral): void {}
+          constructor(
+            mapDiv: HTMLElement,
+            opts: {zoom: number; center: google.maps.LatLngLiteral},
+          ) {
+            this.zoom = opts.zoom
+            this.center = opts.center
+            this.setZoom = (zoom: number) => (this.zoom = zoom)
+            this.setCenter = (center: google.maps.LatLngLiteral) =>
+              (this.center = center)
+          }
         },
       },
-      writable: true,
-    })
+    },
+    writable: true,
+  })
+}
+
+describe('MapBox', () => {
+  beforeEach(() => {
+    defineGlobalVariable()
     jest.spyOn(console, 'error')
     jest.spyOn(loadjs, 'reset')
   })

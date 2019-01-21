@@ -6,7 +6,8 @@ export default () => (
     <header className="App-header">
       <MapBox
         apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
-        zoomLevel={14}
+        center={{lat: 39, lng: 116}}
+        zoom={14}
         useDrawing={true}
         useGeometry={true}
         usePlaces={true}
