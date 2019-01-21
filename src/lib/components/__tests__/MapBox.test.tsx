@@ -4,32 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
 import MapBox from '../MapBox'
-
-const defineGlobalVariable = () => {
-  Object.defineProperty(global, 'google', {
-    value: {
-      maps: {
-        Map: class {
-          zoom: number
-          center: google.maps.LatLngLiteral
-          setZoom(zoom: number): void {}
-          setCenter(center: google.maps.LatLngLiteral): void {}
-          constructor(
-            mapDiv: HTMLElement,
-            opts: {zoom: number; center: google.maps.LatLngLiteral},
-          ) {
-            this.zoom = opts.zoom
-            this.center = opts.center
-            this.setZoom = (zoom: number) => (this.zoom = zoom)
-            this.setCenter = (center: google.maps.LatLngLiteral) =>
-              (this.center = center)
-          }
-        },
-      },
-    },
-    writable: true,
-  })
-}
+import {defineGlobalVariable} from '../../helpers'
 
 describe('MapBox', () => {
   beforeEach(() => {
