@@ -32,6 +32,18 @@ const defineGlobalVariable = () => {
             this.draggable = opts.draggable
           }
         },
+        InfoWindow: class {
+          position: google.maps.LatLngLiteral
+          content: string
+          open(map: google.maps.Map): void {}
+          constructor(opts: {
+            position: google.maps.LatLngLiteral
+            content: string
+          }) {
+            this.position = opts.position
+            this.content = opts.content
+          }
+        },
       },
     },
     writable: true,

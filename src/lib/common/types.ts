@@ -11,13 +11,14 @@ export interface MapBoxProps {
   useVisualization?: boolean
 }
 
-export interface MarkerProps {
-  position?: google.maps.LatLngLiteral
-}
-
 export interface MapContextProps {
   map: google.maps.Map | undefined
   loaded: boolean
+}
+
+export interface InfoWindowProps extends google.maps.InfoWindowOptions {
+  anchor?: google.maps.Marker
+  map?: google.maps.Map
 }
 
 export type GMapLibrary = 'drawing' | 'geometry' | 'places' | 'visualization'

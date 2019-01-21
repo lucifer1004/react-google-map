@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useGoogleAPI} from '../hooks'
 import {GMAP_LIB_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
@@ -41,9 +41,6 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   )
 
   const [map, setMap] = useState((undefined as unknown) as google.maps.Map)
-
-  // Create a useRef hook to store the Google Map object
-  const mapRef = useRef<google.maps.Map | undefined>(undefined)
 
   // Load Google Map
   useEffect(

@@ -1,9 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {MapContext} from '../contexts'
-import {MarkerProps} from '../common/types'
 
-const Marker: React.FunctionComponent<MarkerProps> = ({
-  position = {lat: 39, lng: 116},
+const Marker: React.FunctionComponent<google.maps.MarkerOptions> = ({
+  position,
 }) => {
   const mapContext = useContext(MapContext)
   const [marker, setMarker] = useState(
@@ -23,6 +22,7 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
     },
     [mapContext],
   )
+
   return null
 }
 

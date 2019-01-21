@@ -3,7 +3,7 @@ import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
-import {MapBox, Marker} from '../../'
+import {InfoWindow, MapBox} from '../..'
 import {defineGlobalVariable} from '../../helpers'
 
 describe('MapBox', () => {
@@ -22,7 +22,10 @@ describe('MapBox', () => {
   it('renders map after fetch succeeded', async () => {
     const {container} = render(
       <MapBox apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g">
-        <Marker position={{lat: 39, lng: 116}} />>
+        <InfoWindow
+          position={{lat: 39, lng: 116}}
+          content="This is an info window"
+        />
       </MapBox>,
     )
     expect(container.innerHTML).toMatch('Loading...')
