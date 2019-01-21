@@ -1,5 +1,5 @@
 import React from 'react'
-import {MapBox} from './lib'
+import {MapBox, Marker} from './lib'
 
 export default () => (
   <div className="App">
@@ -12,7 +12,10 @@ export default () => (
         useGeometry={true}
         usePlaces={true}
         useVisualization={true}
-      />
+      >
+        <Marker />
+        <Marker position={{lat: 39.001, lng: 116}} />
+      </MapBox>
     </header>
   </div>
 )
