@@ -9,6 +9,24 @@ export interface MapBoxProps {
   useGeometry?: boolean
   usePlaces?: boolean
   useVisualization?: boolean
+  onBoundsChanged?: Function | undefined
+  onCenterChanged?: Function | undefined
+  onClick?: Function | undefined
+  onDoubleClick?: Function | undefined
+  onDrag?: Function | undefined
+  onDragEnd?: Function | undefined
+  onDragStart?: Function | undefined
+  onHeadingChanged?: Function | undefined
+  onIdle?: Function | undefined
+  onMapTypeIdChanged?: Function | undefined
+  onMouseMove?: Function | undefined
+  onMouseOut?: Function | undefined
+  onMouseOver?: Function | undefined
+  onProjectionChanged?: Function | undefined
+  onRightClick?: Function | undefined
+  onTilesLoaded?: Function | undefined
+  onTiltChanged?: Function | undefined
+  onZoomChanged?: Function | undefined
 }
 
 export interface MapContextProps {

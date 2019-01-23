@@ -11,26 +11,20 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
     (undefined as unknown) as google.maps.InfoWindow,
   )
 
-  useEffect(
-    () => {
-      if (mapContext.map === undefined) return
-      setInfoWindow(
-        new google.maps.InfoWindow({
-          position: position,
-          content: content,
-        }),
-      )
-    },
-    [mapContext],
-  )
+  useEffect(() => {
+    if (mapContext.map === undefined) return
+    setInfoWindow(
+      new google.maps.InfoWindow({
+        position: position,
+        content: content,
+      }),
+    )
+  }, [mapContext])
 
-  useEffect(
-    () => {
-      if (infoWindow === undefined) return
-      infoWindow.open(mapContext.map)
-    },
-    [infoWindow],
-  )
+  useEffect(() => {
+    if (infoWindow === undefined) return
+    infoWindow.open(mapContext.map)
+  }, [infoWindow])
 
   return null
 }

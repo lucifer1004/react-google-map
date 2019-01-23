@@ -9,19 +9,16 @@ const Marker: React.FunctionComponent<google.maps.MarkerOptions> = ({
     (undefined as unknown) as google.maps.Marker,
   )
 
-  useEffect(
-    () => {
-      if (mapContext.map === undefined) return
-      setMarker(
-        new google.maps.Marker({
-          position: position,
-          map: mapContext.map,
-          draggable: true,
-        }),
-      )
-    },
-    [mapContext],
-  )
+  useEffect(() => {
+    if (mapContext.map === undefined) return
+    setMarker(
+      new google.maps.Marker({
+        position: position,
+        map: mapContext.map,
+        draggable: true,
+      }),
+    )
+  }, [mapContext])
 
   return null
 }

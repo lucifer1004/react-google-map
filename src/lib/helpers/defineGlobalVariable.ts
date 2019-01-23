@@ -2,6 +2,15 @@ const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
       maps: {
+        event: {
+          addListener(
+            instance: google.maps.MVCObject,
+            eventName: string,
+            handler: Function,
+          ): google.maps.MapsEventListener {
+            return {remove: () => {}}
+          },
+        },
         Map: class {
           zoom: number
           center: google.maps.LatLngLiteral
