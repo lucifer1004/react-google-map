@@ -21,7 +21,7 @@ describe('MapBox', () => {
 
   it('renders map after fetch succeeded', async () => {
     const {container} = render(
-      <MapBox apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g">
+      <MapBox apiKey="A_FAKE_API_KEY">
         <Marker position={{lat: 39, lng: 116}} />>
       </MapBox>,
     )

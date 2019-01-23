@@ -53,6 +53,9 @@ const defineGlobalVariable = () => {
             this.content = opts.content
           }
         },
+        Polygon: class {
+          constructor(opts: {}) {}
+        },
       },
     },
     writable: true,

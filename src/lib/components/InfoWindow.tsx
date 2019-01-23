@@ -1,10 +1,20 @@
 import React, {useContext, useEffect, useState} from 'react'
+import {useGoogleListener} from '..'
 import {MapContext} from '../contexts'
 import {InfoWindowProps} from '../common/types'
 
 const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   content,
+  disableAutoPan = false,
+  maxWidth,
+  pixelOffset,
   position,
+  zIndex,
+  onCloseClick,
+  onContentChanged,
+  onDOMReady,
+  onPositionChanged,
+  onZIndexChanged,
 }) => {
   const mapContext = useContext(MapContext)
   const [infoWindow, setInfoWindow] = useState(
@@ -15,8 +25,12 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
     if (mapContext.map === undefined) return
     setInfoWindow(
       new google.maps.InfoWindow({
-        position: position,
         content: content,
+        disableAutoPan: disableAutoPan,
+        maxWidth: maxWidth,
+        pixelOffset: pixelOffset,
+        position: position,
+        zIndex: zIndex,
       }),
     )
   }, [mapContext])
@@ -25,6 +39,13 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
     if (infoWindow === undefined) return
     infoWindow.open(mapContext.map)
   }, [infoWindow])
+
+  // Register google map event listeners
+  useGoogleListener(infoWindow, 'closeclick', onCloseClick)
+  useGoogleListener(infoWindow, 'content_changed', onContentChanged)
+  useGoogleListener(infoWindow, 'domready', onDOMReady)
+  useGoogleListener(infoWindow, 'position_changed', onPositionChanged)
+  useGoogleListener(infoWindow, 'zindex_changed', onZIndexChanged)
 
   return null
 }

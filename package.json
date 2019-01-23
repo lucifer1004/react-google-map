@@ -69,7 +69,7 @@
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
       "!node_modules/",
-      "!src/index.tsx",
+      "!src/*.tsx",
       "!src/stories/**",
       "!src/lib/dist/**"
     ]

@@ -32,9 +32,7 @@ describe('MapBox', () => {
   })
 
   it('renders map after fetch succeeded', async () => {
-    const {container} = render(
-      <MapBox apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g" />,
-    )
+    const {container} = render(<MapBox apiKey="A_FAKE_API_KEY" />)
     expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
@@ -44,9 +42,7 @@ describe('MapBox', () => {
   })
 
   it('does not fetch again', async () => {
-    const {container} = render(
-      <MapBox apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g" />,
-    )
+    const {container} = render(<MapBox apiKey="A_FAKE_API_KEY" />)
     expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
@@ -57,10 +53,7 @@ describe('MapBox', () => {
 
   it('can listen to click', async () => {
     const {container} = render(
-      <MapBox
-        apiKey="AIzaSyC6I-uL4lzPx0CzyOzyYSdnibxVrsfVy6g"
-        onClick={() => {}}
-      />,
+      <MapBox apiKey="A_FAKE_API_KEY" onClick={() => {}} />,
     )
     expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
