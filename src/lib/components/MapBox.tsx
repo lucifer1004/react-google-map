@@ -92,7 +92,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   useGoogleListener(map, 'tilt_changed', onTiltChanged)
   useGoogleListener(map, 'zoom_changed', onZoomChanged)
 
-  // Modify the Google Map object when <MapBox> props change
+  // Modify the google.maps.Map object when <MapBox> props change
   useEffect(() => {
     if (map === undefined) return
     map.setCenter(center)
@@ -101,7 +101,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
 
   // Render <MapBox>
   return (
-    <MapContext.Provider value={{map: map, loaded: loaded}}>
+    <MapContext.Provider value={{map: map, loaded: loaded, markers: []}}>
       <div>
         {loaded ? <LoadedComponent /> : <LoadingComponent />}
         <div id={mapItemId} style={style} />

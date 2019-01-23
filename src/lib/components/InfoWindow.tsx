@@ -4,6 +4,7 @@ import {MapContext} from '../contexts'
 import {InfoWindowProps} from '../common/types'
 
 const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
+  anchor,
   content,
   disableAutoPan = false,
   maxWidth,
@@ -37,7 +38,7 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
 
   useEffect(() => {
     if (infoWindow === undefined) return
-    infoWindow.open(mapContext.map)
+    infoWindow.open(mapContext.map, anchor)
   }, [infoWindow])
 
   // Register google map event listeners

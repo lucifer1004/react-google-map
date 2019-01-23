@@ -68,6 +68,11 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
     )
   }, [mapContext])
 
+  useEffect(() => {
+    if (marker === undefined || mapContext.markers === undefined) return
+    mapContext.markers.push(marker)
+  }, [marker])
+
   // Register google map event listeners
   useGoogleListener(marker, 'animation_changed', onAnimationChanged)
   useGoogleListener(marker, 'click', onClick)
@@ -90,6 +95,36 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
   useGoogleListener(marker, 'title_changed', onTitleChanged)
   useGoogleListener(marker, 'visible_changed', onVisibleChanged)
   useGoogleListener(marker, 'zindex_changed', onZIndexChanged)
+
+  // Modify the google.maps.Marker object when <Marker> props change
+  useEffect(() => {
+    if (marker === undefined) return
+    if (animation !== undefined) marker.setAnimation(animation)
+    marker.setClickable(clickable)
+    marker.setDraggable(draggable)
+    if (icon !== undefined) marker.setIcon(icon)
+    if (label !== undefined) marker.setLabel(label)
+    marker.setOpacity(opacity)
+    if (place !== undefined) marker.setPlace(place)
+    marker.setPosition(position)
+    if (shape !== undefined) marker.setShape(shape)
+    if (title !== undefined) marker.setTitle(title)
+    marker.setVisible(visible)
+    if (zIndex !== undefined) marker.setZIndex(zIndex)
+  }, [
+    animation,
+    clickable,
+    draggable,
+    icon,
+    label,
+    opacity,
+    place,
+    position,
+    shape,
+    title,
+    visible,
+    zIndex,
+  ])
 
   return null
 }

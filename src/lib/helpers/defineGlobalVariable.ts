@@ -1,3 +1,5 @@
+import {MarkerProps, PolygonProps} from '../common/types'
+
 const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
@@ -28,17 +30,91 @@ const defineGlobalVariable = () => {
           }
         },
         Marker: class {
-          position: google.maps.LatLngLiteral
-          map: google.maps.Map
+          anchorPoint: google.maps.Point
+          animation: google.maps.Animation
+          clickable: boolean
           draggable: boolean
+          icon: string | google.maps.Icon | google.maps.Symbol
+          label: string | google.maps.MarkerLabel
+          opacity: number
+          optimized: boolean
+          place: google.maps.Place
+          position: google.maps.LatLngLiteral | google.maps.LatLng
+          shape: google.maps.MarkerShape
+          title: string
+          visible: boolean
+          zIndex: number
+          setAnimation = (animation: google.maps.Animation) => {
+            this.animation = animation
+          }
+          setClickable = (clickable: boolean) => {
+            this.clickable = clickable
+          }
+          setDraggable = (draggable: boolean) => {
+            this.draggable = draggable
+          }
+          setIcon = (icon: string | google.maps.Icon | google.maps.Symbol) => {
+            this.icon = icon
+          }
+          setLabel = (label: string | google.maps.MarkerLabel) => {
+            this.label = label
+          }
+          setOpacity = (opacity: number) => {
+            this.opacity = opacity
+          }
+          setOptimized = (optimized: boolean) => {
+            this.optimized = optimized
+          }
+          setPlace = (place: google.maps.Place) => {
+            this.place = place
+          }
+          setPosition = (
+            position: google.maps.LatLngLiteral | google.maps.LatLng,
+          ) => {
+            this.position = position
+          }
+          setShape = (shape: google.maps.MarkerShape) => {
+            this.shape = shape
+          }
+          setTitle = (title: string) => {
+            this.title = title
+          }
+          setVisible = (visible: boolean) => {
+            this.visible = visible
+          }
+          setZIndex = (zIndex: number) => {
+            this.zIndex = zIndex
+          }
           constructor(opts: {
-            position: google.maps.LatLngLiteral
-            map: google.maps.Map
+            anchorPoint: google.maps.Point
+            animation: google.maps.Animation
+            clickable: boolean
             draggable: boolean
+            icon: string | google.maps.Icon | google.maps.Symbol
+            label: string | google.maps.MarkerLabel
+            opacity: number
+            optimized: boolean
+            place: google.maps.Place
+            position: google.maps.LatLngLiteral | google.maps.LatLng
+            shape: google.maps.MarkerShape
+            title: string
+            visible: boolean
+            zIndex: number
           }) {
-            this.position = opts.position
-            this.map = opts.map
+            this.anchorPoint = opts.anchorPoint
+            this.animation = opts.animation
+            this.clickable = opts.clickable
             this.draggable = opts.draggable
+            this.icon = opts.icon
+            this.label = opts.label
+            this.opacity = opts.opacity
+            this.optimized = opts.optimized
+            this.place = opts.place
+            this.position = opts.position
+            this.shape = opts.shape
+            this.title = opts.title
+            this.visible = opts.visible
+            this.zIndex = opts.zIndex
           }
         },
         InfoWindow: class {
@@ -54,7 +130,7 @@ const defineGlobalVariable = () => {
           }
         },
         Polygon: class {
-          constructor(opts: {}) {}
+          constructor(opts: PolygonProps) {}
         },
       },
     },

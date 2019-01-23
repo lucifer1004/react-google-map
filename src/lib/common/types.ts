@@ -61,7 +61,6 @@ export interface MarkerProps extends google.maps.MarkerOptions {
 
 export interface InfoWindowProps extends google.maps.InfoWindowOptions {
   anchor?: google.maps.Marker
-  map?: google.maps.Map
   onCloseClick?: () => any
   onContentChanged?: () => any
   onDOMReady?: () => any

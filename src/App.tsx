@@ -18,6 +18,7 @@ export default () => (
       >
         <Marker
           draggable
+          label="first"
           position={{lat: 39, lng: 116.002}}
           onClick={() => {
             console.log('The marker is clicked.')
@@ -31,6 +32,7 @@ export default () => (
           content="This is an info window"
         />
         <Marker
+          label="second"
           position={{lat: 39.001, lng: 116}}
           onMouseOver={() => {
             console.log('The mouse is hovering on the marker.')

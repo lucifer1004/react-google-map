@@ -20,9 +20,9 @@ describe('MapBox', () => {
   })
 
   it('renders map after fetch succeeded', async () => {
-    const {container} = render(
+    const {container, rerender} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
-        <Marker position={{lat: 39, lng: 116}} />>
+        <Marker label="test" position={{lat: 39, lng: 116}} />
       </MapBox>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -31,5 +31,10 @@ describe('MapBox', () => {
     })
     expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
+    rerender(
+      <MapBox apiKey="A_FAKE_API_KEY">
+        <Marker label="changed-label" position={{lat: 39, lng: 116}} />
+      </MapBox>,
+    )
   })
 })
