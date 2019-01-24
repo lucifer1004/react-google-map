@@ -6,10 +6,9 @@ import {render, wait, cleanup} from 'react-testing-library'
 import {MapBox, Marker} from '../../'
 import {defineGlobalVariable} from '../../helpers'
 
-describe('MapBox', () => {
+describe('Marker', () => {
   beforeEach(() => {
     defineGlobalVariable()
-    jest.spyOn(console, 'error')
     jest.spyOn(loadjs, 'reset')
   })
 
@@ -19,7 +18,7 @@ describe('MapBox', () => {
     jest.restoreAllMocks()
   })
 
-  it('renders map after fetch succeeded', async () => {
+  it('renders inside a MapBox', async () => {
     const {container, rerender} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
         <Marker label="test" position={{lat: 39, lng: 116}} />

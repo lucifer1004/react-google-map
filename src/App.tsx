@@ -1,7 +1,7 @@
 import React from 'react'
 import {InfoWindow, MapBox, Marker} from './lib'
 
-export default () => (
+const App = () => (
   <div className="App">
     <header className="App-header">
       <MapBox
@@ -42,3 +42,7 @@ export default () => (
     </header>
   </div>
 )
+
+App.displayName = 'App'
+
+export default App

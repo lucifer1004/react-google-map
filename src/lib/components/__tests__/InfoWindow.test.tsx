@@ -6,7 +6,7 @@ import {render, wait, cleanup} from 'react-testing-library'
 import {InfoWindow, MapBox} from '../..'
 import {defineGlobalVariable} from '../../helpers'
 
-describe('MapBox', () => {
+describe('InfoWindow', () => {
   beforeEach(() => {
     defineGlobalVariable()
     jest.spyOn(console, 'error')
@@ -19,7 +19,7 @@ describe('MapBox', () => {
     jest.restoreAllMocks()
   })
 
-  it('renders map after fetch succeeded', async () => {
+  it('renders inside a MapBox', async () => {
     const {container} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
         <InfoWindow

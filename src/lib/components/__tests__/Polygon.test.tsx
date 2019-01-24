@@ -6,10 +6,9 @@ import {render, wait, cleanup} from 'react-testing-library'
 import {Polygon, MapBox} from '../..'
 import {defineGlobalVariable} from '../../helpers'
 
-describe('MapBox', () => {
+describe('Polygon', () => {
   beforeEach(() => {
     defineGlobalVariable()
-    jest.spyOn(console, 'error')
     jest.spyOn(loadjs, 'reset')
   })
 
@@ -19,7 +18,7 @@ describe('MapBox', () => {
     jest.restoreAllMocks()
   })
 
-  it('renders map after fetch succeeded', async () => {
+  it('renders inside a MapBox', async () => {
     const {container} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
         <Polygon

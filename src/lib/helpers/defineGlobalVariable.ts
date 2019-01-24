@@ -44,6 +44,19 @@ const defineGlobalVariable = () => {
           title: string
           visible: boolean
           zIndex: number
+          getAnimation = () => this.animation
+          getClickable = () => this.clickable
+          getDraggable = () => this.draggable
+          getIcon = () => this.icon
+          getLabel = () => this.label
+          getOpacity = () => this.opacity
+          getOptimized = () => this.optimized
+          getPlace = () => this.place
+          getPosition = () => this.position
+          getShape = () => this.shape
+          getTitle = () => this.title
+          getVisible = () => this.visible
+          getZIndex = () => this.zIndex
           setAnimation = (animation: google.maps.Animation) => {
             this.animation = animation
           }
