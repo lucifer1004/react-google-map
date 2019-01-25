@@ -1,10 +1,16 @@
 import React from 'react'
 import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live'
-import {MapBox} from '../../lib/'
+import {InfoWindow, MapBox} from '../../lib'
 
-const scope = {MapBox}
+const scope = {InfoWindow, MapBox}
 
-const code = `<MapBox apiKey=""/>`
+const code = `<MapBox apiKey="">
+  <InfoWindow 
+    content="This is an info window"
+    position={{lat: 39, lng: 116.002}}
+  />
+</MapBox>
+`
 
 export default () => (
   <div>
