@@ -5,6 +5,12 @@
   "repository": "git@github.com:lucifer1004/react-gmap.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
+  "keywords": [
+    "google map",
+    "react",
+    "react hooks",
+    "react context"
+  ],
   "source": "index.ts",
   "main": "dist/index.js",
   "dependencies": {
