@@ -1,17 +1,9 @@
 import React from 'react'
-import {LiveProvider, LiveEditor, LiveError, LivePreview} from 'react-live'
+import ReactLive from './ReactLive'
 import {MapBox} from '../../lib'
 
 const scope = {MapBox}
 
-const code = `<MapBox apiKey=""/>`
+const code = `<MapBox apiKey="A_FAKE_API_KEY"/>`
 
-export default () => (
-  <div>
-    <LiveProvider code={code} scope={scope}>
-      <LiveEditor />
-      <LiveError />
-      <LivePreview />
-    </LiveProvider>
-  </div>
-)
+export default () => <ReactLive code={code} scope={scope} />

@@ -13,6 +13,10 @@ const defineGlobalVariable = () => {
             return {remove: () => {}}
           },
         },
+        Animation: {
+          BOUNCE: 0,
+          DROP: 1,
+        },
         Map: class {
           zoom: number
           center: google.maps.LatLngLiteral
@@ -133,7 +137,7 @@ const defineGlobalVariable = () => {
         InfoWindow: class {
           position: google.maps.LatLngLiteral
           content: string
-          open(map: google.maps.Map): void {}
+          open(map?: google.maps.Map, anchor?: google.maps.Marker): void {}
           constructor(opts: {
             position: google.maps.LatLngLiteral
             content: string

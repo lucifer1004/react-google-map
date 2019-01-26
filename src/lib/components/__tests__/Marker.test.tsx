@@ -18,21 +18,46 @@ describe('Marker', () => {
     jest.restoreAllMocks()
   })
 
+  // it('renders inside a MapBox', async () => {
+  //   const {container, rerender} = render(
+  //     <MapBox apiKey="A_FAKE_API_KEY">
+  //       <Marker label="test" position={{lat: 39, lng: 116}} />
+  //     </MapBox>,
+  //   )
+  //   expect(container.innerHTML).toMatch('Loading...')
+  //   await wait(() => {
+  //     expect(container.innerHTML).not.toMatch('Loading...')
+  //   })
+  //   expect(loadjs.reset).not.toHaveBeenCalled()
+  //   expect(container.innerHTML).toMatch('This is a map')
+  //   rerender(
+  //     <MapBox apiKey="A_FAKE_API_KEY">
+  //       <Marker label="changed-label" position={{lat: 39, lng: 116}} />
+  //     </MapBox>,
+  //   )
+  // })
+
   it('renders inside a MapBox', async () => {
     const {container, rerender} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
-        <Marker label="test" position={{lat: 39, lng: 116}} />
+        <Marker position={{lat: 39, lng: 116}} />
       </MapBox>,
     )
-    expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
     rerender(
       <MapBox apiKey="A_FAKE_API_KEY">
-        <Marker label="changed-label" position={{lat: 39, lng: 116}} />
+        <Marker
+          animation={google.maps.Animation.BOUNCE}
+          icon={{}}
+          label="test"
+          place={{}}
+          position={{lat: 39, lng: 116}}
+          shape={{}}
+          title=""
+          zIndex={10}
+        />
       </MapBox>,
     )
   })

@@ -4,8 +4,8 @@ import {MapBox, Marker} from '../../lib'
 
 const scope = {MapBox, Marker}
 
-const code = `<MapBox apiKey="A_FAKE_API_KEY" LoadedComponent={() => <h1>Display a marker</h1>}>
-  <Marker position={{lat: 39, lng: 116}} />
+const code = `<MapBox apiKey="" LoadedComponent={() => <h1>The marker can be draggable</h1>}>
+  <Marker position={{lat: 39, lng: 116}} draggable />
 </MapBox>
 `
 
