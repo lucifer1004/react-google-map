@@ -7,18 +7,18 @@ import {MapContext} from '../contexts'
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
   apiKey,
   center = {lat: 39, lng: 116},
-  zoom = 10,
-  style = {
+  mapClass,
+  mapStyle = {
     width: '100vw',
-    height: '90vh',
+    height: '100vh',
   },
   useDrawing = false,
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
+  zoom = 10,
   LoadedComponent = () => <h1>This is a map</h1>,
   LoadingComponent = () => <p>Loading...</p>,
-  children,
   onBoundsChanged,
   onCenterChanged,
   onClick,
@@ -37,6 +37,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   onTilesLoaded,
   onTiltChanged,
   onZoomChanged,
+  children,
 }) => {
   // Generate a random id for the DOM node where Google Map will be inserted
   const mapItemId = `map-${Math.random()
@@ -104,7 +105,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     <MapContext.Provider value={{map: map, loaded: loaded, markers: []}}>
       <div>
         {loaded ? <LoadedComponent /> : <LoadingComponent />}
-        <div id={mapItemId} style={style} />
+        <div id={mapItemId} style={mapStyle} className={mapClass} />
         {children}
       </div>
     </MapContext.Provider>

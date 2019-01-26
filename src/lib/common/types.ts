@@ -1,14 +1,15 @@
 export interface MapBoxProps {
   apiKey: string
   center?: google.maps.LatLngLiteral
-  zoom?: number
-  style?: object
-  LoadingComponent?: React.FunctionComponent
-  LoadedComponent?: React.FunctionComponent
+  mapClass?: string
+  mapStyle?: object
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
   useVisualization?: boolean
+  zoom?: number
+  LoadingComponent?: React.FunctionComponent
+  LoadedComponent?: React.FunctionComponent
   onBoundsChanged?: () => any
   onCenterChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
