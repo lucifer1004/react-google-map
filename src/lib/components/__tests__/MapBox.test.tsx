@@ -51,15 +51,26 @@ describe('MapBox', () => {
     expect(container.innerHTML).toMatch('This is a map')
   })
 
-  it('can listen to click', async () => {
+  it('can accept onClick prop', async () => {
     const {container} = render(
       <MapBox apiKey="A_FAKE_API_KEY" onClick={() => {}} />,
     )
-    expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
+  })
+
+  it('renders PortalComponent at portalNode', async () => {
+    const mountNode = document.createElement('div')
+    document.body.appendChild(mountNode)
+    const {container, getByText} = render(
+      <MapBox apiKey="A_FAKE_API_KEY" portalNode={mountNode} />,
+    )
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+    expect(container.innerHTML).toMatch('This is a map')
+    expect(getByText('This is a portal')).not.toBe(null)
   })
 })

@@ -2,7 +2,7 @@ import React from 'react'
 import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
-import {render, wait, cleanup} from 'react-testing-library'
+import {render, wait, cleanup, flushEffects} from 'react-testing-library'
 import {InfoWindow, MapBox} from '../..'
 import {defineGlobalVariable} from '../../helpers'
 
@@ -32,6 +32,7 @@ describe('InfoWindow', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    flushEffects()
     expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
   })

@@ -1,6 +1,5 @@
 import React from 'react'
 import 'jest-dom/extend-expect'
-import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, fireEvent} from 'react-testing-library'
 import {MapBox, Marker, withMapContext} from '../../'
@@ -34,7 +33,6 @@ describe('withMapContext', () => {
   beforeEach(() => {
     defineGlobalVariable()
     jest.spyOn(console, 'log')
-    jest.spyOn(loadjs, 'reset')
   })
 
   afterEach(() => {
@@ -47,15 +45,33 @@ describe('withMapContext', () => {
     const {container, getByText} = render(
       <MapBox apiKey="A_FAKE_API_KEY">
         <Marker label="test" position={{lat: 39, lng: 116}} />
-        <Button text="TestButton" filter="test" onClick={handleClick} s />
+        <Button text="TestButton" filter="test" onClick={handleClick} />
       </MapBox>,
     )
-    expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
+    fireEvent.click(getByText('TestButton'))
+    expect(console.log).toHaveBeenCalledWith('Marker is clicked')
+  })
+
+  it('also works with PortalComponent', async () => {
+    const mountNode = document.createElement('div')
+    document.body.appendChild(mountNode)
+    const {container, getByText} = render(
+      <MapBox
+        apiKey="A_FAKE_API_KEY"
+        portalNode={mountNode}
+        PortalComponent={() => (
+          <Button text="TestButton" filter="test" onClick={handleClick} />
+        )}
+      >
+        <Marker label="test" position={{lat: 39, lng: 116}} />
+      </MapBox>,
+    )
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
     fireEvent.click(getByText('TestButton'))
     expect(console.log).toHaveBeenCalledWith('Marker is clicked')
   })

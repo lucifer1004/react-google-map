@@ -3,6 +3,7 @@ export interface MapBoxProps {
   center?: google.maps.LatLngLiteral
   mapClass?: string
   mapStyle?: object
+  portalNode?: Element
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
@@ -10,6 +11,7 @@ export interface MapBoxProps {
   zoom?: number
   LoadingComponent?: React.FunctionComponent
   LoadedComponent?: React.FunctionComponent
+  PortalComponent?: React.FunctionComponent
   onBoundsChanged?: () => any
   onCenterChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any

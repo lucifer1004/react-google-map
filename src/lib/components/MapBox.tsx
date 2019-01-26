@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import ReactDOM from 'react-dom'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {GMAP_LIB_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
@@ -16,9 +17,11 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
+  portalNode,
   zoom = 10,
   LoadedComponent = () => <h1>This is a map</h1>,
   LoadingComponent = () => <p>Loading...</p>,
+  PortalComponent = () => <p>This is a portal</p>,
   onBoundsChanged,
   onCenterChanged,
   onClick,
@@ -107,6 +110,9 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
         {loaded ? <LoadedComponent /> : <LoadingComponent />}
         <div id={mapItemId} style={mapStyle} className={mapClass} />
         {children}
+        {portalNode === undefined
+          ? null
+          : ReactDOM.createPortal(<PortalComponent />, portalNode)}
       </div>
     </MapContext.Provider>
   )
