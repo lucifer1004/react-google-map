@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {useGoogleListener} from '..'
+import {useGoogleListener} from '../hooks'
 import {MapContext} from '../contexts'
 import {InfoWindowProps} from '../common/types'
 

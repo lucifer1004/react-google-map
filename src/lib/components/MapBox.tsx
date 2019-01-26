@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {useGoogleAPI, useGoogleListener} from '..'
+import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {GMAP_LIB_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
 import {MapContext} from '../contexts'
