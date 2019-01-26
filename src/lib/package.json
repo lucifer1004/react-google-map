@@ -2,7 +2,7 @@
   "name": "@lucifer1004/react-google-map",
   "version": "0.2.2",
   "description": "Google Map component for React.",
-  "repository": "git@github.com:lucifer1004/react-gmap.git",
+  "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
   "keywords": [

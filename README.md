@@ -1,4 +1,4 @@
-# react-gmap
+# React Google Map
 
 To make Google Map API calls, first you need to apply for a Google Map API key.
 

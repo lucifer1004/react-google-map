@@ -1280,7 +1280,7 @@
   dependencies:
     global "^4.3.2"
 
-"@storybook/addon-info@^4.1.11":
+"@storybook/addon-info@4.1.11":
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-info/-/addon-info-4.1.11.tgz#b2ea3a4fb4cad208f9d6075737b5bfe8636e28f9"
   integrity sha512-eROXuXS5YgLeXsnkqjXqbZ8UFgNIwORDkn4UfD+Aej1//SWpGeNihOxQvx+pvs0NnsTR+/w4c1gbqa/Gr3f78w==
@@ -1752,7 +1752,7 @@
     "@types/prop-types" "*"
     csstype "^2.2.0"
 
-"@types/storybook__addon-notes@^4.0.0":
+"@types/storybook__addon-notes@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-notes/-/storybook__addon-notes-4.0.0.tgz#1d3354d995445c7b128c13c1cd76a6991fbe131c"
   integrity sha512-jh4dqUo4iflX2lK2CmbCnwKFMFDp6d48d6fo9FrHzzqcWXoeaSmWIqdLDytBpvdr2VbG8/Zo3Z4inOzw99p2Xg==
@@ -1761,7 +1761,7 @@
     "@types/react" "*"
     "@types/storybook__react" "*"
 
-"@types/storybook__addon-options@^4.0.0":
+"@types/storybook__addon-options@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-options/-/storybook__addon-options-4.0.0.tgz#80beff796c892f9bccbd221cbfc792dbe2d9764f"
   integrity sha512-toMfmqTdbh65jafemsy2+dVWjt3wjgHxbJF6V0jhfsyeZckc/1VYtjMqQZdR4vlFT+nBcOKQYt7+kw2nqYF91Q==
