@@ -1,5 +1,5 @@
 import React from 'react'
-import {InfoWindow, MapBox, Marker} from './lib'
+import {InfoWindow, MapBox, Marker, Polygon} from './lib'
 
 const App = () => (
   <div className="App">
@@ -33,10 +33,18 @@ const App = () => (
         />
         <Marker
           label="second"
-          position={{lat: 39.001, lng: 116}}
+          position={{lat: 39, lng: 115.97}}
           onMouseOver={() => {
             console.log('The mouse is hovering on the marker.')
           }}
+        />
+        <Polygon
+          draggable
+          paths={[
+            {lat: 39.004, lng: 116.004},
+            {lat: 39.015, lng: 116.004},
+            {lat: 39.015, lng: 116.015},
+          ]}
         />
       </MapBox>
     </header>
