@@ -4,6 +4,6 @@ import {MapBox} from '../../lib'
 
 const scope = {MapBox}
 
-const code = `<MapBox apiKey="A_FAKE_API_KEY"/>`
+const code = `<MapBox apiKey=""/>`
 
 export default () => <ReactLive code={code} scope={scope} />

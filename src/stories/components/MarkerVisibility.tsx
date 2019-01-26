@@ -23,13 +23,35 @@ const originalButton = ({
   text: string
   filter: string
   onClick: (markers: google.maps.Marker[] | undefined, filter: string) => void
-}) => <button onClick={() => onClick(markers, filter)}>{text}</button>
+}) => (
+  <button
+    onClick={() => onClick(markers, filter)}
+    style={{
+      height: '20px',
+    }}
+  >
+    {text}
+  </button>
+)
 
 const Button = withMapContext(originalButton)
 
-const code = `<MapBox apiKey="A_FAKE_API_KEY" LoadedComponent={() => <h1>You can change a marker's visibility</h1>}>
+const code = `<MapBox
+  apiKey=""
+  LoadedComponent={
+    () => 
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <h1>You can change a marker's visibility</h1>
+        <Button text="TestButton" filter="test" onClick={handleClick} />
+      </div>
+    }
+  >
   <Marker label="test" position={{lat: 39, lng: 116}} />
-  <Button text="TestButton" filter="test" onClick={handleClick} />
 </MapBox>`
 
 const scope = {
