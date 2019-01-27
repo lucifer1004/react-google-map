@@ -1,6 +1,17 @@
 # React Google Map
 
-To make Google Map API calls, first you need to apply for a Google Map API key.
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-0.3.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
+[![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
+
+This package is for Google Map integration with your React projects.
+
+## Prerequisites
+
+- node
+- npm or yarn
+- a valid Google Map API key
 
 ## Basic usage
 
