@@ -4,7 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
 import {Polygon, MapBox} from '../..'
-import {defineGlobalVariable} from '../../helpers'
+import {defineGlobalVariable} from '../../__test__helpers__'
 
 describe('Polygon', () => {
   beforeEach(() => {

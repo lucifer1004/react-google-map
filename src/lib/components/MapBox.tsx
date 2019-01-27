@@ -4,6 +4,7 @@ import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {GMAP_LIB_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
 import {MapContext} from '../contexts'
+import RandomId from '../helpers/generateRandomId'
 
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
   apiKey,
@@ -43,9 +44,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   children,
 }) => {
   // Generate a random id for the DOM node where Google Map will be inserted
-  const mapItemId = `map-${Math.random()
-    .toString(16)
-    .substr(2, 8)}`
+  const mapItemId = `map-${RandomId()}`
 
   // Construct the library param
   const libraries = {

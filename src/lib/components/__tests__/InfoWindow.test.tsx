@@ -4,7 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, flushEffects} from 'react-testing-library'
 import {InfoWindow, MapBox} from '../..'
-import {defineGlobalVariable} from '../../helpers'
+import {defineGlobalVariable} from '../../__test__helpers__'
 
 describe('InfoWindow', () => {
   beforeEach(() => {

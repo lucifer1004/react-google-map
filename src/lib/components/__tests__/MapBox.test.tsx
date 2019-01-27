@@ -4,7 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {cleanup, render, wait} from 'react-testing-library'
 import MapBox from '../MapBox'
-import {defineGlobalVariable} from '../../helpers'
+import {defineGlobalVariable} from '../../__test__helpers__'
 
 describe('MapBox', () => {
   beforeEach(() => {

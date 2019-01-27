@@ -3,7 +3,7 @@ import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, fireEvent} from 'react-testing-library'
 import {MapBox, Marker, withMapContext} from '../../'
-import {defineGlobalVariable} from '../../helpers'
+import {defineGlobalVariable} from '../../__test__helpers__'
 
 const handleClick = (
   markers: google.maps.Marker[] | undefined,
