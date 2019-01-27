@@ -36,4 +36,37 @@ describe('InfoWindow', () => {
     expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
   })
+
+  it('renders inside a MapBox', async () => {
+    const {container, rerender} = render(
+      <MapBox apiKey="A_FAKE_API_KEY">
+        <InfoWindow
+          position={{lat: 39, lng: 116}}
+          content="This is an info window"
+        />
+      </MapBox>,
+    )
+    expect(container.innerHTML).toMatch('Loading...')
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+    flushEffects()
+    rerender(
+      <MapBox apiKey="A_FAKE_API_KEY">
+        <InfoWindow
+          anchor={new google.maps.Marker({position: {lat: 39, lng: 116}})}
+          position={{lat: 39, lng: 116}}
+          content="This is the new content"
+          visible
+          zIndex={10}
+        />
+      </MapBox>,
+    )
+    flushEffects()
+    rerender(
+      <MapBox apiKey="A_FAKE_API_KEY">
+        <InfoWindow position={{lat: 38, lng: 116}} visible={false} />
+      </MapBox>,
+    )
+  })
 })

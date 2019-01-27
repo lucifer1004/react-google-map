@@ -20,8 +20,8 @@ const defineGlobalVariable = () => {
         Map: class {
           zoom: number
           center: google.maps.LatLngLiteral
-          setZoom(zoom: number): void {}
-          setCenter(center: google.maps.LatLngLiteral): void {}
+          setZoom = (zoom: number) => {}
+          setCenter = (center: google.maps.LatLngLiteral) => {}
           constructor(
             mapDiv: HTMLElement,
             opts: {zoom: number; center: google.maps.LatLngLiteral},
@@ -135,15 +135,28 @@ const defineGlobalVariable = () => {
           }
         },
         InfoWindow: class {
-          position: google.maps.LatLngLiteral
           content: string
-          open(map?: google.maps.Map, anchor?: google.maps.Marker): void {}
+          position: google.maps.LatLngLiteral
+          zIndex: number
+          close = () => {}
+          open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
+          setContent = (content: string) => {
+            this.content = content
+          }
+          setPosition = (position: google.maps.LatLngLiteral) => {
+            this.position = position
+          }
+          setZIndex = (zIndex: number) => {
+            this.zIndex = zIndex
+          }
           constructor(opts: {
-            position: google.maps.LatLngLiteral
             content: string
+            position: google.maps.LatLngLiteral
+            zIndex: number
           }) {
-            this.position = opts.position
             this.content = opts.content
+            this.position = opts.position
+            this.zIndex = opts.zIndex
           }
         },
         Polygon: class {

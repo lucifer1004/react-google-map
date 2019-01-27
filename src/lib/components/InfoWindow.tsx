@@ -10,6 +10,7 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   maxWidth,
   pixelOffset,
   position,
+  visible = false,
   zIndex,
   onCloseClick,
   onContentChanged,
@@ -38,8 +39,12 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
 
   useEffect(() => {
     if (infoWindow === undefined) return
-    infoWindow.open(mapContext.map, anchor)
-  }, [infoWindow])
+    if (visible) {
+      infoWindow.open(mapContext.map, anchor)
+    } else {
+      infoWindow.close()
+    }
+  }, [infoWindow, visible])
 
   // Register google map event listeners
   useGoogleListener(infoWindow, 'closeclick', onCloseClick)
@@ -47,6 +52,15 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   useGoogleListener(infoWindow, 'domready', onDOMReady)
   useGoogleListener(infoWindow, 'position_changed', onPositionChanged)
   useGoogleListener(infoWindow, 'zindex_changed', onZIndexChanged)
+
+  // Modify the google.maps.InfoWindow object when <InfoWindow> props change
+  useEffect(() => {
+    if (infoWindow === undefined) return
+    if (anchor !== undefined && visible) infoWindow.open(mapContext.map, anchor)
+    if (content !== undefined) infoWindow.setContent(content)
+    infoWindow.setPosition(position)
+    if (zIndex !== undefined) infoWindow.setZIndex(zIndex)
+  }, [anchor, content, position, zIndex])
 
   return null
 }
