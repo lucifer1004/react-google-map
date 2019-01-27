@@ -7,7 +7,7 @@
   "dependencies": {
     "dotenv": "6.2.0",
     "loadjs": "3.5.5",
-    "lodash": "4.17.11",
+    "lodash.isequal": "4.5.0",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },
@@ -22,7 +22,7 @@
     "@types/googlemaps": "3.30.16",
     "@types/jest": "23.3.13",
     "@types/loadjs": "3.5.0",
-    "@types/lodash": "4.14.120",
+    "@types/lodash.isequal": "^4.5.3",
     "@types/node": "10.12.18",
     "@types/react": "16.7.21",
     "@types/react-dom": "16.0.11",

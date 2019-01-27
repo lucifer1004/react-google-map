@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react'
-import {isEqual} from 'lodash'
+import isEqual from 'lodash.isequal'
 import {
   GoogleMapAction,
   GoogleMapReducer,
