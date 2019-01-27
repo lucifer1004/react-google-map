@@ -51,7 +51,7 @@
     "styleguide:build": "styleguidist build",
     "storybook": "start-storybook -p 3000 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o doc",
-    "deploy:now": "rm -rf build doc && yarn build && yarn storybook:build && now && now alias && now remove react-google-map --safe -y"
+    "deploy:now": "rm -rf build doc && yarn build && yarn storybook:build && now --token $NOW_TOKEN && now alias --token $NOW_TOKEN && now remove react-google-map --safe -y --token $NOW_TOKEN"
   },
   "eslintConfig": {
     "extends": "react-app",
