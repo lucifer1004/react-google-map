@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactLive from './ReactLive'
-import {MapBox} from '../../lib'
+import {GoogleMapProvider, MapBox} from '../../lib'
 
-const scope = {MapBox}
+const scope = {GoogleMapProvider, MapBox}
 
-const code = `<MapBox apiKey=""/>`
+const code = `<GoogleMapProvider>
+  <MapBox apiKey=""/>
+</GoogleMapProvider>`
 
 export default () => <ReactLive code={code} scope={scope} />

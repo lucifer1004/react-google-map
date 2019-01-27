@@ -1,6 +1,5 @@
 import React from 'react'
-import {InfoWindow, MapBox, Marker, Polygon} from './lib'
-import {GoogleMapProvider} from './lib/contexts/GoogleMapContext'
+import {GoogleMapProvider, InfoWindow, MapBox, Marker, Polygon} from './lib'
 
 const App = () => (
   <div className="App">

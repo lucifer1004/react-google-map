@@ -26,35 +26,46 @@ empowered by React's latest features.
 
 ## Basic usage
 
-### Display a map
-
 ```javascript
-import {MapBox} from '@lucifer1004/react-google-map'
-
-// In your component
-return <MapBox apiKey="Your Google Map API key" />
-```
-
-### Use other components
-
-Other components should be placed within an instance of MapBox, so that they
-will have access to that MapBox's context.
-
-```javascript
-import {MapBox, InfoWindow} from '@lucifer1004/react-google-map'
+import {
+  GoogleMapProvider,
+  InfoWindow,
+  MapBox,
+  Marker,
+  Polygon,
+} from '@lucifer1004/react-google-map'
 
 // In your component
 return (
-  <MapBox apiKey="" LoadedComponent={() => <h1>Display an info window</h1>}>
+  <GoogleMapProvider>
+    <MapBox
+      apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+      center={{lat: 39, lng: 116}}
+      zoom={14}
+      useDrawing={true}
+      useGeometry={true}
+      usePlaces={true}
+      useVisualization={true}
+      onCenterChanged={() => {
+        console.log('The center of the map has changed.')
+      }}
+    />
+    <Marker draggable label="hello" position={{lat: 39, lng: 116}} />
     <InfoWindow
       content="This is an info window"
-      position={{lat: 39, lng: 116.002}}
+      position={{lat: 39.01, lng: 115.99}}
+      visible
     />
-  </MapBox>
+    <Polygon
+      paths={[
+        {lat: 38.98, lng: 116.01},
+        {lat: 38.98, lng: 116.03},
+        {lat: 38.99, lng: 116.03},
+      ]}
+    />
+  </GoogleMapProvider>
 )
 ```
-
-### Use `withMapContext` HOC
 
 ## Advanced usage
 
