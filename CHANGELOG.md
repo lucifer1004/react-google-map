@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [0.4.0] - Unreleased
+
+## [0.3.0] - <2019-01-26>
+
+### ADDED
+
+- `MapBox` now has two new props, `portalNode` and `PortalComponent`. Powered by
+  React Portal, combined use of these two props can help you mount a component
+  outside the `MapBox`, while it will still have access to `MapContext`.
+
 ## [0.2.3] - <2019-01-26>
 
 ### CHANGED
