@@ -1,6 +1,17 @@
 # CHANGELOG
 
-## [0.4.0] - Unreleased
+## [1.0.0] - <2019-01-27>
+
+This is a breaking change.
+
+### CHANGED
+
+- Completely redesigned
+- Now there is a global `GoogleMapContext`, users can use exposed
+  `GoogleMapContext`, `GoogleMapProvider` and `GoogleMapConsumer`. All
+  map-related components should be placed inside this context.
+- `MapBox` no longer renders children.
+- `MapBox` no longer uses `portalNode` or `PortalComponent`.
 
 ## [0.3.0] - <2019-01-26>
 
