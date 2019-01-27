@@ -1,6 +1,5 @@
 {
   "name": "react-gmap",
-  "version": "0.1.1",
   "description": "Google Map component for React.",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
@@ -8,7 +7,7 @@
   "dependencies": {
     "dotenv": "6.2.0",
     "loadjs": "3.5.5",
-    "lodash-es": "4.17.11",
+    "lodash": "4.17.11",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },
@@ -23,7 +22,7 @@
     "@types/googlemaps": "3.30.16",
     "@types/jest": "23.3.13",
     "@types/loadjs": "3.5.0",
-    "@types/lodash-es": "4.17.1",
+    "@types/lodash": "4.14.120",
     "@types/node": "10.12.18",
     "@types/react": "16.7.21",
     "@types/react-dom": "16.0.11",
@@ -72,7 +71,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "yarn test --coverage && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "jest": {
@@ -82,7 +81,7 @@
       "!src/*.tsx",
       "!src/stories/**",
       "!src/lib/dist/**",
-      "!src/lib/helpers/**"
+      "!src/lib/__test__helpers__/**"
     ]
   }
 }

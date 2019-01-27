@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useGoogleListener} from '../hooks'
 import {PolygonProps} from '../common/types'
-import {MapContext} from '../contexts'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 const Polygon: React.FunctionComponent<PolygonProps> = ({
   clickable = true,
@@ -28,44 +28,46 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
   onMouseUp,
   onRightClick,
 }) => {
-  const mapContext = useContext(MapContext)
+  const {state, dispatch} = useContext(GoogleMapContext)
   const [polygon, setPolygon] = useState(
     (undefined as unknown) as google.maps.Polygon,
   )
 
   useEffect(() => {
-    if (mapContext.map === undefined) return
-    setPolygon(
-      new google.maps.Polygon({
-        clickable: clickable,
-        draggable: draggable,
-        editable: editable,
-        fillColor: fillColor,
-        fillOpacity: fillOpacity,
-        geodesic: geodesic,
-        map: mapContext.map,
-        paths: paths,
-        strokeColor: strokeColor,
-        strokeOpacity: strokeOpacity,
-        strokePosition: strokePosition,
-        strokeWeight: strokeWeight,
-        visible: visible,
-        zIndex: zIndex,
-      }),
-    )
-  }, [mapContext])
+    if (state.map !== undefined)
+      setPolygon(
+        new google.maps.Polygon({
+          clickable: clickable,
+          draggable: draggable,
+          editable: editable,
+          fillColor: fillColor,
+          fillOpacity: fillOpacity,
+          geodesic: geodesic,
+          map: state.map,
+          paths: paths,
+          strokeColor: strokeColor,
+          strokeOpacity: strokeOpacity,
+          strokePosition: strokePosition,
+          strokeWeight: strokeWeight,
+          visible: visible,
+          zIndex: zIndex,
+        }),
+      )
+  }, [state.map])
 
   // Register google map event listeners
-  useGoogleListener(polygon, 'click', onClick)
-  useGoogleListener(polygon, 'dblclick', onDoubleClick)
-  useGoogleListener(polygon, 'drag', onDrag)
-  useGoogleListener(polygon, 'dragend', onDragEnd)
-  useGoogleListener(polygon, 'dragstart', onDragStart)
-  useGoogleListener(polygon, 'mousedown', onMouseDown)
-  useGoogleListener(polygon, 'mouseout', onMouseOut)
-  useGoogleListener(polygon, 'mouseover', onMouseOver)
-  useGoogleListener(polygon, 'mouseup', onMouseUp)
-  useGoogleListener(polygon, 'rightclick', onRightClick)
+  useGoogleListener(polygon, [
+    {name: 'click', handler: onClick},
+    {name: 'dblclick', handler: onDoubleClick},
+    {name: 'drag', handler: onDrag},
+    {name: 'dragend', handler: onDragEnd},
+    {name: 'dragstart', handler: onDragStart},
+    {name: 'mousedown', handler: onMouseDown},
+    {name: 'mouseout', handler: onMouseOut},
+    {name: 'mouseover', handler: onMouseOver},
+    {name: 'mouseup', handler: onMouseUp},
+    {name: 'rightclick', handler: onRightClick},
+  ])
 
   return null
 }

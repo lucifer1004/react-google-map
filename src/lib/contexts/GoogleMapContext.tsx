@@ -1,13 +1,19 @@
 import React, {useReducer} from 'react'
-import {isEqual} from 'lodash-es'
+import {isEqual} from 'lodash'
+import {
+  GoogleMapAction,
+  GoogleMapReducer,
+  GoogleMapState,
+} from '../common/types'
 
 const initialState: GoogleMapState = {
   map: undefined,
   markers: [],
 }
 
-const GoogleMapContext = React.createContext<GoogleMapProps>({
+const GoogleMapContext = React.createContext<GoogleMapReducer>({
   state: initialState,
+  dispatch: (null as unknown) as React.Dispatch<GoogleMapAction>,
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
@@ -17,7 +23,15 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
         marker.setMap(null)
       })
       return initialState
-    case 'marker_add':
+    case 'init_map':
+      if (action.map === undefined) {
+        throw new Error('You should specify a map instance')
+      }
+      if (state.map !== undefined) {
+        throw new Error('There can only be one map instance in a context')
+      }
+      return {...state, map: action.map}
+    case 'add_marker':
       if (action.marker === undefined) {
         throw new Error('You should specify a marker instance')
       }
@@ -27,7 +41,7 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
         throw new Error('The marker has already been added')
       }
       return {...state, markers: [...state.markers, action.marker]}
-    case 'marker_remove':
+    case 'remove_marker':
       if (action.marker === undefined) {
         throw new Error('You should specify a marker instance')
       }
@@ -45,21 +59,6 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
   }
 }
 
-interface GoogleMapProps {
-  state: GoogleMapState
-  dispatch?: React.Dispatch<GoogleMapAction>
-}
-
-interface GoogleMapState {
-  map: google.maps.Map | undefined
-  markers: google.maps.Marker[]
-}
-
-interface GoogleMapAction {
-  type: string
-  marker?: google.maps.Marker
-}
-
 const GoogleMapProvider = ({children}: {children: React.ReactNode}) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const value = {state, dispatch}
@@ -75,4 +74,4 @@ const GoogleMapProvider = ({children}: {children: React.ReactNode}) => {
 
 const GoogleMapConsumer = GoogleMapContext.Consumer
 
-export default {GoogleMapContext, GoogleMapProvider, GoogleMapConsumer}
+export {GoogleMapContext, GoogleMapProvider, GoogleMapConsumer}

@@ -4,6 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, flushEffects} from 'react-testing-library'
 import {MapBox, Marker} from '../../'
+import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
 describe('Marker', () => {
@@ -20,16 +21,18 @@ describe('Marker', () => {
 
   it('renders inside a MapBox', async () => {
     const {container, rerender} = render(
-      <MapBox apiKey="A_FAKE_API_KEY">
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" />
         <Marker position={{lat: 39, lng: 116}} />
-      </MapBox>,
+      </GoogleMapProvider>,
     )
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     flushEffects()
     rerender(
-      <MapBox apiKey="A_FAKE_API_KEY">
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" />
         <Marker
           animation={google.maps.Animation.BOUNCE}
           icon={{}}
@@ -40,13 +43,14 @@ describe('Marker', () => {
           title=""
           zIndex={10}
         />
-      </MapBox>,
+      </GoogleMapProvider>,
     )
     flushEffects()
     rerender(
-      <MapBox apiKey="A_FAKE_API_KEY">
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" />
         <Marker position={{lat: 39, lng: 116}} />
-      </MapBox>,
+      </GoogleMapProvider>,
     )
   })
 })

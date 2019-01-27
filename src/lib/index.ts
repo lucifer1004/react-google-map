@@ -4,4 +4,8 @@ export {default as InfoWindow} from './components/InfoWindow'
 export {default as Polygon} from './components/Polygon'
 export {default as useGoogleAPI} from './hooks/useGoogleAPI'
 export {default as useGoogleListener} from './hooks/useGoogleListener'
-export {default as withMapContext} from './hoc/withMapContext'
+export {
+  GoogleMapProvider,
+  GoogleMapContext,
+  GoogleMapConsumer,
+} from './contexts/GoogleMapContext'

@@ -1,15 +1,25 @@
 import {useEffect} from 'react'
 
+interface GoogleMapEvent {
+  name: string
+  handler?: Function
+}
+
 const useGoogleListener = (
-  instance: google.maps.MVCObject,
-  eventName: string,
-  handler: Function | undefined,
+  instance: google.maps.MVCObject | undefined,
+  events: GoogleMapEvent[],
 ) => {
   useEffect(() => {
-    if (instance === undefined || handler === undefined) return
-    const listener = google.maps.event.addListener(instance, eventName, handler)
+    if (instance === undefined) return
+    const listeners: google.maps.MapsEventListener[] = []
+    events.forEach(event => {
+      if (event.handler === undefined) return
+      listeners.push(
+        google.maps.event.addListener(instance, event.name, event.handler),
+      )
+    })
     return () => {
-      listener.remove()
+      listeners.forEach(listener => listener.remove())
     }
   }, [instance])
 }

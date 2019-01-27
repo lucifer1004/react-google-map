@@ -40,6 +40,7 @@ const defineGlobalVariable = () => {
           draggable: boolean
           icon: string | google.maps.Icon | google.maps.Symbol
           label: string | google.maps.MarkerLabel
+          map: google.maps.Map
           opacity: number
           optimized: boolean
           place: google.maps.Place
@@ -53,6 +54,7 @@ const defineGlobalVariable = () => {
           getDraggable = () => this.draggable
           getIcon = () => this.icon
           getLabel = () => this.label
+          getMap = () => this.map
           getOpacity = () => this.opacity
           getOptimized = () => this.optimized
           getPlace = () => this.place
@@ -75,6 +77,9 @@ const defineGlobalVariable = () => {
           }
           setLabel = (label: string | google.maps.MarkerLabel) => {
             this.label = label
+          }
+          setMap = (map: google.maps.Map) => {
+            this.map = map
           }
           setOpacity = (opacity: number) => {
             this.opacity = opacity
@@ -109,6 +114,7 @@ const defineGlobalVariable = () => {
             draggable: boolean
             icon: string | google.maps.Icon | google.maps.Symbol
             label: string | google.maps.MarkerLabel
+            map: google.maps.Map
             opacity: number
             optimized: boolean
             place: google.maps.Place
@@ -124,6 +130,7 @@ const defineGlobalVariable = () => {
             this.draggable = opts.draggable
             this.icon = opts.icon
             this.label = opts.label
+            this.map = opts.map
             this.opacity = opts.opacity
             this.optimized = opts.optimized
             this.place = opts.place

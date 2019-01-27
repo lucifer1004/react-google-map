@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useGoogleListener} from '../hooks'
-import {MapContext} from '../contexts'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {InfoWindowProps} from '../common/types'
 
 const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
@@ -18,13 +18,13 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   onPositionChanged,
   onZIndexChanged,
 }) => {
-  const mapContext = useContext(MapContext)
+  const {state} = useContext(GoogleMapContext)
   const [infoWindow, setInfoWindow] = useState(
     (undefined as unknown) as google.maps.InfoWindow,
   )
 
   useEffect(() => {
-    if (mapContext.map === undefined) return
+    if (state.map === undefined) return
     setInfoWindow(
       new google.maps.InfoWindow({
         content: content,
@@ -35,28 +35,30 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
         zIndex: zIndex,
       }),
     )
-  }, [mapContext])
+  }, [state])
 
   useEffect(() => {
     if (infoWindow === undefined) return
     if (visible) {
-      infoWindow.open(mapContext.map, anchor)
+      infoWindow.open(state.map, anchor)
     } else {
       infoWindow.close()
     }
   }, [infoWindow, visible])
 
   // Register google map event listeners
-  useGoogleListener(infoWindow, 'closeclick', onCloseClick)
-  useGoogleListener(infoWindow, 'content_changed', onContentChanged)
-  useGoogleListener(infoWindow, 'domready', onDOMReady)
-  useGoogleListener(infoWindow, 'position_changed', onPositionChanged)
-  useGoogleListener(infoWindow, 'zindex_changed', onZIndexChanged)
+  useGoogleListener(infoWindow, [
+    {name: 'closeclick', handler: onCloseClick},
+    {name: 'content_changed', handler: onContentChanged},
+    {name: 'domready', handler: onDOMReady},
+    {name: 'position_changed', handler: onPositionChanged},
+    {name: 'zindex_changed', handler: onZIndexChanged},
+  ])
 
   // Modify the google.maps.InfoWindow object when <InfoWindow> props change
   useEffect(() => {
     if (infoWindow === undefined) return
-    if (anchor !== undefined && visible) infoWindow.open(mapContext.map, anchor)
+    if (anchor !== undefined && visible) infoWindow.open(state.map, anchor)
     if (content !== undefined) infoWindow.setContent(content)
     infoWindow.setPosition(position)
     if (zIndex !== undefined) infoWindow.setZIndex(zIndex)

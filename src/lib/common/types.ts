@@ -1,9 +1,26 @@
+export type GMapLibrary = 'drawing' | 'geometry' | 'places' | 'visualization'
+
+export interface GoogleMapReducer {
+  state: GoogleMapState
+  dispatch: React.Dispatch<GoogleMapAction>
+}
+
+export interface GoogleMapState {
+  map: google.maps.Map | undefined
+  markers: google.maps.Marker[]
+}
+
+export interface GoogleMapAction {
+  type: string
+  map?: google.maps.Map
+  marker?: google.maps.Marker
+}
+
 export interface MapBoxProps {
   apiKey: string
   center?: google.maps.LatLngLiteral
   mapClass?: string
   mapStyle?: object
-  portalNode?: Element
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
@@ -11,7 +28,6 @@ export interface MapBoxProps {
   zoom?: number
   LoadingComponent?: React.FunctionComponent
   LoadedComponent?: React.FunctionComponent
-  PortalComponent?: React.FunctionComponent
   onBoundsChanged?: () => any
   onCenterChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
@@ -30,12 +46,6 @@ export interface MapBoxProps {
   onTilesLoaded?: () => any
   onTiltChanged?: () => any
   onZoomChanged?: () => any
-}
-
-export interface MapContextProps {
-  map: google.maps.Map | undefined
-  loaded: boolean
-  markers?: google.maps.Marker[]
 }
 
 export interface MarkerProps extends google.maps.MarkerOptions {
@@ -85,5 +95,3 @@ export interface PolygonProps extends google.maps.PolygonOptions {
   onMouseUp?: (event: google.maps.MouseEvent) => any
   onRightClick?: (event: google.maps.MouseEvent) => any
 }
-
-export type GMapLibrary = 'drawing' | 'geometry' | 'places' | 'visualization'

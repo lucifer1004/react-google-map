@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import ReactDOM from 'react-dom'
+import React, {useEffect, useContext} from 'react'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {GMAP_LIB_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
-import {MapContext} from '../contexts'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
 
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
@@ -18,11 +17,9 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
-  portalNode,
   zoom = 10,
   LoadedComponent = () => <h1>This is a map</h1>,
   LoadingComponent = () => <p>Loading...</p>,
-  PortalComponent = () => <p>This is a portal</p>,
   onBoundsChanged,
   onCenterChanged,
   onClick,
@@ -41,8 +38,12 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   onTilesLoaded,
   onTiltChanged,
   onZoomChanged,
-  children,
 }) => {
+  // Get access to the Google Map context
+  const {state, dispatch} = useContext(GoogleMapContext)
+  const initMap = (map: google.maps.Map) =>
+    dispatch({type: 'init_map', map: map})
+
   // Generate a random id for the DOM node where Google Map will be inserted
   const mapItemId = `map-${RandomId()}`
 
@@ -61,13 +62,10 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     libraryParam === '' ? libraryParam : `&libraries=${libraryParam}`,
   )
 
-  // context variable to store the google map object
-  const [map, setMap] = useState((undefined as unknown) as google.maps.Map)
-
   // Load Google Map
   useEffect(() => {
     if (!loaded) return
-    setMap(
+    initMap(
       new google.maps.Map(document.getElementById(mapItemId), {
         center: center,
         zoom: zoom,
@@ -76,44 +74,40 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   }, [loaded])
 
   // Register google map event listeners
-  useGoogleListener(map, 'bounds_changed', onBoundsChanged)
-  useGoogleListener(map, 'center_changed', onCenterChanged)
-  useGoogleListener(map, 'click', onClick)
-  useGoogleListener(map, 'dblclick', onDoubleClick)
-  useGoogleListener(map, 'drag', onDrag)
-  useGoogleListener(map, 'dragend', onDragEnd)
-  useGoogleListener(map, 'dragstart', onDragStart)
-  useGoogleListener(map, 'heading_changed', onHeadingChanged)
-  useGoogleListener(map, 'idle', onIdle)
-  useGoogleListener(map, 'maptypeid_changed', onMapTypeIdChanged)
-  useGoogleListener(map, 'mousemove', onMouseMove)
-  useGoogleListener(map, 'mouseout', onMouseOut)
-  useGoogleListener(map, 'mouseover', onMouseOver)
-  useGoogleListener(map, 'projection_changed', onProjectionChanged)
-  useGoogleListener(map, 'rightclick', onRightClick)
-  useGoogleListener(map, 'tilesloaded', onTilesLoaded)
-  useGoogleListener(map, 'tilt_changed', onTiltChanged)
-  useGoogleListener(map, 'zoom_changed', onZoomChanged)
+  useGoogleListener(state.map, [
+    {name: 'bounds_changed', handler: onBoundsChanged},
+    {name: 'center_changed', handler: onCenterChanged},
+    {name: 'click', handler: onClick},
+    {name: 'dblclick', handler: onDoubleClick},
+    {name: 'drag', handler: onDrag},
+    {name: 'dragend', handler: onDragEnd},
+    {name: 'dragstart', handler: onDragStart},
+    {name: 'heading_changed', handler: onHeadingChanged},
+    {name: 'idle', handler: onIdle},
+    {name: 'maptypeid_changed', handler: onMapTypeIdChanged},
+    {name: 'mousemove', handler: onMouseMove},
+    {name: 'mouseout', handler: onMouseOut},
+    {name: 'mouseover', handler: onMouseOver},
+    {name: 'projection_changed', handler: onProjectionChanged},
+    {name: 'rightclick', handler: onRightClick},
+    {name: 'tilesloaded', handler: onTilesLoaded},
+    {name: 'tilt_changed', handler: onTiltChanged},
+    {name: 'zoom_changed', handler: onZoomChanged},
+  ])
 
   // Modify the google.maps.Map object when <MapBox> props change
   useEffect(() => {
-    if (map === undefined) return
-    map.setCenter(center)
-    map.setZoom(zoom)
+    if (state.map === undefined) return
+    state.map.setCenter(center)
+    state.map.setZoom(zoom)
   }, [center, zoom])
 
   // Render <MapBox>
   return (
-    <MapContext.Provider value={{map: map, loaded: loaded, markers: []}}>
-      <div>
-        {loaded ? <LoadedComponent /> : <LoadingComponent />}
-        <div id={mapItemId} style={mapStyle} className={mapClass} />
-        {children}
-        {portalNode === undefined
-          ? null
-          : ReactDOM.createPortal(<PortalComponent />, portalNode)}
-      </div>
-    </MapContext.Provider>
+    <>
+      {loaded ? <LoadedComponent /> : <LoadingComponent />}
+      <div id={mapItemId} style={mapStyle} className={mapClass} />
+    </>
   )
 }
 

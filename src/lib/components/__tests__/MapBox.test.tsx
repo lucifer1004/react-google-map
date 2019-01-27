@@ -4,6 +4,7 @@ import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {cleanup, render, wait} from 'react-testing-library'
 import MapBox from '../MapBox'
+import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
 describe('MapBox', () => {
@@ -20,7 +21,11 @@ describe('MapBox', () => {
   })
 
   it('does not render map if fetch failed', async () => {
-    const {container} = render(<MapBox apiKey="" />)
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="" />
+      </GoogleMapProvider>,
+    )
     expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(console.error).toHaveBeenCalledWith(
@@ -32,45 +37,35 @@ describe('MapBox', () => {
   })
 
   it('renders map after fetch succeeded', async () => {
-    const {container} = render(<MapBox apiKey="A_FAKE_API_KEY" />)
-    expect(container.innerHTML).toMatch('Loading...')
-    await wait(() => {
-      expect(container.innerHTML).not.toMatch('Loading...')
-    })
-    expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
-  })
-
-  it('does not fetch again', async () => {
-    const {container} = render(<MapBox apiKey="A_FAKE_API_KEY" />)
-    expect(container.innerHTML).toMatch('Loading...')
-    await wait(() => {
-      expect(container.innerHTML).not.toMatch('Loading...')
-    })
-    expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
-  })
-
-  it('can accept onClick prop', async () => {
     const {container} = render(
-      <MapBox apiKey="A_FAKE_API_KEY" onClick={() => {}} />,
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" />
+      </GoogleMapProvider>,
     )
+    expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
   })
 
-  it('renders PortalComponent at portalNode', async () => {
-    const mountNode = document.createElement('div')
-    document.body.appendChild(mountNode)
-    const {container, getByText} = render(
-      <MapBox apiKey="A_FAKE_API_KEY" portalNode={mountNode} />,
+  it('registers event listeners properly', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox
+          apiKey="A_FAKE_API_KEY"
+          onClick={() => {
+            console.log('clicked')
+          }}
+        />
+      </GoogleMapProvider>,
     )
+    expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
-    expect(getByText('This is a portal')).not.toBe(null)
   })
 })

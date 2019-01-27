@@ -5,7 +5,18 @@
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
 
-This package is for Google Map integration with your React projects.
+Easier Google Map Integration for React projects.
+
+## Why a new package
+
+There has been similar packages such as
+[tomchentw/react-google-maps](https://github.com/tomchentw/react-google-maps),
+[google-map-react/google-map-react](https://github.com/google-map-react/google-map-react),
+[fullstackreact/google-maps-react](https://github.com/fullstackreact/google-maps-react),
+so why bother writing a new library?
+
+The aim is to make an easier-to-use Google Map library for React users,
+empowered by React's latest features.
 
 ## Prerequisites
 
