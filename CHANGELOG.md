@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [1.0.1] - <2019-01-27>
+
+### FIXED
+
+- Add `lodash.isequal` to deps
+- Clean up `package.json`
+
 ## [1.0.0] - <2019-01-27>
 
 This is a breaking change.

@@ -1,7 +1,7 @@
 {
   "name": "@lucifer1004/react-google-map",
-  "version": "1.0.0",
-  "description": "Google Map component for React.",
+  "version": "1.0.1",
+  "description": "Easier-to-use Google Map & React integration",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
@@ -15,6 +15,7 @@
   "main": "dist/index.js",
   "dependencies": {
     "loadjs": "3.5.5",
+    "lodash.isequal": "4.5.0",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },
@@ -22,33 +23,5 @@
     "build": "cp ../../*.md . && rm -rf dist && microbundle && rm -rf .rts2_cache_*",
     "prepublish": "yarn build",
     "postpublish": "rm -rf dist"
-  },
-  "eslintConfig": {
-    "extends": "react-app",
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn test --coverage && lint-staged"
-    }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!node_modules/",
-      "!src/index.tsx",
-      "!src/stories/**"
-    ]
   }
 }
