@@ -4,19 +4,9 @@ import {PolygonProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 const Polygon: React.FunctionComponent<PolygonProps> = ({
-  clickable = true,
-  draggable = false,
-  editable = false,
-  fillColor,
-  fillOpacity,
-  geodesic = false,
+  opts,
   paths,
-  strokeColor,
-  strokeOpacity,
-  strokePosition,
-  strokeWeight,
-  visible = true,
-  zIndex,
+  visible = false,
   onClick,
   onDoubleClick,
   onDrag,
@@ -32,28 +22,32 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
   const [polygon, setPolygon] = useState(
     (undefined as unknown) as google.maps.Polygon,
   )
+  const addPolygon = (polygon: google.maps.Polygon) =>
+    dispatch({type: 'add_polygon', polygon: polygon})
+  const removePolygon = (marker: google.maps.Polygon) =>
+    dispatch({type: 'remove_polygon', polygon: polygon})
 
   useEffect(() => {
-    if (state.map !== undefined)
-      setPolygon(
-        new google.maps.Polygon({
-          clickable: clickable,
-          draggable: draggable,
-          editable: editable,
-          fillColor: fillColor,
-          fillOpacity: fillOpacity,
-          geodesic: geodesic,
-          map: state.map,
-          paths: paths,
-          strokeColor: strokeColor,
-          strokeOpacity: strokeOpacity,
-          strokePosition: strokePosition,
-          strokeWeight: strokeWeight,
-          visible: visible,
-          zIndex: zIndex,
-        }),
-      )
+    if (state.map === undefined) return
+    setPolygon(
+      new google.maps.Polygon({
+        ...opts,
+        map: state.map,
+        paths: paths,
+        visible: visible,
+      }),
+    )
   }, [state.map])
+
+  useEffect(() => {
+    if (polygon === undefined) return
+
+    // Add the polygon to state.polygons
+    addPolygon(polygon)
+
+    // Remove the polygon when the component is unmounted
+    return () => removePolygon(polygon)
+  }, [polygon])
 
   // Register google map event listeners
   useGoogleListener(polygon, [
@@ -68,6 +62,12 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
     {name: 'mouseup', handler: onMouseUp},
     {name: 'rightclick', handler: onRightClick},
   ])
+
+  // Modify the google.maps.Polygon object when component props change
+  useEffect(() => {
+    if (polygon === undefined) return
+    polygon.setOptions({...opts, paths: paths, visible: visible})
+  }, [opts, paths, visible])
 
   return null
 }

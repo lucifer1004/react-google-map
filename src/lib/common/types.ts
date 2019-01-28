@@ -8,24 +8,25 @@ export interface GoogleMapReducer {
 export interface GoogleMapState {
   map: google.maps.Map | undefined
   markers: google.maps.Marker[]
+  polygons: google.maps.Polygon[]
 }
 
 export interface GoogleMapAction {
   type: string
   map?: google.maps.Map
   marker?: google.maps.Marker
+  polygon?: google.maps.Polygon
 }
 
 export interface MapBoxProps {
   apiKey: string
-  center?: google.maps.LatLngLiteral
+  opts: google.maps.MapOptions
   mapClass?: string
   mapStyle?: object
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
   useVisualization?: boolean
-  zoom?: number
   LoadingComponent?: React.FunctionComponent
   LoadedComponent?: React.FunctionComponent
   onBoundsChanged?: () => any
@@ -48,7 +49,8 @@ export interface MapBoxProps {
   onZoomChanged?: () => any
 }
 
-export interface MarkerProps extends google.maps.MarkerOptions {
+export interface MarkerProps {
+  opts: google.maps.MarkerOptions
   onAnimationChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
   onClickableChanged?: () => any
@@ -72,9 +74,9 @@ export interface MarkerProps extends google.maps.MarkerOptions {
   onZIndexChanged?: () => any
 }
 
-export interface InfoWindowProps extends google.maps.InfoWindowOptions {
+export interface InfoWindowProps {
   anchor?: google.maps.Marker
-  position: google.maps.LatLngLiteral
+  opts: google.maps.InfoWindowOptions
   visible?: boolean
   onCloseClick?: () => any
   onContentChanged?: () => any
@@ -83,7 +85,10 @@ export interface InfoWindowProps extends google.maps.InfoWindowOptions {
   onZIndexChanged?: () => any
 }
 
-export interface PolygonProps extends google.maps.PolygonOptions {
+export interface PolygonProps {
+  opts?: google.maps.PolygonOptions
+  paths: google.maps.LatLngLiteral[]
+  visible?: boolean
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
   onDrag?: (event: google.maps.MouseEvent) => any

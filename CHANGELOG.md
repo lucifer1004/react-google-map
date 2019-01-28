@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## [2.0.0] - <2019-01-28>
+
+### CHANGED
+
+- `MapBox` now requires `opts` prop (google.maps.MapOptions)
+- `Marker` now requires `opts` prop (google.maps.MarkerOptions)
+- `InfoWindow` now requires `opts` prop (google.maps.InfoWindowOptions)
+- `Polygon` now requires `paths` and optionally requires `visible` and `opts`
+  prop (google.maps.PolygonOptions). Options other than `paths` or `visible`
+  should be set via `opts`.
+
 ## [1.0.1] - <2019-01-27>
 
 ### FIXED

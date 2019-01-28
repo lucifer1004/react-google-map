@@ -9,6 +9,7 @@ import {
 const initialState: GoogleMapState = {
   map: undefined,
   markers: [],
+  polygons: [],
 }
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
@@ -17,12 +18,10 @@ const GoogleMapContext = React.createContext<GoogleMapReducer>({
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
+  let index
   switch (action.type) {
     case 'reset':
-      state.markers.forEach(marker => {
-        marker.setMap(null)
-      })
-      return initialState
+      return {...state, map: undefined}
     case 'init_map':
       if (action.map === undefined) {
         throw new Error('You should specify a map instance')
@@ -45,14 +44,37 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (action.marker === undefined) {
         throw new Error('You should specify a marker instance')
       }
-      const index = state.markers.findIndex(marker =>
-        isEqual(marker, action.marker),
-      )
+      index = state.markers.findIndex(marker => isEqual(marker, action.marker))
       if (index === -1) {
         throw new Error('The marker cannot be found')
       }
       state.markers[index].setMap(null)
       state.markers.splice(index, 1)
+      return state
+    case 'add_polygon':
+      if (action.polygon === undefined) {
+        throw new Error('You should specify a polygon instance')
+      }
+      if (
+        state.polygons.findIndex(polygon =>
+          isEqual(polygon, action.polygon),
+        ) !== -1
+      ) {
+        throw new Error('The polygon has already been added')
+      }
+      return {...state, polygons: [...state.polygons, action.polygon]}
+    case 'remove_polygon':
+      if (action.polygon === undefined) {
+        throw new Error('You should specify a polygon instance')
+      }
+      index = state.polygons.findIndex(polygon =>
+        isEqual(polygon, action.polygon),
+      )
+      if (index === -1) {
+        throw new Error('The polygon cannot be found')
+      }
+      state.polygons[index].setMap(null)
+      state.polygons.splice(index, 1)
       return state
     default:
       return state

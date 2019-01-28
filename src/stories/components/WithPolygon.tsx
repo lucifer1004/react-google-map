@@ -5,13 +5,14 @@ import {GoogleMapProvider, MapBox, Polygon} from '../../lib'
 const scope = {GoogleMapProvider, MapBox, Polygon}
 
 const code = `<GoogleMapProvider>
-  <MapBox apiKey="" LoadedComponent={() => <h1>Display a polygon</h1>} zoom={14}/>
+  <MapBox apiKey="" LoadedComponent={() => <h1>Display a polygon</h1>} />
   <Polygon
     paths={[
-      {lat: 39.01, lng: 116.01},
-      {lat: 39.01, lng: 116.03},
-      {lat: 39.02, lng: 116.03},
+      {lat: 39.1, lng: 116.1},
+      {lat: 39.1, lng: 116.3},
+      {lat: 39.2, lng: 116.3},
     ]}
+    visible
   />
 </GoogleMapProvider>
 `

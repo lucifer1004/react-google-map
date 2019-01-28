@@ -25,8 +25,10 @@ describe('InfoWindow', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
         <InfoWindow
-          position={{lat: 39, lng: 116}}
-          content="This is an info window"
+          opts={{
+            content: 'This is an info window',
+            position: {lat: 39, lng: 116},
+          }}
         />
       </GoogleMapProvider>,
     )
@@ -39,10 +41,12 @@ describe('InfoWindow', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
         <InfoWindow
+          opts={{
+            position: {lat: 39, lng: 116},
+            zIndex: 10,
+          }}
           anchor={new google.maps.Marker({position: {lat: 39, lng: 116}})}
-          position={{lat: 39, lng: 116}}
           visible
-          zIndex={10}
         />
       </GoogleMapProvider>,
     )
@@ -51,8 +55,10 @@ describe('InfoWindow', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
         <InfoWindow
-          position={{lat: 38, lng: 116}}
-          content="This is an info window"
+          opts={{
+            content: 'This is an info window',
+            position: {lat: 38, lng: 116},
+          }}
           visible={false}
         />
       </GoogleMapProvider>,

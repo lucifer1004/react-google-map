@@ -1,6 +1,6 @@
 # React Google Map
 
-[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-1.0.1-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.0.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
@@ -40,8 +40,11 @@ return (
   <GoogleMapProvider>
     <MapBox
       apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
-      center={{lat: 39, lng: 116}}
-      zoom={14}
+      opts={{
+        center: {lat: 39, lng: 116},
+        noClear: true,
+        zoom: 14,
+      }}
       useDrawing={true}
       useGeometry={true}
       usePlaces={true}
@@ -50,10 +53,18 @@ return (
         console.log('The center of the map has changed.')
       }}
     />
-    <Marker draggable label="hello" position={{lat: 39, lng: 116}} />
+    <Marker
+      opts={{
+        draggable: true,
+        label: 'hello',
+        position: {lat: 39, lng: 116},
+      }}
+    />
     <InfoWindow
-      content="This is an info window"
-      position={{lat: 39.01, lng: 115.99}}
+      opts={{
+        content: 'This is an info window',
+        position: {lat: 39.01, lng: 115.99},
+      }}
       visible
     />
     <Polygon
@@ -62,6 +73,7 @@ return (
         {lat: 38.98, lng: 116.03},
         {lat: 38.99, lng: 116.03},
       ]}
+      visible
     />
   </GoogleMapProvider>
 )

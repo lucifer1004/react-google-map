@@ -4,20 +4,7 @@ import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {MarkerProps} from '../common/types'
 
 const Marker: React.FunctionComponent<MarkerProps> = ({
-  anchorPoint,
-  animation,
-  clickable = true,
-  draggable = false,
-  icon,
-  label,
-  opacity = 1.0,
-  optimized = true,
-  place,
-  position,
-  shape,
-  title,
-  visible = true,
-  zIndex,
+  opts,
   onAnimationChanged,
   onClick,
   onClickableChanged,
@@ -44,39 +31,27 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
   const [marker, setMarker] = useState(
     (undefined as unknown) as google.maps.Marker,
   )
+  const addMarker = (marker: google.maps.Marker) =>
+    dispatch({type: 'add_marker', marker: marker})
+  const removeMarker = (marker: google.maps.Marker) =>
+    dispatch({type: 'remove_marker', marker: marker})
 
   useEffect(() => {
     if (state.map === undefined) return
-    setMarker(
-      new google.maps.Marker({
-        anchorPoint: anchorPoint,
-        animation: animation,
-        clickable: clickable,
-        draggable: draggable,
-        icon: icon,
-        label: label,
-        map: state.map,
-        opacity: opacity,
-        optimized: optimized,
-        place: place,
-        position: position,
-        shape: shape,
-        title: title,
-        visible: visible,
-        zIndex: zIndex,
-      }),
-    )
+    setMarker(new google.maps.Marker({...opts, map: state.map}))
   }, [state.map])
 
   useEffect(() => {
     if (marker === undefined) return
-    dispatch({type: 'add_marker', marker: marker})
-    return () => {
-      dispatch({type: 'remove_marker', marker: marker})
-    }
+
+    // Add the marker to state.markers
+    addMarker(marker)
+
+    // Remove the marker when the component is unmounted
+    return () => removeMarker(marker)
   }, [marker])
 
-  // Register google map event listeners
+  // Register event listeners
   useGoogleListener(marker, [
     {name: 'animation_changed', handler: onAnimationChanged},
     {name: 'click', handler: onClick},
@@ -101,35 +76,11 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
     {name: 'zindex_changed', handler: onZIndexChanged},
   ])
 
-  // Modify the google.maps.Marker object when <Marker> props change
+  // Modify the google.maps.Marker object when component props change
   useEffect(() => {
     if (marker === undefined) return
-    if (animation !== undefined) marker.setAnimation(animation)
-    marker.setClickable(clickable)
-    marker.setDraggable(draggable)
-    if (icon !== undefined) marker.setIcon(icon)
-    if (label !== undefined) marker.setLabel(label)
-    marker.setOpacity(opacity)
-    if (place !== undefined) marker.setPlace(place)
-    marker.setPosition(position)
-    if (shape !== undefined) marker.setShape(shape)
-    if (title !== undefined) marker.setTitle(title)
-    marker.setVisible(visible)
-    if (zIndex !== undefined) marker.setZIndex(zIndex)
-  }, [
-    animation,
-    clickable,
-    draggable,
-    icon,
-    label,
-    opacity,
-    place,
-    position,
-    shape,
-    title,
-    visible,
-    zIndex,
-  ])
+    marker.setOptions(opts)
+  }, [opts])
 
   return null
 }

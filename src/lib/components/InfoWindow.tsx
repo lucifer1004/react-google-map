@@ -5,13 +5,8 @@ import {InfoWindowProps} from '../common/types'
 
 const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   anchor,
-  content,
-  disableAutoPan = false,
-  maxWidth,
-  pixelOffset,
-  position,
-  visible = false,
-  zIndex,
+  opts,
+  visible,
   onCloseClick,
   onContentChanged,
   onDOMReady,
@@ -25,28 +20,21 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
 
   useEffect(() => {
     if (state.map === undefined) return
-    setInfoWindow(
-      new google.maps.InfoWindow({
-        content: content,
-        disableAutoPan: disableAutoPan,
-        maxWidth: maxWidth,
-        pixelOffset: pixelOffset,
-        position: position,
-        zIndex: zIndex,
-      }),
-    )
+    setInfoWindow(new google.maps.InfoWindow(opts))
   }, [state])
 
   useEffect(() => {
     if (infoWindow === undefined) return
-    if (visible) {
-      infoWindow.open(state.map, anchor)
-    } else {
-      infoWindow.close()
-    }
+
+    // Open or close the info window according to the `visible` prop
+    if (visible) infoWindow.open(state.map, anchor)
+    else infoWindow.close()
+
+    // Close the info window when the component is unmounted
+    return () => infoWindow.close()
   }, [infoWindow, visible])
 
-  // Register google map event listeners
+  // Register event listeners
   useGoogleListener(infoWindow, [
     {name: 'closeclick', handler: onCloseClick},
     {name: 'content_changed', handler: onContentChanged},
@@ -55,14 +43,11 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
     {name: 'zindex_changed', handler: onZIndexChanged},
   ])
 
-  // Modify the google.maps.InfoWindow object when <InfoWindow> props change
+  // Modify the google.maps.InfoWindow object when component props change
   useEffect(() => {
     if (infoWindow === undefined) return
-    if (anchor !== undefined && visible) infoWindow.open(state.map, anchor)
-    if (content !== undefined) infoWindow.setContent(content)
-    infoWindow.setPosition(position)
-    if (zIndex !== undefined) infoWindow.setZIndex(zIndex)
-  }, [anchor, content, position, zIndex])
+    infoWindow.setOptions(opts)
+  }, [opts])
 
   return null
 }

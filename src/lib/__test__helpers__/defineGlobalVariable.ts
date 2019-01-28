@@ -1,4 +1,48 @@
-import {MarkerProps, PolygonProps} from '../common/types'
+class InfoWindow {
+  close = () => {}
+  open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
+  opts: google.maps.InfoWindowOptions
+  setOptions = (opts: google.maps.InfoWindowOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.InfoWindowOptions) {
+    this.opts = opts
+  }
+}
+
+class Marker {
+  map?: google.maps.Map
+  opts: google.maps.MarkerOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.MarkerOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.MarkerOptions) {
+    this.opts = opts
+    this.map = opts.map as google.maps.Map | undefined
+  }
+}
+
+class Map {
+  opts: google.maps.MapOptions
+  setOptions = (opts: google.maps.MapOptions) => (this.opts = opts)
+  constructor(mapDiv: HTMLElement, opts: google.maps.MapOptions) {
+    this.opts = opts
+  }
+}
+
+class Polygon {
+  map?: google.maps.Map
+  opts: google.maps.PolygonOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.PolygonOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.PolygonOptions) {
+    this.opts = opts
+    this.map = opts.map as google.maps.Map | undefined
+  }
+}
 
 const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
@@ -17,158 +61,10 @@ const defineGlobalVariable = () => {
           BOUNCE: 0,
           DROP: 1,
         },
-        Map: class {
-          zoom: number
-          center: google.maps.LatLngLiteral
-          setZoom = (zoom: number) => {}
-          setCenter = (center: google.maps.LatLngLiteral) => {}
-          constructor(
-            mapDiv: HTMLElement,
-            opts: {zoom: number; center: google.maps.LatLngLiteral},
-          ) {
-            this.zoom = opts.zoom
-            this.center = opts.center
-            this.setZoom = (zoom: number) => (this.zoom = zoom)
-            this.setCenter = (center: google.maps.LatLngLiteral) =>
-              (this.center = center)
-          }
-        },
-        Marker: class {
-          anchorPoint: google.maps.Point
-          animation: google.maps.Animation
-          clickable: boolean
-          draggable: boolean
-          icon: string | google.maps.Icon | google.maps.Symbol
-          label: string | google.maps.MarkerLabel
-          map: google.maps.Map
-          opacity: number
-          optimized: boolean
-          place: google.maps.Place
-          position: google.maps.LatLngLiteral | google.maps.LatLng
-          shape: google.maps.MarkerShape
-          title: string
-          visible: boolean
-          zIndex: number
-          getAnimation = () => this.animation
-          getClickable = () => this.clickable
-          getDraggable = () => this.draggable
-          getIcon = () => this.icon
-          getLabel = () => this.label
-          getMap = () => this.map
-          getOpacity = () => this.opacity
-          getOptimized = () => this.optimized
-          getPlace = () => this.place
-          getPosition = () => this.position
-          getShape = () => this.shape
-          getTitle = () => this.title
-          getVisible = () => this.visible
-          getZIndex = () => this.zIndex
-          setAnimation = (animation: google.maps.Animation) => {
-            this.animation = animation
-          }
-          setClickable = (clickable: boolean) => {
-            this.clickable = clickable
-          }
-          setDraggable = (draggable: boolean) => {
-            this.draggable = draggable
-          }
-          setIcon = (icon: string | google.maps.Icon | google.maps.Symbol) => {
-            this.icon = icon
-          }
-          setLabel = (label: string | google.maps.MarkerLabel) => {
-            this.label = label
-          }
-          setMap = (map: google.maps.Map) => {
-            this.map = map
-          }
-          setOpacity = (opacity: number) => {
-            this.opacity = opacity
-          }
-          setOptimized = (optimized: boolean) => {
-            this.optimized = optimized
-          }
-          setPlace = (place: google.maps.Place) => {
-            this.place = place
-          }
-          setPosition = (
-            position: google.maps.LatLngLiteral | google.maps.LatLng,
-          ) => {
-            this.position = position
-          }
-          setShape = (shape: google.maps.MarkerShape) => {
-            this.shape = shape
-          }
-          setTitle = (title: string) => {
-            this.title = title
-          }
-          setVisible = (visible: boolean) => {
-            this.visible = visible
-          }
-          setZIndex = (zIndex: number) => {
-            this.zIndex = zIndex
-          }
-          constructor(opts: {
-            anchorPoint: google.maps.Point
-            animation: google.maps.Animation
-            clickable: boolean
-            draggable: boolean
-            icon: string | google.maps.Icon | google.maps.Symbol
-            label: string | google.maps.MarkerLabel
-            map: google.maps.Map
-            opacity: number
-            optimized: boolean
-            place: google.maps.Place
-            position: google.maps.LatLngLiteral | google.maps.LatLng
-            shape: google.maps.MarkerShape
-            title: string
-            visible: boolean
-            zIndex: number
-          }) {
-            this.anchorPoint = opts.anchorPoint
-            this.animation = opts.animation
-            this.clickable = opts.clickable
-            this.draggable = opts.draggable
-            this.icon = opts.icon
-            this.label = opts.label
-            this.map = opts.map
-            this.opacity = opts.opacity
-            this.optimized = opts.optimized
-            this.place = opts.place
-            this.position = opts.position
-            this.shape = opts.shape
-            this.title = opts.title
-            this.visible = opts.visible
-            this.zIndex = opts.zIndex
-          }
-        },
-        InfoWindow: class {
-          content: string
-          position: google.maps.LatLngLiteral
-          zIndex: number
-          close = () => {}
-          open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
-          setContent = (content: string) => {
-            this.content = content
-          }
-          setPosition = (position: google.maps.LatLngLiteral) => {
-            this.position = position
-          }
-          setZIndex = (zIndex: number) => {
-            this.zIndex = zIndex
-          }
-          constructor(opts: {
-            content: string
-            position: google.maps.LatLngLiteral
-            zIndex: number
-          }) {
-            this.content = opts.content
-            this.position = opts.position
-            this.zIndex = opts.zIndex
-          }
-        },
-        Polygon: class {
-          constructor(opts: PolygonProps) {}
-        },
+        Map: Map,
+        Marker: Marker,
+        InfoWindow: InfoWindow,
+        Polygon: Polygon,
       },
     },
     writable: true,

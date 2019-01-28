@@ -7,17 +7,19 @@ import RandomId from '../helpers/generateRandomId'
 
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
   apiKey,
-  center = {lat: 39, lng: 116},
   mapClass,
   mapStyle = {
     width: '100vw',
     height: '100vh',
   },
+  opts = {
+    center: {lat: 39, lng: 116},
+    zoom: 10,
+  },
   useDrawing = false,
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
-  zoom = 10,
   LoadedComponent = () => <h1>This is a map</h1>,
   LoadingComponent = () => <p>Loading...</p>,
   onBoundsChanged,
@@ -43,6 +45,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   const {state, dispatch} = useContext(GoogleMapContext)
   const initMap = (map: google.maps.Map) =>
     dispatch({type: 'init_map', map: map})
+  const reset = () => dispatch({type: 'reset'})
 
   // Generate a random id for the DOM node where Google Map will be inserted
   const mapItemId = `map-${RandomId()}`
@@ -65,15 +68,11 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   // Load Google Map
   useEffect(() => {
     if (!loaded) return
-    initMap(
-      new google.maps.Map(document.getElementById(mapItemId), {
-        center: center,
-        zoom: zoom,
-      }),
-    )
+    initMap(new google.maps.Map(document.getElementById(mapItemId), opts))
+    return () => reset()
   }, [loaded])
 
-  // Register google map event listeners
+  // Register event listeners
   useGoogleListener(state.map, [
     {name: 'bounds_changed', handler: onBoundsChanged},
     {name: 'center_changed', handler: onCenterChanged},
@@ -95,12 +94,11 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     {name: 'zoom_changed', handler: onZoomChanged},
   ])
 
-  // Modify the google.maps.Map object when <MapBox> props change
+  // Modify the google.maps.Map object when component props change
   useEffect(() => {
     if (state.map === undefined) return
-    state.map.setCenter(center)
-    state.map.setZoom(zoom)
-  }, [center, zoom])
+    state.map.setOptions(opts)
+  }, [opts])
 
   // Render <MapBox>
   return (

@@ -23,7 +23,7 @@ describe('Marker', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
-        <Marker position={{lat: 39, lng: 116}} />
+        <Marker opts={{position: {lat: 39, lng: 116}}} />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -34,22 +34,16 @@ describe('Marker', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
         <Marker
-          animation={google.maps.Animation.BOUNCE}
-          icon={{}}
-          label="test"
-          place={{}}
-          position={{lat: 39, lng: 116}}
-          shape={{}}
-          title=""
-          zIndex={10}
+          opts={{
+            animation: google.maps.Animation.BOUNCE,
+            icon: '',
+            label: 'test',
+            place: {},
+            position: {lat: 39, lng: 116},
+            title: '',
+            zIndex: 10,
+          }}
         />
-      </GoogleMapProvider>,
-    )
-    flushEffects()
-    rerender(
-      <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
-        <Marker position={{lat: 39, lng: 116}} />
       </GoogleMapProvider>,
     )
   })

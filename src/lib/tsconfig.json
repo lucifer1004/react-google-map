@@ -17,6 +17,6 @@
     "composite": true
   },
   "include": ["."],
-  "exclude": ["./**/__tests__"],
+  "exclude": ["./**/__tests__", "./__test__helpers__"],
   "compileNamespace": "es"
 }
