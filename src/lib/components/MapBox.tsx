@@ -13,7 +13,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     height: '100vh',
   },
   opts = {
-    center: {lat: 0, lng: 0},
+    center: {lat: 40.7128, lng: -74.006},
     zoom: 10,
   },
   useDrawing = false,

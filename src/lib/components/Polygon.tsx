@@ -4,6 +4,7 @@ import {PolygonProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 const Polygon: React.FunctionComponent<PolygonProps> = ({
+  id,
   opts,
   paths,
   visible = false,
@@ -22,10 +23,11 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
   const [polygon, setPolygon] = useState(
     (undefined as unknown) as google.maps.Polygon,
   )
-  const addPolygon = (polygon: google.maps.Polygon) =>
-    dispatch({type: 'add_polygon', polygon: polygon})
-  const removePolygon = (marker: google.maps.Polygon) =>
-    dispatch({type: 'remove_polygon', polygon: polygon})
+  const addPolygon = (polygon: google.maps.Polygon) => {
+    if (!state.polygons.has(id))
+      dispatch({type: 'add_polygon', polygon: polygon, id: id})
+  }
+  const removePolygon = () => dispatch({type: 'remove_polygon', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
@@ -46,7 +48,7 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
     addPolygon(polygon)
 
     // Remove the polygon when the component is unmounted
-    return () => removePolygon(polygon)
+    return () => removePolygon()
   }, [polygon])
 
   // Register google map event listeners

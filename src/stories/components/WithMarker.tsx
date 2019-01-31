@@ -5,8 +5,11 @@ import {GoogleMapProvider, MapBox, Marker} from '../../lib'
 const scope = {GoogleMapProvider, MapBox, Marker}
 
 const code = `<GoogleMapProvider>
-  <MapBox apiKey="" LoadedComponent={() => <h1>Display a marker</h1>} />
-  <Marker opts={{position: {lat: 39, lng: 116}}} />
+  <MapBox 
+    apiKey=""
+    LoadedComponent={() => <h1>Display a marker</h1>}
+  />
+  <Marker id="marker" />
 </GoogleMapProvider>
 `
 

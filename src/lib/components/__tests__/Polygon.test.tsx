@@ -24,6 +24,7 @@ describe('Polygon', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Polygon
+          id="polygon"
           paths={[{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
         />
       </GoogleMapProvider>,
@@ -35,10 +36,32 @@ describe('Polygon', () => {
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Polygon
+          id="polygon"
           paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
         />
       </GoogleMapProvider>,
     )
+    flushEffects()
+  })
+
+  it('with same id will only be added once', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <Polygon
+          id="polygon"
+          paths={[{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+        />
+        <Polygon
+          id="polygon"
+          paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+        />
+      </GoogleMapProvider>,
+    )
+    expect(container.innerHTML).toMatch('Loading...')
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
     flushEffects()
   })
 })

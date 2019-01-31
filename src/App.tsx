@@ -1,10 +1,20 @@
-import React from 'react'
-import {GoogleMapProvider, InfoWindow, MapBox, Marker, Polygon} from './lib'
+import React, {useState} from 'react'
+import {InfoWindow, MapBox, Marker, Polygon} from './lib'
 
-const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <GoogleMapProvider>
+const App = () => {
+  const [num, setNum] = useState(1)
+  const initialPositions = Array.from({length: 10}, () => {
+    return {lat: 39 + Math.random() / 50, lng: 116 + Math.random() / 50}
+  })
+  const addMarker = () => setNum(num => (num < 10 ? num + 1 : 10))
+  const removeMarker = () => setNum(num => (num > 1 ? num - 1 : 0))
+  const [positions, setPositions] = useState(initialPositions)
+  return (
+    <div className="App">
+      <button onClick={addMarker}>Add a marker</button>
+      <button onClick={removeMarker}>Remove a marker</button>
+      <p>Current markers: {num}</p>
+      <div className="App-header">
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
           opts={{
@@ -20,14 +30,26 @@ const App = () => (
             console.log('The center of the map has changed.')
           }}
         />
-        <Marker
-          id="hello"
-          opts={{
-            draggable: true,
-            label: 'hello',
-            position: {lat: 39, lng: 116},
-          }}
-        />
+        <ul>
+          {Array.from({length: num}, (value, index) => index).map(num => (
+            <li key={num}>
+              <Marker
+                id={`marker-${num}`}
+                opts={{
+                  draggable: true,
+                  label: num.toString(),
+                  position: positions[num],
+                }}
+                onDragEnd={event => {
+                  setPositions(positions => {
+                    positions[num] = event.latLng.toJSON()
+                    return positions
+                  })
+                }}
+              />
+            </li>
+          ))}
+        </ul>
         <InfoWindow
           opts={{
             content: 'This is an info window',
@@ -36,6 +58,10 @@ const App = () => (
           visible
         />
         <Polygon
+          id="polygon"
+          opts={{
+            draggable: true,
+          }}
           paths={[
             {lat: 38.98, lng: 116.01},
             {lat: 38.98, lng: 116.03},
@@ -43,10 +69,10 @@ const App = () => (
           ]}
           visible
         />
-      </GoogleMapProvider>
-    </header>
-  </div>
-)
+      </div>
+    </div>
+  )
+}
 
 App.displayName = 'App'
 

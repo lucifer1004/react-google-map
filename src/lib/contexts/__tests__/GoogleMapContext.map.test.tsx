@@ -49,7 +49,9 @@ describe('The dispatcher will', () => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
+          <FakeComponent
+            action={{type: 'add_marker', marker: marker, id: 'marker'}}
+          />
           <FakeComponent action={{type: 'reset'}} />
         </GoogleMapProvider>,
       )

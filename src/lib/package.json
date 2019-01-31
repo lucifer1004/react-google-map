@@ -15,7 +15,6 @@
   "main": "dist/index.js",
   "dependencies": {
     "loadjs": "3.5.5",
-    "lodash.isequal": "4.5.0",
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
   },

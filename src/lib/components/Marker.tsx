@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useGoogleListener} from '../hooks'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
-import {GoogleMapMarker, MarkerProps} from '../common/types'
+import {MarkerProps} from '../common/types'
 
 const Marker: React.FunctionComponent<MarkerProps> = ({
   id,
   opts = {
-    position: {lat: 0, lng: 0},
+    position: {lat: 40.7128, lng: -74.006},
   },
   onAnimationChanged,
   onClick,
@@ -32,12 +32,13 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
 }) => {
   const {state, dispatch} = useContext(GoogleMapContext)
   const [marker, setMarker] = useState(
-    (undefined as unknown) as GoogleMapMarker,
+    (undefined as unknown) as google.maps.Marker,
   )
-  const addMarker = (marker: GoogleMapMarker) =>
-    dispatch({type: 'add_marker', marker: marker})
-  const removeMarker = (marker: GoogleMapMarker) =>
-    dispatch({type: 'remove_marker', marker: marker})
+  const addMarker = (marker: google.maps.Marker) => {
+    if (!state.markers.has(id))
+      dispatch({type: 'add_marker', marker: marker, id: id})
+  }
+  const removeMarker = () => dispatch({type: 'remove_marker', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
@@ -48,11 +49,10 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
     if (marker === undefined) return
 
     // Add the marker to state.markers
-    if (id !== undefined) marker.id = id
     addMarker(marker)
 
     // Remove the marker when the component is unmounted
-    return () => removeMarker(marker)
+    return () => removeMarker()
   }, [marker])
 
   // Register event listeners

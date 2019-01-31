@@ -5,11 +5,18 @@ import {GoogleMapProvider, InfoWindow, MapBox} from '../../lib'
 const scope = {GoogleMapProvider, InfoWindow, MapBox}
 
 const code = `<GoogleMapProvider>
-  <MapBox apiKey="" LoadedComponent={() => <h1>Display an info window</h1>} />
+  <MapBox
+    apiKey=""
+    LoadedComponent={() => <h1>Display an info window</h1>}
+    opts={{
+      center: {lat: 39, lng: 116},
+      zoom: 10,
+    }}
+  />
   <InfoWindow 
     opts={{
       content: 'This is an info window',
-      position: {lat: 39, lng: 116}
+      position: {lat: 39, lng: 116},
     }}
     visible
   />

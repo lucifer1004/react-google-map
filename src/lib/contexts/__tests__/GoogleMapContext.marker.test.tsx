@@ -3,20 +3,15 @@ import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
 import {render, cleanup, flushEffects} from 'react-testing-library'
 import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
-import {GoogleMapMarker} from '../../common/types'
 
-const callbackFn = (marker: GoogleMapMarker) => {
-  console.log(marker)
-}
+defineGlobalVariable()
 
 beforeEach(() => {
-  defineGlobalVariable()
   console.error = jest.fn()
 })
 
 afterEach(() => {
   cleanup()
-  Object.defineProperty(global, 'google', {value: undefined})
   jest.restoreAllMocks()
 })
 
@@ -32,20 +27,36 @@ describe('The dispatcher throws an error when trying to', () => {
     }).toThrowError(new Error('You should specify a marker instance'))
   })
 
-  it('add the same marker more than once', () => {
+  it('add a marker without an id', () => {
     expect(() => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
           <FakeComponent action={{type: 'add_marker', marker: marker}} />
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('The marker has already been added'))
+    }).toThrowError(new Error('You should specify an id'))
   })
 
-  it('remove a marker without a marker instance', () => {
+  it('add the same marker more than once', () => {
+    expect(() => {
+      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
+      render(
+        <GoogleMapProvider>
+          <FakeComponent
+            action={{type: 'add_marker', marker: marker, id: 'marker'}}
+          />
+          <FakeComponent
+            action={{type: 'add_marker', marker: marker, id: 'marker'}}
+          />
+        </GoogleMapProvider>,
+      )
+      flushEffects()
+    }).toThrowError(new Error('The id has already been taken'))
+  })
+
+  it('remove a marker without an id', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
@@ -53,88 +64,32 @@ describe('The dispatcher throws an error when trying to', () => {
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('You should specify a marker instance'))
-  })
-
-  it('remove a non-existing marker', () => {
-    expect(() => {
-      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_marker', marker: marker}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).toThrowError(new Error('The marker cannot be found'))
-  })
-
-  it('get a marker without id', () => {
-    expect(() => {
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'get_marker'}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
     }).toThrowError(new Error('You should specify an id'))
   })
 
-  it('get a marker without callback function', () => {
+  it.concurrent('remove a non-existing marker', async () => {
+    console.error = jest.fn()
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'get_marker', id: 'hello'}} />
+          <FakeComponent action={{type: 'remove_marker', id: 'marker'}} />
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('You should specify a callback function'))
-  })
-
-  it('get a non-existing marker', () => {
-    const marker = new google.maps.Marker({
-      position: {lat: 0, lng: 0},
-    }) as GoogleMapMarker
-    marker.id = 'my-marker'
-    expect(() => {
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
-          <FakeComponent
-            action={{type: 'get_marker', id: 'hello', callback: callbackFn}}
-          />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).toThrowError(new Error('The marker cannot be found'))
+    }).toThrowError(new Error('There is no marker with the given id'))
   })
 })
 
 describe('The dispatcher will', () => {
-  it('add and remove a marker', () => {
+  it.concurrent('add and remove a marker', async () => {
     expect(() => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
-          <FakeComponent action={{type: 'remove_marker', marker: marker}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).not.toThrow()
-  })
-
-  it('get a marker', () => {
-    expect(() => {
-      const marker = new google.maps.Marker({
-        position: {lat: 0, lng: 0},
-      }) as GoogleMapMarker
-      marker.id = 'my-marker'
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
           <FakeComponent
-            action={{type: 'get_marker', id: 'my-marker', callback: callbackFn}}
+            action={{type: 'add_marker', marker: marker, id: 'marker'}}
           />
+          <FakeComponent action={{type: 'remove_marker', id: 'marker'}} />
         </GoogleMapProvider>,
       )
       flushEffects()

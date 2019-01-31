@@ -6,7 +6,14 @@ const scope = {GoogleMapProvider, MapBox, Marker}
 
 const code = `<GoogleMapProvider>
   <MapBox apiKey="" LoadedComponent={() => <h1>The marker can be draggable</h1>} />
-  <Marker opts={{draggable: true, position: {lat: 39, lng: 116}}} />
+  <Marker 
+    id="marker"
+    opts={{
+      draggable: true,
+      label: 'drag me',
+      position: {lat: 40.7128, lng: -74.0060},
+    }} 
+  />
 </GoogleMapProvider>
 `
 

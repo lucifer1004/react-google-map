@@ -1,5 +1,4 @@
 import React, {useReducer} from 'react'
-import isEqual from 'lodash.isequal'
 import {
   GoogleMapAction,
   GoogleMapReducer,
@@ -8,8 +7,8 @@ import {
 
 const initialState: GoogleMapState = {
   map: undefined,
-  markers: [],
-  polygons: [],
+  markers: new Map<string, google.maps.Marker>(),
+  polygons: new Map<string, google.maps.Polygon>(),
 }
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
@@ -18,10 +17,9 @@ const GoogleMapContext = React.createContext<GoogleMapReducer>({
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
-  let index
   switch (action.type) {
     case 'reset':
-      return {...state, map: undefined}
+      return initialState
     case 'init_map':
       if (action.map === undefined) {
         throw new Error('You should specify a map instance')
@@ -34,60 +32,45 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (action.marker === undefined) {
         throw new Error('You should specify a marker instance')
       }
-      if (
-        state.markers.findIndex(marker => isEqual(marker, action.marker)) !== -1
-      ) {
-        throw new Error('The marker has already been added')
-      }
-      return {...state, markers: [...state.markers, action.marker]}
-    case 'remove_marker':
-      if (action.marker === undefined) {
-        throw new Error('You should specify a marker instance')
-      }
-      index = state.markers.findIndex(marker => isEqual(marker, action.marker))
-      if (index === -1) {
-        throw new Error('The marker cannot be found')
-      }
-      state.markers[index].setMap(null)
-      state.markers.splice(index, 1)
-      return state
-    case 'get_marker':
       if (action.id === undefined) {
         throw new Error('You should specify an id')
       }
-      if (action.callback === undefined) {
-        throw new Error('You should specify a callback function')
+      if (state.markers.has(action.id)) {
+        throw new Error('The id has already been taken')
       }
-      const marker = state.markers.find(marker => marker.id === action.id)
-      if (marker === undefined) {
-        throw new Error('The marker cannot be found')
+      return {...state, markers: state.markers.set(action.id, action.marker)}
+    case 'remove_marker':
+      if (action.id === undefined) {
+        throw new Error('You should specify an id')
       }
-      action.callback(marker)
+      const markerToRemove = state.markers.get(action.id)
+      if (markerToRemove === undefined) {
+        throw new Error('There is no marker with the given id')
+      }
+      markerToRemove.setMap(null)
+      state.markers.delete(action.id)
       return state
     case 'add_polygon':
       if (action.polygon === undefined) {
         throw new Error('You should specify a polygon instance')
       }
-      if (
-        state.polygons.findIndex(polygon =>
-          isEqual(polygon, action.polygon),
-        ) !== -1
-      ) {
-        throw new Error('The polygon has already been added')
+      if (action.id === undefined) {
+        throw new Error('You should specify an id')
       }
-      return {...state, polygons: [...state.polygons, action.polygon]}
+      if (state.polygons.has(action.id)) {
+        throw new Error('The id has already been taken')
+      }
+      return {...state, polygons: state.polygons.set(action.id, action.polygon)}
     case 'remove_polygon':
-      if (action.polygon === undefined) {
-        throw new Error('You should specify a polygon instance')
+      if (action.id === undefined) {
+        throw new Error('You should specify an id')
       }
-      index = state.polygons.findIndex(polygon =>
-        isEqual(polygon, action.polygon),
-      )
-      if (index === -1) {
-        throw new Error('The polygon cannot be found')
+      const polygonToRemove = state.polygons.get(action.id)
+      if (polygonToRemove === undefined) {
+        throw new Error('There is no polygon with the given id')
       }
-      state.polygons[index].setMap(null)
-      state.polygons.splice(index, 1)
+      polygonToRemove.setMap(null)
+      state.polygons.delete(action.id)
       return state
     default:
       return state

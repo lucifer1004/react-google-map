@@ -39,7 +39,7 @@ import {
 return (
   <GoogleMapProvider>
     <MapBox
-      apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+      apiKey="GOOGLE_MAP_API_KEY"
       opts={{
         center: {lat: 39, lng: 116},
         noClear: true,
@@ -54,6 +54,7 @@ return (
       }}
     />
     <Marker
+      id="marker"
       opts={{
         draggable: true,
         label: 'hello',
@@ -68,6 +69,7 @@ return (
       visible
     />
     <Polygon
+      id="polygon"
       paths={[
         {lat: 38.98, lng: 116.01},
         {lat: 38.98, lng: 116.03},

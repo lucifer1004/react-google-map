@@ -11,23 +11,18 @@ import {
 } from 'react-testing-library'
 import {MapBox, Marker} from '../../'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
-import {
-  defineGlobalVariable,
-  FakeButton,
-  FakeComponent,
-} from '../../__test__helpers__'
-import {GoogleMapMarker} from '../../common/types'
+import {defineGlobalVariable} from '../../__test__helpers__'
+
+defineGlobalVariable()
 
 describe('Marker', () => {
   beforeEach(() => {
-    defineGlobalVariable()
     jest.spyOn(loadjs, 'reset')
     jest.spyOn(console, 'log')
   })
 
   afterEach(() => {
     cleanup()
-    Object.defineProperty(global, 'google', {value: undefined})
     jest.restoreAllMocks()
   })
 
@@ -35,7 +30,7 @@ describe('Marker', () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
-        <Marker />
+        <Marker id="marker" />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -46,25 +41,16 @@ describe('Marker', () => {
   })
 
   it('updates options after rerender', async () => {
-    const {container, getByText, rerender} = render(
+    const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Marker id="my-marker" opts={{position: {lat: 39, lng: 116}}} />
-        <FakeButton
-          action={{
-            type: 'get_marker',
-            id: 'my-marker',
-            callback: (marker: GoogleMapMarker) => console.log(marker),
-          }}
-        />
       </GoogleMapProvider>,
     )
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     flushEffects()
-    fireEvent.click(getByText('Fake button'))
-    expect(console.log).toHaveBeenCalledTimes(1)
     rerender(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
@@ -80,15 +66,22 @@ describe('Marker', () => {
             zIndex: 10,
           }}
         />
-        <FakeComponent
-          action={{
-            type: 'get_marker',
-            id: 'my-marker',
-            callback: (marker: GoogleMapMarker) => console.log(marker),
-          }}
-        />
       </GoogleMapProvider>,
     )
-    expect(console.log).toHaveBeenCalledTimes(1)
+  })
+
+  it('with same id will only be added once', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <Marker id="marker" />
+        <Marker id="marker" />
+      </GoogleMapProvider>,
+    )
+    expect(container.innerHTML).toMatch('Loading...')
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+    flushEffects()
   })
 })
