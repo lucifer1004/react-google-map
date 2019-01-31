@@ -20,10 +20,23 @@ describe('Marker', () => {
   })
 
   it('renders inside a MapBox', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <Marker opts={{position: {lat: 39, lng: 116}}} />
+      </GoogleMapProvider>,
+    )
+    expect(container.innerHTML).toMatch('Loading...')
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+  })
+
+  it('updates options after rerender', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
-        <Marker opts={{position: {lat: 39, lng: 116}}} />
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <Marker id="my-marker" opts={{position: {lat: 39, lng: 116}}} />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -32,8 +45,9 @@ describe('Marker', () => {
     flushEffects()
     rerender(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Marker
+          id="my-marker"
           opts={{
             animation: google.maps.Animation.BOUNCE,
             icon: '',

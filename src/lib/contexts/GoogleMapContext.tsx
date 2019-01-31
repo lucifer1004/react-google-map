@@ -51,6 +51,19 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       state.markers[index].setMap(null)
       state.markers.splice(index, 1)
       return state
+    case 'get_marker':
+      if (action.id === undefined) {
+        throw new Error('You should specify an id')
+      }
+      if (action.callback === undefined) {
+        throw new Error('You should specify a callback function')
+      }
+      const marker = state.markers.find(marker => marker.id === action.id)
+      if (marker === undefined) {
+        throw new Error('The marker cannot be found')
+      }
+      action.callback(marker)
+      return state
     case 'add_polygon':
       if (action.polygon === undefined) {
         throw new Error('You should specify a polygon instance')

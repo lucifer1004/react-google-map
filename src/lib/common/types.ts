@@ -7,15 +7,17 @@ export interface GoogleMapReducer {
 
 export interface GoogleMapState {
   map: google.maps.Map | undefined
-  markers: google.maps.Marker[]
+  markers: GoogleMapMarker[]
   polygons: google.maps.Polygon[]
 }
 
 export interface GoogleMapAction {
   type: string
   map?: google.maps.Map
-  marker?: google.maps.Marker
+  marker?: GoogleMapMarker
   polygon?: google.maps.Polygon
+  id?: string
+  callback?: Function
 }
 
 export interface MapBoxProps {
@@ -50,6 +52,7 @@ export interface MapBoxProps {
 }
 
 export interface MarkerProps {
+  id?: string
   opts: google.maps.MarkerOptions
   onAnimationChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
@@ -72,6 +75,10 @@ export interface MarkerProps {
   onTitleChanged?: () => any
   onVisibleChanged?: () => any
   onZIndexChanged?: () => any
+}
+
+export interface GoogleMapMarker extends google.maps.Marker {
+  id?: string
 }
 
 export interface InfoWindowProps {

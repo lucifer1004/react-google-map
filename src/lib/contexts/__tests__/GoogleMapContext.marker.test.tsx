@@ -3,6 +3,11 @@ import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
 import {render, cleanup, flushEffects} from 'react-testing-library'
 import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
+import {GoogleMapMarker} from '../../common/types'
+
+const callbackFn = (marker: GoogleMapMarker) => {
+  console.log(marker)
+}
 
 beforeEach(() => {
   defineGlobalVariable()
@@ -16,32 +21,6 @@ afterEach(() => {
 })
 
 describe('The dispatcher throws an error when trying to', () => {
-  it('init map without a map instance', () => {
-    expect(() => {
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'init_map'}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).toThrowError(new Error('You should specify a map instance'))
-  })
-
-  it('add more than one map to one context', () => {
-    expect(() => {
-      const map = new google.maps.Map(document.createElement('div'), {zoom: 14})
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'init_map', map: map}} />
-          <FakeComponent action={{type: 'init_map', map: map}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).toThrowError(
-      new Error('There can only be one map instance in a context'),
-    )
-  })
-
   it('add a marker without a marker instance', () => {
     expect(() => {
       render(
@@ -77,7 +56,7 @@ describe('The dispatcher throws an error when trying to', () => {
     }).toThrowError(new Error('You should specify a marker instance'))
   })
 
-  it('throws an error when trying to remove a non-existing marker', () => {
+  it('remove a non-existing marker', () => {
     expect(() => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
@@ -89,68 +68,48 @@ describe('The dispatcher throws an error when trying to', () => {
     }).toThrowError(new Error('The marker cannot be found'))
   })
 
-  it('add a polygon without a polygon instance', () => {
+  it('get a marker without id', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_polygon'}} />
+          <FakeComponent action={{type: 'get_marker'}} />
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('You should specify a polygon instance'))
+    }).toThrowError(new Error('You should specify an id'))
   })
 
-  it('add the same polygon more than once', () => {
+  it('get a marker without callback function', () => {
     expect(() => {
-      const polygon = new google.maps.Polygon({})
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_polygon', polygon: polygon}} />
-          <FakeComponent action={{type: 'add_polygon', polygon: polygon}} />
+          <FakeComponent action={{type: 'get_marker', id: 'hello'}} />
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('The polygon has already been added'))
+    }).toThrowError(new Error('You should specify a callback function'))
   })
 
-  it('remove a polygon without a polygon instance', () => {
+  it('get a non-existing marker', () => {
+    const marker = new google.maps.Marker({
+      position: {lat: 0, lng: 0},
+    }) as GoogleMapMarker
+    marker.id = 'my-marker'
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_polygon'}} />
+          <FakeComponent action={{type: 'add_marker', marker: marker}} />
+          <FakeComponent
+            action={{type: 'get_marker', id: 'hello', callback: callbackFn}}
+          />
         </GoogleMapProvider>,
       )
       flushEffects()
-    }).toThrowError(new Error('You should specify a polygon instance'))
-  })
-
-  it('throws an error when trying to remove a non-existing polygon', () => {
-    expect(() => {
-      const polygon = new google.maps.Polygon({})
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_polygon', polygon: polygon}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).toThrowError(new Error('The polygon cannot be found'))
+    }).toThrowError(new Error('The marker cannot be found'))
   })
 })
 
 describe('The dispatcher will', () => {
-  it('reset the map', () => {
-    expect(() => {
-      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_marker', marker: marker}} />
-          <FakeComponent action={{type: 'reset'}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).not.toThrow()
-  })
-
   it('add and remove a marker', () => {
     expect(() => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
@@ -164,24 +123,18 @@ describe('The dispatcher will', () => {
     }).not.toThrow()
   })
 
-  it('add and remove a polygon', () => {
+  it('get a marker', () => {
     expect(() => {
-      const polygon = new google.maps.Polygon({})
+      const marker = new google.maps.Marker({
+        position: {lat: 0, lng: 0},
+      }) as GoogleMapMarker
+      marker.id = 'my-marker'
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_polygon', polygon: polygon}} />
-          <FakeComponent action={{type: 'remove_polygon', polygon: polygon}} />
-        </GoogleMapProvider>,
-      )
-      flushEffects()
-    }).not.toThrow()
-  })
-
-  it('ignore undefined action types', () => {
-    expect(() => {
-      render(
-        <GoogleMapProvider>
-          <FakeComponent action={{type: 'undefined'}} />
+          <FakeComponent action={{type: 'add_marker', marker: marker}} />
+          <FakeComponent
+            action={{type: 'get_marker', id: 'my-marker', callback: callbackFn}}
+          />
         </GoogleMapProvider>,
       )
       flushEffects()
