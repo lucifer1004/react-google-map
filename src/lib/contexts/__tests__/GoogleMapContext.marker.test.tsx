@@ -11,7 +11,7 @@ const callbackFn = (marker: GoogleMapMarker) => {
 
 beforeEach(() => {
   defineGlobalVariable()
-  jest.spyOn(console, 'error')
+  console.error = jest.fn()
 })
 
 afterEach(() => {

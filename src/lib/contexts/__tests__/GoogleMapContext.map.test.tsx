@@ -6,7 +6,7 @@ import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
 
 beforeEach(() => {
   defineGlobalVariable()
-  jest.spyOn(console, 'error')
+  console.error = jest.fn()
 })
 
 afterEach(() => {
