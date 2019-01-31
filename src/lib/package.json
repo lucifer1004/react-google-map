@@ -1,6 +1,6 @@
 {
   "name": "@lucifer1004/react-google-map",
-  "version": "2.1.0-beta.1",
+  "version": "2.1.0",
   "description": "Easier-to-use Google Map & React integration",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
