@@ -30,6 +30,7 @@ describe('Marker', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    flushEffects()
   })
 
   it('updates options after rerender', async () => {
