@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.1.0] - <2019-01-31>
+
+### CHANGED
+
+- `Marker` and `Polygon` now requires a unique `id` prop
+- Use Map to store markers and polygons as `id-element` pairs
+
 ## [2.0.0] - <2019-01-28>
 
 ### CHANGED
