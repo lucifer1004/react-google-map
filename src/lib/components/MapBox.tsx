@@ -6,14 +6,14 @@ import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
 
 const MapBox: React.FunctionComponent<MapBoxProps> = ({
-  apiKey,
+  apiKey = '',
   mapClass,
   mapStyle = {
     width: '100vw',
     height: '100vh',
   },
   opts = {
-    center: {lat: 39, lng: 116},
+    center: {lat: 0, lng: 0},
     zoom: 10,
   },
   useDrawing = false,

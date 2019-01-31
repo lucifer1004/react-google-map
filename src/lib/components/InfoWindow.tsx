@@ -5,7 +5,9 @@ import {InfoWindowProps} from '../common/types'
 
 const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   anchor,
-  opts,
+  opts = {
+    position: {lat: 0, lng: 0},
+  },
   visible,
   onCloseClick,
   onContentChanged,

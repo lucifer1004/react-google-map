@@ -21,6 +21,7 @@ const App = () => (
           }}
         />
         <Marker
+          id="hello"
           opts={{
             draggable: true,
             label: 'hello',

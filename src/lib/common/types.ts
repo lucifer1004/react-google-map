@@ -21,8 +21,8 @@ export interface GoogleMapAction {
 }
 
 export interface MapBoxProps {
-  apiKey: string
-  opts: google.maps.MapOptions
+  apiKey?: string
+  opts?: google.maps.MapOptions
   mapClass?: string
   mapStyle?: object
   useDrawing?: boolean
@@ -53,7 +53,7 @@ export interface MapBoxProps {
 
 export interface MarkerProps {
   id?: string
-  opts: google.maps.MarkerOptions
+  opts?: google.maps.MarkerOptions
   onAnimationChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
   onClickableChanged?: () => any
@@ -83,7 +83,7 @@ export interface GoogleMapMarker extends google.maps.Marker {
 
 export interface InfoWindowProps {
   anchor?: google.maps.Marker
-  opts: google.maps.InfoWindowOptions
+  opts?: google.maps.InfoWindowOptions
   visible?: boolean
   onCloseClick?: () => any
   onContentChanged?: () => any
@@ -94,7 +94,7 @@ export interface InfoWindowProps {
 
 export interface PolygonProps {
   opts?: google.maps.PolygonOptions
-  paths: google.maps.LatLngLiteral[]
+  paths?: google.maps.LatLngLiteral[]
   visible?: boolean
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any

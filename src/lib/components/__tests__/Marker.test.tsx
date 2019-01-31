@@ -2,15 +2,27 @@ import React from 'react'
 import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
-import {render, wait, cleanup, flushEffects} from 'react-testing-library'
+import {
+  render,
+  wait,
+  cleanup,
+  flushEffects,
+  fireEvent,
+} from 'react-testing-library'
 import {MapBox, Marker} from '../../'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
-import {defineGlobalVariable} from '../../__test__helpers__'
+import {
+  defineGlobalVariable,
+  FakeButton,
+  FakeComponent,
+} from '../../__test__helpers__'
+import {GoogleMapMarker} from '../../common/types'
 
 describe('Marker', () => {
   beforeEach(() => {
     defineGlobalVariable()
     jest.spyOn(loadjs, 'reset')
+    jest.spyOn(console, 'log')
   })
 
   afterEach(() => {
@@ -23,7 +35,7 @@ describe('Marker', () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
-        <Marker opts={{position: {lat: 39, lng: 116}}} />
+        <Marker />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -34,16 +46,25 @@ describe('Marker', () => {
   })
 
   it('updates options after rerender', async () => {
-    const {container, rerender} = render(
+    const {container, getByText, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Marker id="my-marker" opts={{position: {lat: 39, lng: 116}}} />
+        <FakeButton
+          action={{
+            type: 'get_marker',
+            id: 'my-marker',
+            callback: (marker: GoogleMapMarker) => console.log(marker),
+          }}
+        />
       </GoogleMapProvider>,
     )
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     flushEffects()
+    fireEvent.click(getByText('Fake button'))
+    expect(console.log).toHaveBeenCalledTimes(1)
     rerender(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
@@ -55,11 +76,19 @@ describe('Marker', () => {
             label: 'test',
             place: {},
             position: {lat: 39, lng: 116},
-            title: '',
+            title: 'test',
             zIndex: 10,
+          }}
+        />
+        <FakeComponent
+          action={{
+            type: 'get_marker',
+            id: 'my-marker',
+            callback: (marker: GoogleMapMarker) => console.log(marker),
           }}
         />
       </GoogleMapProvider>,
     )
+    expect(console.log).toHaveBeenCalledTimes(1)
   })
 })

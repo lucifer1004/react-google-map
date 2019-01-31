@@ -23,7 +23,7 @@ describe('MapBox', () => {
   it('does not render map if fetch failed', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="" opts={{}} />
+        <MapBox />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -39,7 +39,7 @@ describe('MapBox', () => {
   it('renders map after fetch succeeded', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="A_FAKE_API_KEY" />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -55,7 +55,6 @@ describe('MapBox', () => {
       <GoogleMapProvider>
         <MapBox
           apiKey="A_FAKE_API_KEY"
-          opts={{}}
           onClick={() => {
             console.log('clicked')
           }}

@@ -5,7 +5,9 @@ import {GoogleMapMarker, MarkerProps} from '../common/types'
 
 const Marker: React.FunctionComponent<MarkerProps> = ({
   id,
-  opts,
+  opts = {
+    position: {lat: 0, lng: 0},
+  },
   onAnimationChanged,
   onClick,
   onClickableChanged,

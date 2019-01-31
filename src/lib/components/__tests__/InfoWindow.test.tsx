@@ -24,12 +24,7 @@ describe('InfoWindow', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />
-        <InfoWindow
-          opts={{
-            content: 'This is an info window',
-            position: {lat: 39, lng: 116},
-          }}
-        />
+        <InfoWindow />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -53,7 +48,7 @@ describe('InfoWindow', () => {
     flushEffects()
     rerender(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <InfoWindow
           opts={{
             content: 'This is an info window',
