@@ -68,4 +68,17 @@ describe('MapBox', () => {
     expect(loadjs.reset).not.toHaveBeenCalled()
     expect(container.innerHTML).toMatch('This is a map')
   })
+
+  it('registers places service', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" usePlaces />
+      </GoogleMapProvider>,
+    )
+    expect(container.innerHTML).toMatch('Loading...')
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+    expect(container.innerHTML).toMatch('This is a map')
+  })
 })

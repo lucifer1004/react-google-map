@@ -43,8 +43,10 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
 }) => {
   // Get access to the Google Map context
   const {state, dispatch} = useContext(GoogleMapContext)
-  const initMap = (map: google.maps.Map) =>
-    dispatch({type: 'init_map', map: map})
+  const initMap = (
+    map: google.maps.Map,
+    service?: google.maps.places.PlacesService,
+  ) => dispatch({type: 'init_map', map: map, service: service})
   const reset = () => dispatch({type: 'reset'})
 
   // Generate a random id for the DOM node where Google Map will be inserted
@@ -68,7 +70,12 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   // Load Google Map
   useEffect(() => {
     if (!loaded) return
-    initMap(new google.maps.Map(document.getElementById(mapItemId), opts))
+    const map = new google.maps.Map(document.getElementById(mapItemId), opts)
+    if (usePlaces) {
+      const service = new google.maps.places.PlacesService(map)
+      Object.defineProperty(window, 'service', {value: service})
+      initMap(map, service)
+    } else initMap(map)
     return () => reset()
   }, [loaded])
 

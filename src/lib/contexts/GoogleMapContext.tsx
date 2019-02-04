@@ -9,6 +9,7 @@ const initialState: GoogleMapState = {
   map: undefined,
   markers: new Map<string, google.maps.Marker>(),
   polygons: new Map<string, google.maps.Polygon>(),
+  service: undefined,
 }
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
@@ -27,7 +28,7 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (state.map !== undefined) {
         throw new Error('There can only be one map instance in a context')
       }
-      return {...state, map: action.map}
+      return {...state, map: action.map, service: action.service}
     case 'add_marker':
       if (action.marker === undefined) {
         throw new Error('You should specify a marker instance')

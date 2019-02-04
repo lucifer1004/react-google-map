@@ -44,6 +44,13 @@ class Polygon {
   }
 }
 
+class PlacesService {
+  map: google.maps.Map
+  constructor(map: google.maps.Map) {
+    this.map = map
+  }
+}
+
 const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
@@ -56,6 +63,9 @@ const defineGlobalVariable = () => {
           ): google.maps.MapsEventListener {
             return {remove: () => {}}
           },
+        },
+        places: {
+          PlacesService: PlacesService,
         },
         Animation: {
           BOUNCE: 0,

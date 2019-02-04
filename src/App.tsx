@@ -7,7 +7,7 @@ const App = () => {
     return {lat: 39 + Math.random() / 50, lng: 116 + Math.random() / 50}
   })
   const addMarker = () => setNum(num => (num < 10 ? num + 1 : 10))
-  const removeMarker = () => setNum(num => (num > 1 ? num - 1 : 0))
+  const removeMarker = () => setNum(num => (num > 1 ? num - 1 : 1))
   const [positions, setPositions] = useState(initialPositions)
   return (
     <div className="App">

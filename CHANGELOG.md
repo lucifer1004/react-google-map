@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.2.0] - <2019-02-04>
+
+### ADDED
+
+- When `usePlaces` is specified in a `MapBox`, a service instance will be
+  registered for later use.
+
 ## [2.1.0] - <2019-01-31>
 
 ### CHANGED

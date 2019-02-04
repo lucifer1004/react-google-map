@@ -9,6 +9,7 @@ export interface GoogleMapState {
   map: google.maps.Map | undefined
   markers: Map<string, google.maps.Marker>
   polygons: Map<string, google.maps.Polygon>
+  service: google.maps.places.PlacesService | undefined
 }
 
 export interface GoogleMapAction {
@@ -17,7 +18,7 @@ export interface GoogleMapAction {
   marker?: google.maps.Marker
   polygon?: google.maps.Polygon
   id?: string
-  callback?: Function
+  service?: google.maps.places.PlacesService
 }
 
 export interface MapBoxProps {
