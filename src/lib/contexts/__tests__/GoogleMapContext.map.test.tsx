@@ -1,7 +1,7 @@
 import React from 'react'
 import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
-import {render, cleanup, flushEffects} from 'react-testing-library'
+import {render, cleanup} from 'react-testing-library'
 import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
 
 beforeEach(() => {
@@ -23,7 +23,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'init_map'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('You should specify a map instance'))
   })
 
@@ -36,7 +35,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'init_map', map: map}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(
       new Error('There can only be one map instance in a context'),
     )
@@ -55,7 +53,6 @@ describe('The dispatcher will', () => {
           <FakeComponent action={{type: 'reset'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).not.toThrow()
   })
 
@@ -66,7 +63,6 @@ describe('The dispatcher will', () => {
           <FakeComponent action={{type: 'undefined'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).not.toThrow()
   })
 })

@@ -1,14 +1,9 @@
 import React from 'react'
+import {act} from 'react-dom/test-utils'
 import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
-import {
-  render,
-  wait,
-  cleanup,
-  flushEffects,
-  fireEvent,
-} from 'react-testing-library'
+import {render, wait, cleanup, fireEvent} from 'react-testing-library'
 import {MapBox, Marker} from '../../'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
@@ -37,7 +32,6 @@ describe('Marker', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    flushEffects()
   })
 
   it('updates options after rerender', async () => {
@@ -50,23 +44,24 @@ describe('Marker', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    flushEffects()
-    rerender(
-      <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
-        <Marker
-          id="my-marker"
-          opts={{
-            animation: google.maps.Animation.BOUNCE,
-            icon: '',
-            label: 'test',
-            place: {},
-            position: {lat: 39, lng: 116},
-            title: 'test',
-            zIndex: 10,
-          }}
-        />
-      </GoogleMapProvider>,
+    act(() =>
+      rerender(
+        <GoogleMapProvider>
+          <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+          <Marker
+            id="my-marker"
+            opts={{
+              animation: google.maps.Animation.BOUNCE,
+              icon: '',
+              label: 'test',
+              place: {},
+              position: {lat: 39, lng: 116},
+              title: 'test',
+              zIndex: 10,
+            }}
+          />
+        </GoogleMapProvider>,
+      ),
     )
   })
 
@@ -82,6 +77,5 @@ describe('Marker', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    flushEffects()
   })
 })

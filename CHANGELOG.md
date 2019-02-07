@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.3.0] - <2019-02-07>
+
+### CHANGED
+
+- Upgrade to React 16.8.1.
+
 ## [2.2.1] - <2019-02-07>
 
 ### FIXED

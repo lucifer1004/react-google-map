@@ -1,7 +1,7 @@
 import React from 'react'
 import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
-import {render, cleanup, flushEffects} from 'react-testing-library'
+import {render, cleanup} from 'react-testing-library'
 import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
 
 defineGlobalVariable()
@@ -23,7 +23,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'add_polygon', id: 'poly'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('You should specify a polygon instance'))
   })
 
@@ -35,7 +34,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'add_polygon', polygon: polygon}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('You should specify an id'))
   })
 
@@ -52,7 +50,6 @@ describe('The dispatcher throws an error when trying to', () => {
           />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('The id has already been taken'))
   })
 
@@ -63,7 +60,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'remove_polygon'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('You should specify an id'))
   })
 
@@ -83,7 +79,6 @@ describe('The dispatcher throws an error when trying to', () => {
           <FakeComponent action={{type: 'remove_polygon', id: 'poly'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).toThrowError(new Error('There is no polygon with the given id'))
   })
 })
@@ -100,7 +95,6 @@ describe('The dispatcher will', () => {
           <FakeComponent action={{type: 'remove_polygon', id: 'poly'}} />
         </GoogleMapProvider>,
       )
-      flushEffects()
     }).not.toThrow()
   })
 })

@@ -1,8 +1,9 @@
 import React from 'react'
+import {act} from 'react-dom/test-utils'
 import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
-import {render, wait, cleanup, flushEffects} from 'react-testing-library'
+import {render, wait, cleanup} from 'react-testing-library'
 import {Polygon, MapBox} from '../..'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
@@ -32,16 +33,18 @@ describe('Polygon', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    rerender(
-      <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
-        <Polygon
-          id="polygon"
-          paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
-        />
-      </GoogleMapProvider>,
+    act(() =>
+      rerender(
+        <GoogleMapProvider>
+          <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+          <Polygon
+            id="polygon"
+            paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+            opts={{}}
+          />
+        </GoogleMapProvider>,
+      ),
     )
-    flushEffects()
   })
 
   it('with same id will only be added once', async () => {
@@ -62,6 +65,5 @@ describe('Polygon', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    flushEffects()
   })
 })
