@@ -32,7 +32,7 @@ const App = () => {
         />
         <ul>
           {Array.from({length: num}, (value, index) => index).map(num => (
-            <li key={num}>
+            <li hidden key={num}>
               <Marker
                 id={`marker-${num}`}
                 opts={{

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.2.1] - <2019-02-07>
+
+### FIXED
+
+- Remove debugging code which will cause `window.service` to be redefined.
+
 ## [2.2.0] - <2019-02-04>
 
 ### ADDED
