@@ -97,6 +97,25 @@ Besides `GoogleMapProvider`, `GoogleMapConsumer` and `GoogleMapContext` are also
 exported. You can choose to use the consumer manner, or use `useContext` hook,
 to get access to the context contents in your custom components.
 
+> #### What's inside the context?
+>
+> Currently, the context has two properties: `state` and `dispatch`. As the
+> names suggest, `state` stores the context state, and `dispatch` is the reduce
+> function.
+>
+> `state` has 4 properties:
+>
+> - `map`, which is a reference to the `google.maps.Map` instance.
+> - `markers`, which is a `Map` storing all `google.maps.Marker` instances as
+>   `id`-`marker` pairs
+> - `polygons`, which is a `Map` storing all `google.maps.Polygon` instances as
+>   `id`-`polygon` pairs
+> - `service`, which is a reference to the `google.maps.places.PlaceService`
+>   instance. It will be automatically instantiated when `usingPlaces` is `true`
+>   in `MapBox`.
+>
+> Users can access these properties.
+
 ### MapBox
 
 - `MapBox` is a wrapper of a `google.maps.Map` instance.
