@@ -158,3 +158,12 @@ Then you can run the example project by
 ```sh
 yarn start
 ```
+
+## Projects using this package
+
+### Boycott [github](https://github.com/lucifer1004/boycott)|[site](https://boycott.gabriel-wu.com)
+
+This app combines Google Map API and Yelp API, helping users search nearby
+businesses.
+
+![Screenshot](./images/boycott.png)
