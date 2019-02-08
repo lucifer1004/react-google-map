@@ -45,10 +45,10 @@ return (
         noClear: true,
         zoom: 14,
       }}
-      useDrawing={true}
-      useGeometry={true}
-      usePlaces={true}
-      useVisualization={true}
+      useDrawing
+      useGeometry
+      usePlaces
+      useVisualization
       onCenterChanged={() => {
         console.log('The center of the map has changed.')
       }}
@@ -76,15 +76,56 @@ return (
         {lat: 38.99, lng: 116.03},
       ]}
       visible
+      opts={{
+        strokeColor: 'cyan',
+      }}
     />
   </GoogleMapProvider>
 )
 ```
 
+Let's break it up.
+
+### GoogleMapProvider
+
+- You need to wrap your components within `GoogleMapProvider`, so that they will
+  have access to the global state and work fluently.
+
+Under the hood, `React.Context` is used.
+
+Besides `GoogleMapProvider`, `GoogleMapConsumer` and `GoogleMapContext` are also
+exported. You can choose to use the consumer manner, or use `useContext` hook,
+to get access to the context contents in your custom components.
+
+### MapBox
+
+- `MapBox` is a wrapper of a `google.maps.Map` instance.
+- There can only be one `MapBox` within `GoogleMapProvider`. If you want to have
+  multiple maps, you can handle them with multiple providers.
+- Google Map options should be placed in `opts`.
+
+### Marker
+
+- `Marker` is a wrapper of a `google.maps.Marker` instance.
+- Google Map options should be placed in `opts`.
+- The `id` prop is required and must be unique.
+
+### InfoWindow
+
+- `InfoWindow` is a wrapper of a `google.maps.InfoWindow` instance.
+- `InfoWindow` props should be placed in `opts`, however, `visible` is addressed
+  as an exclusion, for easier use.
+
+### Polygon
+
+- `Polygon` is a wrapper of a `google.maps.Polygon` instance.
+- `paths` and `visible` are left out of the `opts` prop.
+- The `id` prop is required and must be unique.
+
 ## Advanced usage
 
-Instead of using the pre-designed components, you can also use the exposed hooks
-`useGoogleAPI`, `useGoogleListeners` in your own components.
+Instead of using the pre-designed components, you can also use the exported
+hooks `useGoogleAPI`, `useGoogleListeners` in your own components.
 
 ## See the examples
 
