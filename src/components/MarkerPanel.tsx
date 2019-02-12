@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
-import {Marker} from '../lib'
+import {HeatMap, Marker} from '../lib'
+import InteractiveMarker from './InteractiveMarker'
 
 export default () => {
   const [num, setNum] = useState(1)
@@ -17,23 +18,15 @@ export default () => {
       <ul>
         {Array.from({length: num}, (value, index) => index).map(num => (
           <li hidden key={num}>
-            <Marker
-              id={`marker-${num}`}
-              opts={{
-                draggable: true,
-                label: num.toString(),
-                position: positions[num],
-              }}
-              onDragEnd={event => {
-                setPositions(positions => {
-                  positions[num] = event.latLng.toJSON()
-                  return positions
-                })
-              }}
+            <InteractiveMarker
+              num={num}
+              positions={positions}
+              setPositions={setPositions}
             />
           </li>
         ))}
       </ul>
+      <HeatMap data={positions.slice(0, num)} />
     </>
   )
 }
