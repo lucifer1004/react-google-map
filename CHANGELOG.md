@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.4.0] - <2019-02-12>
+
+### ADDED
+
+- Implement HeatMap
+
 ## [2.3.0] - <2019-02-07>
 
 ### CHANGED

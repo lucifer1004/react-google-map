@@ -105,3 +105,12 @@ export interface PolygonProps {
   onMouseUp?: (event: google.maps.MouseEvent) => any
   onRightClick?: (event: google.maps.MouseEvent) => any
 }
+
+export interface WeightedLatLng extends google.maps.LatLngLiteral {
+  weight?: number
+}
+
+export interface HeatMapProps
+  extends google.maps.visualization.HeatmapLayerOptions {
+  data: WeightedLatLng[]
+}

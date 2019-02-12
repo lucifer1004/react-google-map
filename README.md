@@ -1,6 +1,6 @@
 # React Google Map
 
-[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.3.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.4.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
@@ -29,6 +29,7 @@ empowered by React's latest features.
 ```javascript
 import {
   GoogleMapProvider,
+  HeatMap,
   InfoWindow,
   MapBox,
   Marker,
@@ -79,6 +80,24 @@ return (
       opts={{
         strokeColor: 'cyan',
       }}
+    />
+    <HeatMap
+      data={[
+        {lat: 38.982, lng: 116.047},
+        {lat: 38.982, lng: 116.045},
+        {lat: 38.982, lng: 116.043},
+        {lat: 38.982, lng: 116.041},
+        {lat: 38.982, lng: 116.039},
+        {lat: 38.982, lng: 116.037},
+        {lat: 38.982, lng: 116.035},
+        {lat: 38.985, lng: 116.047},
+        {lat: 38.985, lng: 116.045},
+        {lat: 38.985, lng: 116.043},
+        {lat: 38.985, lng: 116.041},
+        {lat: 38.985, lng: 116.039},
+        {lat: 38.985, lng: 116.037},
+        {lat: 38.985, lng: 116.035},
+      ]}
     />
   </GoogleMapProvider>
 )
@@ -140,6 +159,12 @@ to get access to the context contents in your custom components.
 - `Polygon` is a wrapper of a `google.maps.Polygon` instance.
 - `paths` and `visible` are left out of the `opts` prop.
 - The `id` prop is required and must be unique.
+
+### HeatMap
+
+- `HeatMap` is a wrapper of a `google.maps.visualization.HeatmapLayer` instance
+- `useVisualization` of the `MapBox` instance must be `true`
+- `data` prop is an array of `{lat, lng, weight?}`
 
 ## Advanced usage
 

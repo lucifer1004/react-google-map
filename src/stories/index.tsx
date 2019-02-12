@@ -3,6 +3,7 @@ import {storiesOf} from '@storybook/react'
 import {withNotes} from '@storybook/addon-notes'
 import {
   SimpleMapBox,
+  WithHeatMap,
   WithInfoWindow,
   WithMarker,
   WithPolygon,
@@ -17,3 +18,5 @@ storiesOf('MapBox', module)
   .add('with polygon', () => <WithPolygon />)
 
 storiesOf('Marker', module).add('draggable', () => <MarkerDraggable />)
+
+storiesOf('HeatMap', module).add('simple', () => <WithHeatMap />)

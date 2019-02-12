@@ -10,6 +10,10 @@ class InfoWindow {
   }
 }
 
+class LatLng {
+  constructor(lat: number, lng: number) {}
+}
+
 class Marker {
   map?: google.maps.Map
   opts: google.maps.MarkerOptions
@@ -51,6 +55,22 @@ class PlacesService {
   }
 }
 
+class HeatmapLayer {
+  data: any
+  map: null | google.maps.Map
+  opts: google.maps.visualization.HeatmapLayerOptions
+  setData = (data: any) => {
+    this.data = data
+  }
+  setMap = (map: google.maps.Map) => {
+    this.map = map
+  }
+  constructor(opts: google.maps.visualization.HeatmapLayerOptions) {
+    this.opts = opts
+    this.map = null
+  }
+}
+
 const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
@@ -67,10 +87,14 @@ const defineGlobalVariable = () => {
         places: {
           PlacesService: PlacesService,
         },
+        visualization: {
+          HeatmapLayer: HeatmapLayer,
+        },
         Animation: {
           BOUNCE: 0,
           DROP: 1,
         },
+        LatLng: LatLng,
         Map: Map,
         Marker: Marker,
         InfoWindow: InfoWindow,

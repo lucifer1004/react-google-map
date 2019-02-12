@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {InfoWindow, MapBox, Marker, Polygon} from './lib'
+import {HeatMap, InfoWindow, MapBox, Marker, Polygon} from './lib'
 
 const App = () => {
   const [num, setNum] = useState(1)
@@ -69,6 +69,26 @@ const App = () => {
           ]}
           visible
         />
+        {num > 3 ? null : (
+          <HeatMap
+            data={[
+              {lat: 38.982, lng: 116.047},
+              {lat: 38.982, lng: 116.045},
+              {lat: 38.982, lng: 116.043},
+              {lat: 38.982, lng: 116.041},
+              {lat: 38.982, lng: 116.039},
+              {lat: 38.982, lng: 116.037},
+              {lat: 38.982, lng: 116.035},
+              {lat: 38.985, lng: 116.047},
+              {lat: 38.985, lng: 116.045},
+              {lat: 38.985, lng: 116.043},
+              {lat: 38.985, lng: 116.041},
+              {lat: 38.985, lng: 116.039},
+              {lat: 38.985, lng: 116.037},
+              {lat: 38.985, lng: 116.035},
+            ]}
+          />
+        )}
       </div>
     </div>
   )
