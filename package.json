@@ -85,7 +85,7 @@
       "src/**/*.{ts,tsx}",
       "!node_modules/",
       "!src/*.tsx",
-      "src/components/*.tsx",
+      "!src/components/*.tsx",
       "!src/stories/**",
       "!src/lib/dist/**",
       "!src/lib/__test__helpers__/**"
