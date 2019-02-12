@@ -1,6 +1,6 @@
 # React Google Map
 
-[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.4.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.4.1-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)

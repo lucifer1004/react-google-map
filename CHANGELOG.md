@@ -1,10 +1,16 @@
 # CHANGELOG
 
+## [2.4.1] - <2019-02-12>
+
+### FIXED
+
+- Add a bounder for `HeatMap` in case `google.maps.visualization` is not ready.
+
 ## [2.4.0] - <2019-02-12>
 
 ### ADDED
 
-- Implement HeatMap
+- Implement HeatMap.
 
 ## [2.3.0] - <2019-02-07>
 

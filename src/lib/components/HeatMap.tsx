@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {HeatMapProps, WeightedLatLng} from '../common/types'
+import withSecurityBounder from '../hocs/SecurityBounder'
 
 const transformLatLng = (
   orig: WeightedLatLng,
@@ -50,4 +51,4 @@ const HeatMap: React.FunctionComponent<HeatMapProps> = ({
   return null
 }
 
-export default HeatMap
+export default withSecurityBounder(HeatMap)

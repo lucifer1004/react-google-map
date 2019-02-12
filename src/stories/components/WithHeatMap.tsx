@@ -7,7 +7,10 @@ const scope = {GoogleMapProvider, MapBox, HeatMap}
 const code = `<GoogleMapProvider>
   <MapBox
     apiKey=""
-    LoadedComponent={() => <h1>Display a heat map</h1>}
+    LoadedComponent={() => <>
+      <h1>Display a heat map</h1>
+      <p>If you cannot see the heat map, refresh to load the visualization library correctly.</p>
+    </>}
     opts={{
       center: {lat: 37.774546, lng: -122.433523},
       zoom: 13,

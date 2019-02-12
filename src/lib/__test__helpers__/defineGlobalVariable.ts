@@ -55,7 +55,7 @@ class PlacesService {
   }
 }
 
-class HeatmapLayer {
+export class HeatmapLayer {
   data: any
   map: null | google.maps.Map
   opts: google.maps.visualization.HeatmapLayerOptions
