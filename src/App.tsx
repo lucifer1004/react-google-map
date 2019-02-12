@@ -1,19 +1,11 @@
-import React, {useState} from 'react'
-import {HeatMap, InfoWindow, MapBox, Marker, Polygon} from './lib'
+import React from 'react'
+import {HeatMap, InfoWindow, MapBox, Polygon} from './lib'
+import MarkerPanel from './components/MarkerPanel'
 
 const App = () => {
-  const [num, setNum] = useState(1)
-  const initialPositions = Array.from({length: 10}, () => {
-    return {lat: 39 + Math.random() / 50, lng: 116 + Math.random() / 50}
-  })
-  const addMarker = () => setNum(num => (num < 10 ? num + 1 : 10))
-  const removeMarker = () => setNum(num => (num > 1 ? num - 1 : 1))
-  const [positions, setPositions] = useState(initialPositions)
   return (
     <div className="App">
-      <button onClick={addMarker}>Add a marker</button>
-      <button onClick={removeMarker}>Remove a marker</button>
-      <p>Current markers: {num}</p>
+      <MarkerPanel />
       <div className="App-header">
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
@@ -22,34 +14,14 @@ const App = () => {
             noClear: true,
             zoom: 14,
           }}
-          useDrawing={true}
-          useGeometry={true}
-          usePlaces={true}
-          useVisualization={true}
+          useDrawing
+          useGeometry
+          usePlaces
+          useVisualization
           onCenterChanged={() => {
             console.log('The center of the map has changed.')
           }}
         />
-        <ul>
-          {Array.from({length: num}, (value, index) => index).map(num => (
-            <li hidden key={num}>
-              <Marker
-                id={`marker-${num}`}
-                opts={{
-                  draggable: true,
-                  label: num.toString(),
-                  position: positions[num],
-                }}
-                onDragEnd={event => {
-                  setPositions(positions => {
-                    positions[num] = event.latLng.toJSON()
-                    return positions
-                  })
-                }}
-              />
-            </li>
-          ))}
-        </ul>
         <InfoWindow
           opts={{
             content: 'This is an info window',
@@ -69,26 +41,24 @@ const App = () => {
           ]}
           visible
         />
-        {num > 3 ? null : (
-          <HeatMap
-            data={[
-              {lat: 38.982, lng: 116.047},
-              {lat: 38.982, lng: 116.045},
-              {lat: 38.982, lng: 116.043},
-              {lat: 38.982, lng: 116.041},
-              {lat: 38.982, lng: 116.039},
-              {lat: 38.982, lng: 116.037},
-              {lat: 38.982, lng: 116.035},
-              {lat: 38.985, lng: 116.047},
-              {lat: 38.985, lng: 116.045},
-              {lat: 38.985, lng: 116.043},
-              {lat: 38.985, lng: 116.041},
-              {lat: 38.985, lng: 116.039},
-              {lat: 38.985, lng: 116.037},
-              {lat: 38.985, lng: 116.035},
-            ]}
-          />
-        )}
+        <HeatMap
+          data={[
+            {lat: 38.982, lng: 116.047},
+            {lat: 38.982, lng: 116.045},
+            {lat: 38.982, lng: 116.043},
+            {lat: 38.982, lng: 116.041},
+            {lat: 38.982, lng: 116.039},
+            {lat: 38.982, lng: 116.037},
+            {lat: 38.982, lng: 116.035},
+            {lat: 38.985, lng: 116.047},
+            {lat: 38.985, lng: 116.045},
+            {lat: 38.985, lng: 116.043},
+            {lat: 38.985, lng: 116.041},
+            {lat: 38.985, lng: 116.039},
+            {lat: 38.985, lng: 116.037},
+            {lat: 38.985, lng: 116.035},
+          ]}
+        />
       </div>
     </div>
   )
