@@ -19,7 +19,9 @@ const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
     const overlay = new google.maps.OverlayView()
     overlay.onAdd = () => {
       container.style.position = 'absolute'
-      overlay.getPanes()[pane].appendChild(container)
+
+      // Use an ugly cast to avoid package bundle issue
+      ;(overlay.getPanes() as any)[pane].appendChild(container)
     }
     overlay.draw = () => {
       const location = overlay
