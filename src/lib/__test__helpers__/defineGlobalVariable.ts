@@ -1,3 +1,5 @@
+import {addListener} from 'cluster'
+
 class InfoWindow {
   close = () => {}
   open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
@@ -74,11 +76,14 @@ export class HeatmapLayer {
 class OverlayView {
   map: null | google.maps.Map
   overlayLayer: HTMLElement
+  overlayMouseTarget: HTMLElement
+  addListener = (eventName: string, handler: Function) => {}
   draw = () => {}
   onAdd = () => {}
   onRemove = () => {}
   getPanes = () => ({
     overlayLayer: this.overlayLayer,
+    overlayMouseTarget: this.overlayMouseTarget,
   })
   getProjection = () => ({
     fromLatLngToDivPixel: (latLng: google.maps.LatLng) => ({
@@ -89,10 +94,14 @@ class OverlayView {
   setMap = (map: google.maps.Map) => {
     this.map = map
   }
+  static preventMapHitsFrom = (el: HTMLElement) => {}
+  static preventMapHitsAndGesturesFrom = (el: HTMLElement) => {}
   constructor() {
     this.map = null
     this.overlayLayer = document.createElement('div')
+    this.overlayMouseTarget = document.createElement('div')
     document.body.appendChild(this.overlayLayer)
+    document.body.appendChild(this.overlayMouseTarget)
     setTimeout(() => {
       this.onAdd()
       setTimeout(() => {
@@ -114,6 +123,14 @@ const defineGlobalVariable = () => {
             instance: google.maps.MVCObject,
             eventName: string,
             handler: Function,
+          ): google.maps.MapsEventListener {
+            return {remove: () => {}}
+          },
+          addDomListener(
+            instance: HTMLElement,
+            eventName: string,
+            handler: Function,
+            capture?: boolean,
           ): google.maps.MapsEventListener {
             return {remove: () => {}}
           },

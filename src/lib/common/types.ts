@@ -126,4 +126,14 @@ export interface OverlayViewProps {
   pane?: MapPanes
   children?: JSX.Element
   position: google.maps.LatLngLiteral
+  onClick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onDoubleClick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onMouseDown?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onMouseOver?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onMouseOut?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onMouseUp?: (this: GlobalEventHandlers, ev: MouseEvent) => any
+  onTouchEnd?: (this: GlobalEventHandlers, ev: TouchEvent) => any
+  onTouchStart?: (this: GlobalEventHandlers, ev: TouchEvent) => any
+  disableMapHits?: boolean
+  disableMapHitsAndGestures?: boolean
 }

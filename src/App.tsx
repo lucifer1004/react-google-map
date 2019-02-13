@@ -6,7 +6,13 @@ const App = () => {
   return (
     <div className="App">
       <MarkerPanel />
-      <OverlayView position={{lat: 39, lng: 116}}>
+      <OverlayView
+        position={{lat: 39, lng: 116}}
+        onClick={event => {
+          console.log(event)
+        }}
+        disableMapHitsAndGestures
+      >
         <h2>{`⚑ This is a custom overlay 🙌`}</h2>
       </OverlayView>
       <div className="App-header">

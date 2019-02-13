@@ -4,9 +4,19 @@ import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {OverlayViewProps} from '../common/types'
 
 const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
-  pane = 'overlayLayer',
+  pane = 'overlayMouseTarget',
   position,
   children,
+  onClick,
+  onDoubleClick,
+  onMouseDown,
+  onMouseOut,
+  onMouseOver,
+  onMouseUp,
+  onTouchEnd,
+  onTouchStart,
+  disableMapHits,
+  disableMapHitsAndGestures,
 }) => {
   const {state} = useContext(GoogleMapContext)
   const [container] = useState<HTMLDivElement>(document.createElement('div'))
@@ -19,8 +29,24 @@ const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
     const overlay = new google.maps.OverlayView()
     overlay.onAdd = () => {
       container.style.position = 'absolute'
+      container.onclick = onClick || null
+      container.ondblclick = onDoubleClick || null
+      container.onmousedown = onMouseDown || null
+      container.onmouseover = onMouseOver || null
+      container.onmouseout = onMouseOut || null
+      container.onmouseup = onMouseUp || null
+      container.ontouchend = onTouchEnd || null
+      container.ontouchstart = onTouchStart || null
 
-      // Use an ugly cast to avoid package bundle issue
+      // @types/googlemap does not define `preventMapHitsFrom` or `preventMapHitsAndGesturesFrom`
+      if (disableMapHitsAndGestures)
+        (google.maps.OverlayView as any).preventMapHitsAndGesturesFrom(
+          container,
+        )
+      else if (disableMapHits)
+        (google.maps.OverlayView as any).preventMapHitsFrom(container)
+
+        // Use an ugly cast to avoid package bundle issue
       ;(overlay.getPanes() as any)[pane].appendChild(container)
     }
     overlay.draw = () => {

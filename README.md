@@ -1,6 +1,6 @@
 # React Google Map
 
-[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.5.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.5.1-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
@@ -176,7 +176,7 @@ to get access to the context contents in your custom components.
 - `position` prop must be given, which is `google.maps.LatLngLiteral`, so that
   `OverlayView` can be located
 - `pane` prop defines in which pane this `OverlayView` will be rendered, default
-  is `"overlayLayer"`
+  is `"overlayMouseTarget"`
   ([ref](https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapPanes))
 
 ## Advanced usage

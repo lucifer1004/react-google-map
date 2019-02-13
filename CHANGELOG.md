@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.5.1] - <2019-02-14>
+
+### ADDED
+
+- OverlayView can handle events now
+
 ## [2.5.0] - <2019-02-13>
 
 ### ADDED
