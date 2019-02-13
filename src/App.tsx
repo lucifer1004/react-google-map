@@ -1,11 +1,14 @@
 import React from 'react'
-import {MapBox, Polygon} from './lib'
+import {MapBox, OverlayView, Polygon} from './lib'
 import MarkerPanel from './components/MarkerPanel'
 
 const App = () => {
   return (
     <div className="App">
       <MarkerPanel />
+      <OverlayView position={{lat: 39, lng: 116}}>
+        <h2>{`⚑ This is a custom overlay 🙌`}</h2>
+      </OverlayView>
       <div className="App-header">
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}

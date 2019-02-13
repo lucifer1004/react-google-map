@@ -5,12 +5,10 @@ import withSecurityBounder from '../hocs/SecurityBounder'
 
 const transformLatLng = (
   orig: WeightedLatLng,
-): google.maps.visualization.WeightedLocation => {
-  return {
-    location: new google.maps.LatLng(orig.lat, orig.lng),
-    weight: orig.weight || 1,
-  }
-}
+): google.maps.visualization.WeightedLocation => ({
+  location: new google.maps.LatLng(orig.lat, orig.lng),
+  weight: orig.weight || 1,
+})
 
 const HeatMap: React.FunctionComponent<HeatMapProps> = ({
   data,

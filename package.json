@@ -1,5 +1,5 @@
 {
-  "name": "react-gmap",
+  "name": "react-google-map",
   "description": "Google Map component for React.",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
@@ -11,6 +11,7 @@
     "react-dom": "16.8.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-typescript": "7.2.0",
     "@storybook/addon-actions": "4.1.11",
     "@storybook/addon-console": "1.1.0",
     "@storybook/addon-info": "4.1.11",

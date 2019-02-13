@@ -64,7 +64,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   ).join(',')
   const loaded = useGoogleAPI(
     apiKey,
-    libraryParam === '' ? libraryParam : `&libraries=${libraryParam}`,
+    libraryParam === '' ? '' : `&libraries=${libraryParam}`,
   )
 
   // Load Google Map

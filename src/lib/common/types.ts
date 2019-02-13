@@ -1,5 +1,12 @@
 export type GMapLibrary = 'drawing' | 'geometry' | 'places' | 'visualization'
 
+type MapPanes =
+  | 'floatPane'
+  | 'mapPane'
+  | 'markerLayer'
+  | 'overlayLayer'
+  | 'overlayMouseTarget'
+
 export interface GoogleMapReducer {
   state: GoogleMapState
   dispatch: React.Dispatch<GoogleMapAction>
@@ -113,4 +120,10 @@ export interface WeightedLatLng extends google.maps.LatLngLiteral {
 export interface HeatMapProps
   extends google.maps.visualization.HeatmapLayerOptions {
   data: WeightedLatLng[]
+}
+
+export interface OverlayViewProps {
+  pane?: MapPanes
+  children?: JSX.Element
+  position: google.maps.LatLngLiteral
 }

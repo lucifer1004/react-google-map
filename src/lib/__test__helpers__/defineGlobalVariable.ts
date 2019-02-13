@@ -71,6 +71,40 @@ export class HeatmapLayer {
   }
 }
 
+class OverlayView {
+  map: null | google.maps.Map
+  overlayLayer: HTMLElement
+  draw = () => {}
+  onAdd = () => {}
+  onRemove = () => {}
+  getPanes = () => ({
+    overlayLayer: this.overlayLayer,
+  })
+  getProjection = () => ({
+    fromLatLngToDivPixel: (latLng: google.maps.LatLng) => ({
+      x: 0,
+      y: 0,
+    }),
+  })
+  setMap = (map: google.maps.Map) => {
+    this.map = map
+  }
+  constructor() {
+    this.map = null
+    this.overlayLayer = document.createElement('div')
+    document.body.appendChild(this.overlayLayer)
+    setTimeout(() => {
+      this.onAdd()
+      setTimeout(() => {
+        this.draw()
+        setTimeout(() => {
+          this.onRemove()
+        }, 100)
+      }, 100)
+    }, 100)
+  }
+}
+
 const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
@@ -98,6 +132,7 @@ const defineGlobalVariable = () => {
         Map: Map,
         Marker: Marker,
         InfoWindow: InfoWindow,
+        OverlayView: OverlayView,
         Polygon: Polygon,
       },
     },

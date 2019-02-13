@@ -6,6 +6,7 @@ import {
   WithHeatMap,
   WithInfoWindow,
   WithMarker,
+  WithOverlayView,
   WithPolygon,
   MarkerDraggable,
 } from './components'
@@ -20,3 +21,5 @@ storiesOf('MapBox', module)
 storiesOf('Marker', module).add('draggable', () => <MarkerDraggable />)
 
 storiesOf('HeatMap', module).add('simple', () => <WithHeatMap />)
+
+storiesOf('OverlayView', module).add('simple', () => <WithOverlayView />)

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.5.0] - <2019-02-13>
+
+### ADDED
+
+- Implement OverlayView
+
 ## [2.4.1] - <2019-02-12>
 
 ### FIXED
