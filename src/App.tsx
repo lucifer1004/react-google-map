@@ -1,13 +1,14 @@
 import React from 'react'
-import {MapBox, OverlayView, Polygon} from './lib'
+import {MapBox, OverlayView, Polygon, StreetView} from './lib'
 import MarkerPanel from './components/MarkerPanel'
+import {NYC_LATLNG, NYC_POLYGON} from './common/constants'
 
 const App = () => {
   return (
     <div className="App">
       <MarkerPanel />
       <OverlayView
-        position={{lat: 39, lng: 116}}
+        position={NYC_LATLNG}
         onClick={event => {
           console.log(event)
         }}
@@ -18,8 +19,12 @@ const App = () => {
       <div className="App-header">
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+          mapStyle={{
+            height: '50vh',
+            width: '100vw',
+          }}
           opts={{
-            center: {lat: 39, lng: 116},
+            center: NYC_LATLNG,
             noClear: true,
             zoom: 14,
           }}
@@ -36,12 +41,17 @@ const App = () => {
           opts={{
             draggable: true,
           }}
-          paths={[
-            {lat: 38.98, lng: 116.01},
-            {lat: 38.98, lng: 116.03},
-            {lat: 38.99, lng: 116.03},
-            {lat: 38.99, lng: 116.01},
-          ]}
+          paths={NYC_POLYGON}
+          visible
+        />
+        <StreetView
+          mapStyle={{
+            height: '50vh',
+            width: '100vw',
+          }}
+          opts={{
+            position: NYC_LATLNG,
+          }}
           visible
         />
       </div>

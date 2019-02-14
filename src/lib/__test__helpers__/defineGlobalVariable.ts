@@ -1,5 +1,3 @@
-import {addListener} from 'cluster'
-
 class InfoWindow {
   close = () => {}
   open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
@@ -54,6 +52,19 @@ class PlacesService {
   map: google.maps.Map
   constructor(map: google.maps.Map) {
     this.map = map
+  }
+}
+
+class StreetViewPanorama {
+  opts?: google.maps.StreetViewPanoramaOptions
+  setOptions = (opts: google.maps.StreetViewPanoramaOptions) => {
+    this.opts = opts
+  }
+  constructor(
+    container: HTMLElement,
+    opts?: google.maps.StreetViewPanoramaOptions,
+  ) {
+    this.opts = opts
   }
 }
 
@@ -151,6 +162,7 @@ const defineGlobalVariable = () => {
         InfoWindow: InfoWindow,
         OverlayView: OverlayView,
         Polygon: Polygon,
+        StreetViewPanorama: StreetViewPanorama,
       },
     },
     writable: true,

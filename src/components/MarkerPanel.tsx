@@ -1,12 +1,13 @@
 import React, {useState} from 'react'
-import {HeatMap, Marker} from '../lib'
+import {HeatMap} from '../lib'
 import InteractiveMarker from './InteractiveMarker'
+import {NYC_LATLNG} from '../common/constants'
 
 export default () => {
   const [num, setNum] = useState(1)
   const initialPositions = Array.from({length: 10}, () => ({
-    lat: 39 + Math.random() / 50,
-    lng: 116 + Math.random() / 50,
+    lat: NYC_LATLNG.lat + Math.random() / 100,
+    lng: NYC_LATLNG.lng + Math.random() / 100,
   }))
   const addMarker = () => setNum(num => (num < 10 ? num + 1 : 10))
   const removeMarker = () => setNum(num => (num > 1 ? num - 1 : 1))

@@ -1,3 +1,5 @@
+import {any} from 'prop-types'
+
 export type GoogleMapLibrary =
   | 'drawing'
   | 'geometry'
@@ -95,7 +97,7 @@ export interface MarkerProps {
 }
 
 export interface InfoWindowProps {
-  anchor?: google.maps.Marker
+  anchor?: GoogleMapObject
   opts?: google.maps.InfoWindowOptions
   visible?: boolean
   onCloseClick?: () => any
@@ -148,5 +150,16 @@ export interface OverlayViewProps {
 }
 
 export interface StreetViewProps {
-  separate?: boolean
+  mapClass?: string
+  mapStyle?: object
+  opts?: google.maps.StreetViewPanoramaOptions
+  visible?: boolean
+  onCloseClick?: (event: google.maps.MouseEvent) => any
+  onPanoChanged?: () => any
+  onPositionChanged?: () => any
+  onPovChanged?: () => any
+  onResize?: () => any
+  onStatusChanged?: () => any
+  onVisibleChanged?: () => any
+  onZoomChanged?: () => any
 }

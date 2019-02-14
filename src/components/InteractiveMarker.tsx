@@ -31,7 +31,7 @@ export default ({num, positions, setPositions}: InteractiveMarkerProps) => {
         }}
       />
       <InfoWindow
-        anchor={state.objects.get(`marker-${num}`) as google.maps.Marker}
+        anchor={state.objects.get(`marker-${num}`)}
         opts={{
           content: `marker-${num}
             lat: ${positions[num].lat.toFixed(4)} 

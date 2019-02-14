@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react'
+import React, {useEffect, useContext, useState} from 'react'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {GOOGLE_MAP_LIBRARY_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
@@ -9,8 +9,8 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   apiKey = '',
   mapClass,
   mapStyle = {
-    width: '100vw',
     height: '100vh',
+    width: '100vw',
   },
   opts = {
     center: {lat: 40.7128, lng: -74.006},
@@ -43,14 +43,16 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
 }) => {
   // Get access to the Google Map context
   const {state, dispatch} = useContext(GoogleMapContext)
+
+  // Generate a random id for the DOM node where Google Map will be inserted
+  const [mapItemId] = useState(`map-${RandomId()}`)
+
+  // Define action dispatchers
   const initMap = (
     map: google.maps.Map,
     service?: google.maps.places.PlacesService,
   ) => dispatch({type: 'init_map', map: map, service: service})
   const reset = () => dispatch({type: 'reset'})
-
-  // Generate a random id for the DOM node where Google Map will be inserted
-  const mapItemId = `map-${RandomId()}`
 
   // Construct the library param
   const libraries = {

@@ -23,7 +23,7 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   useEffect(() => {
     if (state.map === undefined) return
     setInfoWindow(new google.maps.InfoWindow(opts))
-  }, [state])
+  }, [state.map])
 
   useEffect(() => {
     if (infoWindow === undefined) return
