@@ -1,4 +1,15 @@
-export type GMapLibrary = 'drawing' | 'geometry' | 'places' | 'visualization'
+export type GoogleMapLibrary =
+  | 'drawing'
+  | 'geometry'
+  | 'places'
+  | 'visualization'
+
+export type GoogleMapObject =
+  | google.maps.Marker
+  | google.maps.Polygon
+  | google.maps.Polyline
+  | google.maps.Circle
+  | google.maps.Rectangle
 
 type MapPanes =
   | 'floatPane'
@@ -14,16 +25,14 @@ export interface GoogleMapReducer {
 
 export interface GoogleMapState {
   map: google.maps.Map | undefined
-  markers: Map<string, google.maps.Marker>
-  polygons: Map<string, google.maps.Polygon>
+  objects: Map<string, GoogleMapObject>
   service: google.maps.places.PlacesService | undefined
 }
 
 export interface GoogleMapAction {
   type: string
   map?: google.maps.Map
-  marker?: google.maps.Marker
-  polygon?: google.maps.Polygon
+  object?: GoogleMapObject
   id?: string
   service?: google.maps.places.PlacesService
 }

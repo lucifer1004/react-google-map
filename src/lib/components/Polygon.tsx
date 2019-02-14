@@ -24,10 +24,10 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
     (undefined as unknown) as google.maps.Polygon,
   )
   const addPolygon = (polygon: google.maps.Polygon) => {
-    if (!state.polygons.has(id))
-      dispatch({type: 'add_polygon', polygon: polygon, id: id})
+    if (!state.objects.has(id))
+      dispatch({type: 'add_object', object: polygon, id: id})
   }
-  const removePolygon = () => dispatch({type: 'remove_polygon', id: id})
+  const removePolygon = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return

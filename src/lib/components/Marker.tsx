@@ -35,10 +35,10 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
     (undefined as unknown) as google.maps.Marker,
   )
   const addMarker = (marker: google.maps.Marker) => {
-    if (!state.markers.has(id))
-      dispatch({type: 'add_marker', marker: marker, id: id})
+    if (!state.objects.has(id))
+      dispatch({type: 'add_object', object: marker, id: id})
   }
-  const removeMarker = () => dispatch({type: 'remove_marker', id: id})
+  const removeMarker = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return

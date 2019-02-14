@@ -1,6 +1,6 @@
 import React, {useEffect, useContext} from 'react'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
-import {GMAP_LIB_NAMES} from '../common/constants'
+import {GOOGLE_MAP_LIBRARY_NAMES} from '../common/constants'
 import {MapBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
@@ -59,7 +59,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     places: usePlaces,
     visualization: useVisualization,
   }
-  const libraryParam = GMAP_LIB_NAMES.filter(
+  const libraryParam = GOOGLE_MAP_LIBRARY_NAMES.filter(
     library => libraries[library],
   ).join(',')
   const loaded = useGoogleAPI(

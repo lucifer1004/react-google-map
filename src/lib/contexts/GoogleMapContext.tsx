@@ -1,14 +1,14 @@
 import React, {useReducer} from 'react'
 import {
   GoogleMapAction,
+  GoogleMapObject,
   GoogleMapReducer,
   GoogleMapState,
 } from '../common/types'
 
 const initialState: GoogleMapState = {
   map: undefined,
-  markers: new Map<string, google.maps.Marker>(),
-  polygons: new Map<string, google.maps.Polygon>(),
+  objects: new Map<string, GoogleMapObject>(),
   service: undefined,
 }
 
@@ -29,49 +29,27 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
         throw new Error('There can only be one map instance in a context')
       }
       return {...state, map: action.map, service: action.service}
-    case 'add_marker':
-      if (action.marker === undefined) {
-        throw new Error('You should specify a marker instance')
+    case 'add_object':
+      if (action.object === undefined) {
+        throw new Error('You should specify an object instance')
       }
       if (action.id === undefined) {
         throw new Error('You should specify an id')
       }
-      if (state.markers.has(action.id)) {
+      if (state.objects.has(action.id)) {
         throw new Error('The id has already been taken')
       }
-      return {...state, markers: state.markers.set(action.id, action.marker)}
-    case 'remove_marker':
+      return {...state, objects: state.objects.set(action.id, action.object)}
+    case 'remove_object':
       if (action.id === undefined) {
         throw new Error('You should specify an id')
       }
-      const markerToRemove = state.markers.get(action.id)
-      if (markerToRemove === undefined) {
-        throw new Error('There is no marker with the given id')
+      const objectToRemove = state.objects.get(action.id)
+      if (objectToRemove === undefined) {
+        throw new Error('There is no object with the given id')
       }
-      markerToRemove.setMap(null)
-      state.markers.delete(action.id)
-      return state
-    case 'add_polygon':
-      if (action.polygon === undefined) {
-        throw new Error('You should specify a polygon instance')
-      }
-      if (action.id === undefined) {
-        throw new Error('You should specify an id')
-      }
-      if (state.polygons.has(action.id)) {
-        throw new Error('The id has already been taken')
-      }
-      return {...state, polygons: state.polygons.set(action.id, action.polygon)}
-    case 'remove_polygon':
-      if (action.id === undefined) {
-        throw new Error('You should specify an id')
-      }
-      const polygonToRemove = state.polygons.get(action.id)
-      if (polygonToRemove === undefined) {
-        throw new Error('There is no polygon with the given id')
-      }
-      polygonToRemove.setMap(null)
-      state.polygons.delete(action.id)
+      objectToRemove.setMap(null)
+      state.objects.delete(action.id)
       return state
     default:
       return state

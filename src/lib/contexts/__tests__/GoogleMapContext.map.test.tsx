@@ -48,7 +48,7 @@ describe('The dispatcher will', () => {
       render(
         <GoogleMapProvider>
           <FakeComponent
-            action={{type: 'add_marker', marker: marker, id: 'marker'}}
+            action={{type: 'add_object', object: marker, id: 'marker'}}
           />
           <FakeComponent action={{type: 'reset'}} />
         </GoogleMapProvider>,
