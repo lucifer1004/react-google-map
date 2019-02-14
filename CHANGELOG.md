@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [2.6.0] - <2019-02-14>
+
+### ADDED
+
+- Implement StreetView (basic). It can display the street view panorama, but
+  currently does not allow attachments.
+
 ## [2.5.1] - <2019-02-14>
 
 ### ADDED

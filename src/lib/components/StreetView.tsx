@@ -4,7 +4,7 @@ import {useGoogleListener} from '../hooks'
 import {StreetViewProps} from '../common/types'
 import RandomId from '../helpers/generateRandomId'
 
-const StreetView: React.FunctionComponent<StreetViewProps> = ({
+export default ({
   mapClass,
   mapStyle = {
     height: '100vh',
@@ -22,7 +22,7 @@ const StreetView: React.FunctionComponent<StreetViewProps> = ({
   onStatusChanged,
   onVisibleChanged,
   onZoomChanged,
-}) => {
+}: StreetViewProps) => {
   const {state} = useContext(GoogleMapContext)
   const [streetView, setStreetView] = useState(
     (undefined as unknown) as google.maps.StreetViewPanorama,
@@ -60,5 +60,3 @@ const StreetView: React.FunctionComponent<StreetViewProps> = ({
 
   return <div className={mapClass} id={containerId} style={mapStyle} />
 }
-
-export default StreetView

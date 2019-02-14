@@ -3,7 +3,7 @@ import {useGoogleListener} from '../hooks'
 import {PolygonProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-const Polygon: React.FunctionComponent<PolygonProps> = ({
+export default ({
   id,
   opts,
   paths,
@@ -18,7 +18,7 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
   onMouseOver,
   onMouseUp,
   onRightClick,
-}) => {
+}: PolygonProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
   const [polygon, setPolygon] = useState(
     (undefined as unknown) as google.maps.Polygon,
@@ -73,5 +73,3 @@ const Polygon: React.FunctionComponent<PolygonProps> = ({
 
   return null
 }
-
-export default Polygon

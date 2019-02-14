@@ -3,7 +3,7 @@ import {useGoogleListener} from '../hooks'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {MarkerProps} from '../common/types'
 
-const Marker: React.FunctionComponent<MarkerProps> = ({
+export default ({
   id,
   opts = {
     position: {lat: 40.7128, lng: -74.006},
@@ -29,7 +29,7 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
   onTitleChanged,
   onVisibleChanged,
   onZIndexChanged,
-}) => {
+}: MarkerProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
   const [marker, setMarker] = useState(
     (undefined as unknown) as google.maps.Marker,
@@ -88,5 +88,3 @@ const Marker: React.FunctionComponent<MarkerProps> = ({
 
   return null
 }
-
-export default Marker

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {OverlayViewProps} from '../common/types'
 
-const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
+export default ({
   pane = 'overlayMouseTarget',
   position,
   children,
@@ -17,7 +17,7 @@ const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
   onTouchStart,
   disableMapHits,
   disableMapHitsAndGestures,
-}) => {
+}: OverlayViewProps) => {
   const {state} = useContext(GoogleMapContext)
   const [container] = useState<HTMLDivElement>(document.createElement('div'))
   const [_overlay, setOverlay] = useState(
@@ -68,5 +68,3 @@ const OverlayView: React.FunctionComponent<OverlayViewProps> = ({
 
   return ReactDOM.createPortal(children, container)
 }
-
-export default OverlayView

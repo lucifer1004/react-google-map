@@ -3,7 +3,7 @@ import {useGoogleListener} from '../hooks'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {InfoWindowProps} from '../common/types'
 
-const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
+export default ({
   anchor,
   opts = {
     position: {lat: 40.7128, lng: -74.006},
@@ -14,7 +14,7 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
   onDOMReady,
   onPositionChanged,
   onZIndexChanged,
-}) => {
+}: InfoWindowProps) => {
   const {state} = useContext(GoogleMapContext)
   const [infoWindow, setInfoWindow] = useState(
     (undefined as unknown) as google.maps.InfoWindow,
@@ -53,5 +53,3 @@ const InfoWindow: React.FunctionComponent<InfoWindowProps> = ({
 
   return null
 }
-
-export default InfoWindow

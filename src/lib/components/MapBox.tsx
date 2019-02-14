@@ -5,7 +5,7 @@ import {MapBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
 
-const MapBox: React.FunctionComponent<MapBoxProps> = ({
+export default ({
   apiKey = '',
   mapClass,
   mapStyle = {
@@ -40,7 +40,7 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
   onTilesLoaded,
   onTiltChanged,
   onZoomChanged,
-}) => {
+}: MapBoxProps) => {
   // Get access to the Google Map context
   const {state, dispatch} = useContext(GoogleMapContext)
 
@@ -116,5 +116,3 @@ const MapBox: React.FunctionComponent<MapBoxProps> = ({
     </>
   )
 }
-
-export default MapBox
