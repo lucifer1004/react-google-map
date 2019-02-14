@@ -10,7 +10,7 @@ const transformLatLng = (
   weight: orig.weight || 1,
 })
 
-export const UnsafeHeatMap = ({
+export const HeatMap = ({
   data,
   dissipating = false,
   gradient,
@@ -49,4 +49,4 @@ export const UnsafeHeatMap = ({
   return null
 }
 
-export default withSecurityBounder(UnsafeHeatMap)
+export const SafeHeatMap = withSecurityBounder(HeatMap)
