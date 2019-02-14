@@ -32,5 +32,5 @@ module.exports = {
   ],
   pagePerSection: true,
   propsParser: require('react-docgen-typescript').parse,
-  webpackConfig: require('react-scripts/config/webpack.config'),
+  webpackConfig: require('react-scripts/config/webpack.config')('development'),
 }
