@@ -83,20 +83,10 @@ return (
     />
     <HeatMap
       data={[
-        {lat: 38.982, lng: 116.047},
-        {lat: 38.982, lng: 116.045},
-        {lat: 38.982, lng: 116.043},
-        {lat: 38.982, lng: 116.041},
-        {lat: 38.982, lng: 116.039},
         {lat: 38.982, lng: 116.037},
         {lat: 38.982, lng: 116.035},
         {lat: 38.985, lng: 116.047},
         {lat: 38.985, lng: 116.045},
-        {lat: 38.985, lng: 116.043},
-        {lat: 38.985, lng: 116.041},
-        {lat: 38.985, lng: 116.039},
-        {lat: 38.985, lng: 116.037},
-        {lat: 38.985, lng: 116.035},
       ]}
     />
     <OverlayView position={{lat: 39, lng: 116}}>
@@ -125,18 +115,16 @@ to get access to the context contents in your custom components.
 > names suggest, `state` stores the context state, and `dispatch` is the reduce
 > function.
 >
-> `state` has 4 properties:
+> `state` has 3 properties:
 >
 > - `map`, which is a reference to the `google.maps.Map` instance.
-> - `markers`, which is a `Map` storing all `google.maps.Marker` instances as
->   `id`-`marker` pairs
-> - `polygons`, which is a `Map` storing all `google.maps.Polygon` instances as
->   `id`-`polygon` pairs
+> - `objects`, which is a `Map` storing all `google.maps.MVCObject` instances as
+>   `id`-`object` pairs
 > - `service`, which is a reference to the `google.maps.places.PlaceService`
 >   instance. It will be automatically instantiated when `usingPlaces` is `true`
 >   in `MapBox`.
 >
-> Users can access these properties.
+> Users can manipulate Google Map objects directly via these properties.
 
 ### MapBox
 

@@ -10,14 +10,14 @@ const transformLatLng = (
   weight: orig.weight || 1,
 })
 
-const HeatMap: React.FunctionComponent<HeatMapProps> = ({
+export const UnsafeHeatMap = ({
   data,
   dissipating = false,
   gradient,
   maxIntensity,
   opacity,
   radius,
-}) => {
+}: HeatMapProps) => {
   const {state} = useContext(GoogleMapContext)
   const [heatMap, setHeatMap] = useState(
     (undefined as unknown) as google.maps.visualization.HeatmapLayer,
@@ -49,4 +49,4 @@ const HeatMap: React.FunctionComponent<HeatMapProps> = ({
   return null
 }
 
-export default withSecurityBounder(HeatMap)
+export default withSecurityBounder(UnsafeHeatMap)
