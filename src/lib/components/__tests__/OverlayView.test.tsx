@@ -29,7 +29,7 @@ describe('OverlayView', () => {
     cleanup()
   })
 
-  it('renders inside a MapBox', async () => {
+  it('can be rendered', async () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />

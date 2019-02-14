@@ -1,7 +1,6 @@
 import React from 'react'
 import {act} from 'react-dom/test-utils'
 import 'jest-dom/extend-expect'
-import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, fireEvent} from 'react-testing-library'
 import {MapBox, Marker} from '../../'
@@ -11,17 +10,11 @@ import {defineGlobalVariable} from '../../__test__helpers__'
 defineGlobalVariable()
 
 describe('Marker', () => {
-  beforeEach(() => {
-    jest.spyOn(loadjs, 'reset')
-    jest.spyOn(console, 'log')
-  })
-
   afterEach(() => {
     cleanup()
-    jest.restoreAllMocks()
   })
 
-  it('renders inside a MapBox', async () => {
+  it('can be rendered', async () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />

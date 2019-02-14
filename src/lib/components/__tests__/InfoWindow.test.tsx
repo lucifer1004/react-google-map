@@ -21,7 +21,7 @@ describe('InfoWindow', () => {
     jest.restoreAllMocks()
   })
 
-  it('renders inside a MapBox', async () => {
+  it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" />

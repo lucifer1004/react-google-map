@@ -1,26 +1,20 @@
 import React from 'react'
 import {act} from 'react-dom/test-utils'
 import 'jest-dom/extend-expect'
-import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
 import {Polygon, MapBox} from '../..'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
-describe('Polygon', () => {
-  beforeEach(() => {
-    defineGlobalVariable()
-    jest.spyOn(loadjs, 'reset')
-  })
+defineGlobalVariable()
 
+describe('Polygon', () => {
   afterEach(() => {
     cleanup()
-    Object.defineProperty(global, 'google', {value: undefined})
-    jest.restoreAllMocks()
   })
 
-  it('renders inside a MapBox', async () => {
+  it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />

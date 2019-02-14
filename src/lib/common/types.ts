@@ -146,3 +146,7 @@ export interface OverlayViewProps {
   disableMapHits?: boolean
   disableMapHitsAndGestures?: boolean
 }
+
+export interface StreetViewProps {
+  separate?: boolean
+}

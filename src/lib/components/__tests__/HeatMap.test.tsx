@@ -13,7 +13,7 @@ describe('HeatMap', () => {
     cleanup()
   })
 
-  it('renders inside a MapBox', async () => {
+  it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox
