@@ -29,7 +29,13 @@ class Marker {
 
 class Map {
   opts: google.maps.MapOptions
-  setOptions = (opts: google.maps.MapOptions) => (this.opts = opts)
+  streetView?: google.maps.StreetViewPanorama
+  setOptions = (opts: google.maps.MapOptions) => {
+    this.opts = opts
+  }
+  setStreetView = (streetView: google.maps.StreetViewPanorama) => {
+    this.streetView = streetView
+  }
   constructor(mapDiv: HTMLElement, opts: google.maps.MapOptions) {
     this.opts = opts
   }

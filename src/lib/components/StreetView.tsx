@@ -33,12 +33,12 @@ export default ({
 
   useEffect(() => {
     if (state.map === undefined) return
-    setStreetView(
-      new google.maps.StreetViewPanorama(
-        document.getElementById(containerId) as HTMLElement,
-        {...opts, visible: visible},
-      ),
+    const streetView = new google.maps.StreetViewPanorama(
+      document.getElementById(containerId) as HTMLElement,
+      {...opts, visible: visible},
     )
+    state.map.setOptions({streetView: streetView})
+    setStreetView(streetView)
   }, [state.map])
 
   useGoogleListener(streetView, [
