@@ -1,7 +1,0 @@
-export {default as MarkerDraggable} from './MarkerDraggable'
-export {default as SimpleMapBox} from './SimpleMapBox'
-export {default as WithInfoWindow} from './WithInfoWindow'
-export {default as WithMarker} from './WithMarker'
-export {default as WithOverlayView} from './WithOverlayView'
-export {default as WithPolygon} from './WithPolygon'
-export {default as WithHeatMap} from './WithHeatMap'

@@ -14,9 +14,9 @@
   "source": "index.ts",
   "main": "dist/index.js",
   "dependencies": {
-    "loadjs": "3.5.5",
-    "react": "16.8.1",
-    "react-dom": "16.8.1"
+    "loadjs": "^3.5.5",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
   },
   "scripts": {
     "build": "cp ../../*.md . && rm -rf dist && microbundle && rm -rf .rts2_cache_*",
