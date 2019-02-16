@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [2.6.1] - <2019-02-16>
+
+### FIXED
+
+- React version issue.
+
 ## [2.6.0] - <2019-02-14>
 
 ### ADDED
