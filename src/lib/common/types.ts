@@ -1,12 +1,10 @@
-import {any} from 'prop-types'
-
-export type GoogleMapLibrary =
+export declare type GoogleMapLibrary =
   | 'drawing'
   | 'geometry'
   | 'places'
   | 'visualization'
 
-export type GoogleMapObject =
+export declare type GoogleMapObject =
   | google.maps.Marker
   | google.maps.Polygon
   | google.maps.Polyline
@@ -37,6 +35,14 @@ export interface GoogleMapAction {
   object?: GoogleMapObject
   id?: string
   service?: google.maps.places.PlacesService
+}
+
+export interface GoogleMapProviderProps {
+  children: React.ReactNode
+  useDrawing?: boolean
+  useGeometry?: boolean
+  usePlaces?: boolean
+  useVisualization?: boolean
 }
 
 export interface MapBoxProps {

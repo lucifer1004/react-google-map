@@ -35,6 +35,7 @@ describe('Polygon', () => {
             id="polygon"
             paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
             opts={{}}
+            visible
           />
         </GoogleMapProvider>,
       ),

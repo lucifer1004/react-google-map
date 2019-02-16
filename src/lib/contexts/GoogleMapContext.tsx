@@ -2,6 +2,7 @@ import React, {useReducer} from 'react'
 import {
   GoogleMapAction,
   GoogleMapObject,
+  GoogleMapProviderProps,
   GoogleMapReducer,
   GoogleMapState,
 } from '../common/types'
@@ -56,7 +57,7 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
   }
 }
 
-const GoogleMapProvider = ({children}: {children: React.ReactNode}) => {
+const GoogleMapProvider = ({children}: GoogleMapProviderProps) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const value = {state, dispatch}
 

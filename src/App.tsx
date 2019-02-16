@@ -25,7 +25,6 @@ const App = () => {
           }}
           opts={{
             center: NYC_LATLNG,
-            noClear: true,
             zoom: 14,
           }}
           useDrawing
