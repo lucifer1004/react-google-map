@@ -20,12 +20,10 @@ module.exports = {
           name: 'Attachments',
           components:
             'src/lib/components/{Circle,InfoWindow,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
-          // exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
-          // usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
         },
         {
-          name: 'Additional Layers',
-          components: 'src/lib/components/{BicyclingLayer}.tsx',
+          name: 'Layers',
+          components: 'src/lib/components/{BicyclingLayer,TransitLayer}.tsx',
         },
       ],
     },
@@ -38,3 +36,7 @@ module.exports = {
   propsParser: require('react-docgen-typescript').parse,
   webpackConfig: require('react-scripts/config/webpack.config')('development'),
 }
+
+// To set default example and usage show mode:
+// exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
+// usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'

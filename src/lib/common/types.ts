@@ -14,12 +14,19 @@ export declare type GoogleMapObject =
   | google.maps.TrafficLayer
   | google.maps.TransitLayer
 
-type MapPanes =
+export declare type GoogleMapLayer =
+  | google.maps.BicyclingLayer
+  | google.maps.TrafficLayer
+  | google.maps.TransitLayer
+
+declare type MapPanes =
   | 'floatPane'
   | 'mapPane'
   | 'markerLayer'
   | 'overlayLayer'
   | 'overlayMouseTarget'
+
+export declare type Layers = 'bicycling' | 'traffic' | 'transit'
 
 // Google Map context
 
@@ -208,6 +215,10 @@ export interface StreetViewProps {
 }
 
 // BicyclingLayer | TransitLayer | TrafficLayer
+
+export interface LayerProps {
+  type: Layers
+}
 
 export interface TrafficLayerProps {
   opts?: google.maps.TrafficLayerOptions

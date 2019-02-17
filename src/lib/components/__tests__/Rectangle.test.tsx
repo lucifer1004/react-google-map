@@ -44,17 +44,20 @@ describe('Rectangle', () => {
     )
   })
 
-  it('with same id will only be added once', async () => {
-    const {container} = render(
-      <GoogleMapProvider>
-        <MapBox apiKey="FAKE_KEY" />
-        <Rectangle id="rectangle" />
-        <Rectangle id="rectangle" />
-      </GoogleMapProvider>,
-    )
-    expect(container.innerHTML).toMatch('Loading...')
-    await wait(() => {
-      expect(container.innerHTML).not.toMatch('Loading...')
-    })
+  it('of same id cannot be added twice', async () => {
+    const check = async () => {
+      const {container} = render(
+        <GoogleMapProvider>
+          <MapBox apiKey="FAKE_KEY" />
+          <Rectangle id="rectangle" />
+          <Rectangle id="rectangle" />
+        </GoogleMapProvider>,
+      )
+      await wait(() => {
+        expect(container.innerHTML).not.toMatch('Loading...')
+      })
+    }
+
+    expect(check()).rejects.toEqual(new Error('The id has already been taken'))
   })
 })

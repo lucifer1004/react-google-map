@@ -1,7 +1,21 @@
-class BicyclingLayer {
+// layers
+
+class Layer {
   map?: google.maps.Map
   setMap = (map: google.maps.Map) => (this.map = map)
   constructor() {}
+}
+
+class BicyclingLayer extends Layer {
+  constructor() {
+    super()
+  }
+}
+
+class TransitLayer extends Layer {
+  constructor() {
+    super()
+  }
 }
 
 class Circle {
@@ -223,6 +237,7 @@ const defineGlobalVariable = () => {
         Polyline: Polyline,
         Rectangle: Rectangle,
         StreetViewPanorama: StreetViewPanorama,
+        TransitLayer: TransitLayer,
       },
     },
     writable: true,
