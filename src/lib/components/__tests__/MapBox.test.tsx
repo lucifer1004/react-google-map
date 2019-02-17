@@ -39,7 +39,7 @@ describe('MapBox', () => {
   it('renders map after fetch succeeded', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
+        <MapBox apiKey="FAKE_KEY" />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -47,14 +47,13 @@ describe('MapBox', () => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
   })
 
   it('registers event listeners properly', async () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox
-          apiKey="A_FAKE_API_KEY"
+          apiKey="FAKE_KEY"
           onClick={() => {
             console.log('clicked')
           }}
@@ -66,26 +65,24 @@ describe('MapBox', () => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     expect(loadjs.reset).not.toHaveBeenCalled()
-    expect(container.innerHTML).toMatch('This is a map')
   })
 
   it('registers places service', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" usePlaces />
+        <MapBox apiKey="FAKE_KEY" usePlaces />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    expect(container.innerHTML).toMatch('This is a map')
   })
 
   it('supports localization', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" language="fr" />
+        <MapBox apiKey="FAKE_KEY" language="fr" />
       </GoogleMapProvider>,
     )
     await wait(() => {

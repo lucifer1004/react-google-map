@@ -16,7 +16,7 @@ describe('StreetView', () => {
   it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="FAKE_KEY" />
         <StreetView />
       </GoogleMapProvider>,
     )
@@ -25,7 +25,7 @@ describe('StreetView', () => {
     })
     rerender(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="FAKE_KEY" />
         <StreetView bindToMap opts={{position: {lat: 39, lng: 116}}} />
       </GoogleMapProvider>,
     )

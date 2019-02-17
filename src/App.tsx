@@ -2,7 +2,6 @@ import React from 'react'
 import {MapBox, OverlayView, Polygon} from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
-import {NYC_LATLNG} from './common/constants'
 import './App.css'
 
 const App = () => {
@@ -10,7 +9,6 @@ const App = () => {
     <div className="App">
       <MarkerPanel />
       <OverlayView
-        position={NYC_LATLNG}
         onClick={event => {
           console.log(event)
         }}

@@ -16,16 +16,8 @@ describe('HeatMap', () => {
   it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" useVisualization />
-        <HeatMap
-          opts={{
-            data: [
-              {lat: 39, lng: 116},
-              {lat: 39.001, lng: 116},
-              {lat: 39.002, lng: 116.001, weight: 1.5},
-            ],
-          }}
-        />
+        <MapBox apiKey="FAKE_KEY" useVisualization />
+        <HeatMap />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -34,7 +26,7 @@ describe('HeatMap', () => {
     act(() => {
       rerender(
         <GoogleMapProvider>
-          <MapBox apiKey="A_FAKE_API_KEY" useVisualization />
+          <MapBox apiKey="FAKE_KEY" useVisualization />
           <HeatMap
             opts={{
               data: [

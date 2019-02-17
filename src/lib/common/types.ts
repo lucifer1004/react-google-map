@@ -144,8 +144,8 @@ export interface HeatMapProps {
 
 export interface OverlayViewProps {
   pane?: MapPanes
-  children?: JSX.Element
-  position: google.maps.LatLngLiteral
+  children: React.ReactNode
+  position?: google.maps.LatLngLiteral
   onClick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
   onDoubleClick?: (this: GlobalEventHandlers, ev: MouseEvent) => any
   onMouseDown?: (this: GlobalEventHandlers, ev: MouseEvent) => any

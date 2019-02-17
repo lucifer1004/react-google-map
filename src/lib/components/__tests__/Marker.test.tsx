@@ -17,7 +17,7 @@ describe('Marker', () => {
   it('can be rendered', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="FAKE_KEY" />
         <Marker id="marker" />
       </GoogleMapProvider>,
     )
@@ -30,7 +30,7 @@ describe('Marker', () => {
   it('updates options after rerender', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="FAKE_KEY" />
         <Marker id="my-marker" opts={{position: {lat: 39, lng: 116}}} />
       </GoogleMapProvider>,
     )
@@ -40,7 +40,7 @@ describe('Marker', () => {
     act(() =>
       rerender(
         <GoogleMapProvider>
-          <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+          <MapBox apiKey="FAKE_KEY" />
           <Marker
             id="my-marker"
             opts={{
@@ -61,7 +61,7 @@ describe('Marker', () => {
   it('with same id will only be added once', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <MapBox apiKey="FAKE_KEY" />
         <Marker id="marker" />
         <Marker id="marker" />
       </GoogleMapProvider>,

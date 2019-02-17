@@ -19,7 +19,7 @@ export default ({
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
-  LoadedComponent = <h1>This is a map</h1>,
+  LoadedComponent = null,
   LoadingComponent = <p>Loading...</p>,
   onBoundsChanged,
   onCenterChanged,

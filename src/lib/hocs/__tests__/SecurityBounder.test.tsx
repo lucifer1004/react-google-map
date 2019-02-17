@@ -26,7 +26,7 @@ describe('Security Bounder', () => {
   it('sets a time interval if google.maps.visualization is not ready', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
+        <MapBox apiKey="FAKE_KEY" />
         <WrappedFakeHeatMap />
       </GoogleMapProvider>,
     )

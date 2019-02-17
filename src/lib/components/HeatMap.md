@@ -5,12 +5,10 @@ const {GoogleMapProvider, HeatMap, MapBox} = require('../')
 
 ;<GoogleMapProvider>
   <MapBox
-    apiKey=""
     mapStyle={{
       height: '50vh',
       width: '100%',
     }}
-    LoadedComponent={null}
     useVisualization
   />
   <HeatMap />

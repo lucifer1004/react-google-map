@@ -4,7 +4,7 @@ A simple StreetView:
 const {GoogleMapProvider, MapBox, StreetView} = require('../')
 
 ;<GoogleMapProvider>
-  <MapBox apiKey="" LoadedComponent={null} />
+  <MapBox />
   <StreetView
     mapStyle={{
       height: '50vh',

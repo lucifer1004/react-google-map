@@ -24,7 +24,7 @@ describe('InfoWindow', () => {
   it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="A_FAKE_API_KEY" />
+        <MapBox apiKey="FAKE_KEY" />
         <InfoWindow />
       </GoogleMapProvider>,
     )
@@ -35,7 +35,7 @@ describe('InfoWindow', () => {
     act(() =>
       rerender(
         <GoogleMapProvider>
-          <MapBox apiKey="A_FAKE_API_KEY" />
+          <MapBox apiKey="FAKE_KEY" />
           <InfoWindow
             opts={{
               position: {lat: 39, lng: 116},
@@ -50,7 +50,7 @@ describe('InfoWindow', () => {
     act(() =>
       rerender(
         <GoogleMapProvider>
-          <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+          <MapBox apiKey="FAKE_KEY" />
           <InfoWindow
             opts={{
               content: 'This is an info window',

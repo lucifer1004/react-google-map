@@ -16,8 +16,8 @@ export default ({
   onMouseUp,
   onTouchEnd,
   onTouchStart,
-  disableMapHits,
-  disableMapHitsAndGestures,
+  disableMapHits = false,
+  disableMapHitsAndGestures = false,
 }: OverlayViewProps) => {
   const {state} = useContext(GoogleMapContext)
   const [container] = useState<HTMLDivElement>(document.createElement('div'))
