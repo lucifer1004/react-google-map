@@ -1,3 +1,16 @@
+class Circle {
+  map?: google.maps.Map
+  opts: google.maps.CircleOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.CircleOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.CircleOptions) {
+    this.opts = opts
+    this.map = opts.map as google.maps.Map | undefined
+  }
+}
+
 class InfoWindow {
   close = () => {}
   open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
@@ -167,6 +180,7 @@ const defineGlobalVariable = () => {
           BOUNCE: 0,
           DROP: 1,
         },
+        Circle: Circle,
         LatLng: LatLng,
         Map: Map,
         Marker: Marker,

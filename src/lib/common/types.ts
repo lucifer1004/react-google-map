@@ -18,6 +18,8 @@ type MapPanes =
   | 'overlayLayer'
   | 'overlayMouseTarget'
 
+// Google Map context
+
 export interface GoogleMapReducer {
   state: GoogleMapState
   dispatch: React.Dispatch<GoogleMapAction>
@@ -44,6 +46,8 @@ export interface GoogleMapProviderProps {
   usePlaces?: boolean
   useVisualization?: boolean
 }
+
+// Map
 
 export interface MapBoxProps {
   apiKey?: string
@@ -77,6 +81,8 @@ export interface MapBoxProps {
   onZoomChanged?: () => any
 }
 
+// Marker
+
 export interface MarkerProps {
   id: string
   opts?: google.maps.MarkerOptions
@@ -103,6 +109,7 @@ export interface MarkerProps {
   onZIndexChanged?: () => any
 }
 
+// InfoWindow
 export interface InfoWindowProps {
   anchor?: GoogleMapObject
   opts?: google.maps.InfoWindowOptions
@@ -114,9 +121,10 @@ export interface InfoWindowProps {
   onZIndexChanged?: () => any
 }
 
-export interface PolygonProps {
+// Shapes
+
+interface ShapeProps {
   id: string
-  opts?: google.maps.PolygonOptions
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
   onDrag?: (event: google.maps.MouseEvent) => any
@@ -129,10 +137,30 @@ export interface PolygonProps {
   onRightClick?: (event: google.maps.MouseEvent) => any
 }
 
+export interface PolylineProps extends ShapeProps {
+  opts?: google.maps.PolylineOptions
+}
+
+export interface PolygonProps extends ShapeProps {
+  opts?: google.maps.PolygonOptions
+}
+
+export interface CircleProps extends ShapeProps {
+  opts?: google.maps.CircleOptions
+  onCenterChanged?: () => any
+  onRadiusChanged?: (event: google.maps.MouseEvent) => any
+}
+
+export interface RectangleProps extends ShapeProps {
+  opts?: google.maps.RectangleOptions
+  onBoundsChanged?: () => any
+}
+
+// Heat Map
+
 export interface WeightedLatLng extends google.maps.LatLngLiteral {
   weight?: number
 }
-
 export interface HeatmapLayerOptions
   extends google.maps.visualization.HeatmapLayerOptions {
   data: WeightedLatLng[]
@@ -141,6 +169,8 @@ export interface HeatmapLayerOptions
 export interface HeatMapProps {
   opts: HeatmapLayerOptions
 }
+
+// Overlay View
 
 export interface OverlayViewProps {
   pane?: MapPanes
@@ -157,6 +187,8 @@ export interface OverlayViewProps {
   disableMapHits?: boolean
   disableMapHitsAndGestures?: boolean
 }
+
+// StreetView
 
 export interface StreetViewProps {
   mapClass?: string

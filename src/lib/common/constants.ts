@@ -13,6 +13,11 @@ const NYC_POLYGON: google.maps.LatLngLiteral[] = [
 
 const DEFAULT_MAP_ZOOM = 14
 
+export const DEFAULT_CIRCLE_OPTIONS: google.maps.CircleOptions = {
+  center: {lat: NYC_LATLNG.lat - 0.01, lng: NYC_LATLNG.lng - 0.01},
+  radius: 200,
+}
+
 export const DEFAULT_HEAT_MAP_OPTIONS: HeatmapLayerOptions = {
   data: [{lat: 40.718, lng: -74.006}, {lat: 40.712, lng: -74.01}],
   radius: 100,

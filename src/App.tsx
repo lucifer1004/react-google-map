@@ -1,5 +1,5 @@
 import React from 'react'
-import {MapBox, OverlayView, Polygon} from './lib'
+import {Circle, MapBox, OverlayView, Polygon} from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
 import './App.css'
@@ -21,6 +21,7 @@ const App = () => {
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
           useVisualization
         />
+        <Circle id="circle" />
         <Polygon id="polygon" />
         <StreetViewControl />
         <StreetViewControl bindToMap />
