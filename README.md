@@ -1,6 +1,6 @@
 # React Google Map
 
-[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-2.6.1-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
+[![version](https://img.shields.io/badge/%40lucifer1004%2Freact--google--map-3.0.0-blue.svg)](https://www.npmjs.com/package/@lucifer1004/react-google-map)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/lucifer1004/react-google-map/branch/master/graph/badge.svg)](https://codecov.io/gh/lucifer1004/react-google-map)
 [![codebeat badge](https://codebeat.co/badges/e7a5b064-277b-496d-9528-6fb835eb6ad4)](https://codebeat.co/projects/github-com-lucifer1004-react-google-map-master)
@@ -43,7 +43,6 @@ return (
       apiKey="GOOGLE_MAP_API_KEY"
       opts={{
         center: {lat: 39, lng: 116},
-        noClear: true,
         zoom: 14,
       }}
       useDrawing
@@ -71,23 +70,24 @@ return (
     />
     <Polygon
       id="polygon"
-      paths={[
-        {lat: 38.98, lng: 116.01},
-        {lat: 38.98, lng: 116.03},
-        {lat: 38.99, lng: 116.03},
-      ]}
-      visible
       opts={{
+        path: [
+          {lat: 38.98, lng: 116.01},
+          {lat: 38.98, lng: 116.03},
+          {lat: 38.99, lng: 116.03},
+        ],
         strokeColor: 'cyan',
       }}
     />
     <HeatMap
-      data={[
-        {lat: 38.982, lng: 116.037},
-        {lat: 38.982, lng: 116.035},
-        {lat: 38.985, lng: 116.047},
-        {lat: 38.985, lng: 116.045},
-      ]}
+      opts={{
+        data: [
+          {lat: 38.982, lng: 116.037},
+          {lat: 38.982, lng: 116.035},
+          {lat: 38.985, lng: 116.047},
+          {lat: 38.985, lng: 116.045},
+        ],
+      }}
     />
     <OverlayView position={{lat: 39, lng: 116}}>
       <h2>{`⚑ This is a custom overlay 🙌`}</h2>
@@ -142,20 +142,22 @@ to get access to the context contents in your custom components.
 ### InfoWindow
 
 - `InfoWindow` is a wrapper of a `google.maps.InfoWindow` instance.
-- `InfoWindow` props should be placed in `opts`, however, `visible` is addressed
-  as an exclusion, for easier use.
+- Google Map options should be placed in `opts`.
+- `visible` prop determines whether `InfoWindow` is visible.
 
 ### Polygon
 
 - `Polygon` is a wrapper of a `google.maps.Polygon` instance.
-- `paths` and `visible` are left out of the `opts` prop.
+- Google Map options should be placed in `opts`.
 - The `id` prop is required and must be unique.
 
 ### HeatMap
 
 - `HeatMap` is a wrapper of a `google.maps.visualization.HeatmapLayer` instance
 - `useVisualization` of the `MapBox` instance must be `true`
-- `data` prop is an array of `{lat, lng, weight?}`
+- Google Map options should be placed in `opts`
+  > **Note:** `opts.data` is an array of `{lat, lng, weight?}`, which is
+  > different from Google Map API's definition.
 
 ### OverlayView
 
