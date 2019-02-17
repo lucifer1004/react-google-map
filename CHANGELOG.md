@@ -14,6 +14,13 @@
   to the map. **Note:** There should be no more than one bound `StreetView` in
   the context of a `GoogleMapProvider`
 
+### ADDED
+
+- `BicyclingLayer`
+- `Circle`
+- `Polyline`
+- `Rectangle`
+
 ## [2.6.1] - <2019-02-16>
 
 ### FIXED

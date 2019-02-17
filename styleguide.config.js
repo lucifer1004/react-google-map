@@ -23,6 +23,10 @@ module.exports = {
           // exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
           // usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
         },
+        {
+          name: 'Additional Layers',
+          components: 'src/lib/components/{BicyclingLayer}.tsx',
+        },
       ],
     },
     {

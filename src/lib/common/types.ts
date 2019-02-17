@@ -10,6 +10,9 @@ export declare type GoogleMapObject =
   | google.maps.Polyline
   | google.maps.Circle
   | google.maps.Rectangle
+  | google.maps.BicyclingLayer
+  | google.maps.TrafficLayer
+  | google.maps.TransitLayer
 
 type MapPanes =
   | 'floatPane'
@@ -189,7 +192,6 @@ export interface OverlayViewProps {
 }
 
 // StreetView
-
 export interface StreetViewProps {
   mapClass?: string
   mapStyle?: object
@@ -203,4 +205,10 @@ export interface StreetViewProps {
   onStatusChanged?: () => any
   onVisibleChanged?: () => any
   onZoomChanged?: () => any
+}
+
+// BicyclingLayer | TransitLayer | TrafficLayer
+
+export interface TrafficLayerProps {
+  opts?: google.maps.TrafficLayerOptions
 }

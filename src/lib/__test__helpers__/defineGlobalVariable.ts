@@ -1,3 +1,9 @@
+class BicyclingLayer {
+  map?: google.maps.Map
+  setMap = (map: google.maps.Map) => (this.map = map)
+  constructor() {}
+}
+
 class Circle {
   map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.CircleOptions
@@ -206,6 +212,7 @@ const defineGlobalVariable = () => {
           BOUNCE: 0,
           DROP: 1,
         },
+        BicyclingLayer: BicyclingLayer,
         Circle: Circle,
         LatLng: LatLng,
         Map: Map,

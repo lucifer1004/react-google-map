@@ -1,5 +1,13 @@
 import React from 'react'
-import {Circle, MapBox, OverlayView, Polygon, Rectangle, Polyline} from './lib'
+import {
+  Circle,
+  MapBox,
+  OverlayView,
+  Polygon,
+  Rectangle,
+  Polyline,
+  BicyclingLayer,
+} from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
 import './App.css'
@@ -8,12 +16,7 @@ const App = () => {
   return (
     <div className="App">
       <MarkerPanel />
-      <OverlayView
-        onClick={event => {
-          console.log(event)
-        }}
-        disableMapHitsAndGestures
-      >
+      <OverlayView disableMapHitsAndGestures>
         <h2>{`⚑ This is a custom overlay 🙌`}</h2>
       </OverlayView>
       <div className="App-header">
@@ -27,6 +30,7 @@ const App = () => {
         <Rectangle id="rectangle" />
         <StreetViewControl />
         <StreetViewControl bindToMap />
+        <BicyclingLayer />
       </div>
     </div>
   )
