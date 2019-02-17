@@ -1,5 +1,5 @@
 class Circle {
-  map?: google.maps.Map
+  map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.CircleOptions
   setMap = (map: google.maps.Map) => (this.map = map)
   setOptions = (opts: google.maps.CircleOptions) => {
@@ -7,7 +7,7 @@ class Circle {
   }
   constructor(opts: google.maps.CircleOptions) {
     this.opts = opts
-    this.map = opts.map as google.maps.Map | undefined
+    this.map = opts.map
   }
 }
 
@@ -28,7 +28,7 @@ class LatLng {
 }
 
 class Marker {
-  map?: google.maps.Map
+  map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.MarkerOptions
   setMap = (map: google.maps.Map) => (this.map = map)
   setOptions = (opts: google.maps.MarkerOptions) => {
@@ -36,7 +36,7 @@ class Marker {
   }
   constructor(opts: google.maps.MarkerOptions) {
     this.opts = opts
-    this.map = opts.map as google.maps.Map | undefined
+    this.map = opts.map
   }
 }
 
@@ -56,7 +56,7 @@ class Map {
 }
 
 class Polygon {
-  map?: google.maps.Map
+  map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.PolygonOptions
   setMap = (map: google.maps.Map) => (this.map = map)
   setOptions = (opts: google.maps.PolygonOptions) => {
@@ -64,12 +64,12 @@ class Polygon {
   }
   constructor(opts: google.maps.PolygonOptions) {
     this.opts = opts
-    this.map = opts.map as google.maps.Map | undefined
+    this.map = opts.map
   }
 }
 
 class Polyline {
-  map?: google.maps.Map
+  map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.PolylineOptions
   setMap = (map: google.maps.Map) => (this.map = map)
   setOptions = (opts: google.maps.PolylineOptions) => {
@@ -77,7 +77,7 @@ class Polyline {
   }
   constructor(opts: google.maps.PolylineOptions) {
     this.opts = opts
-    this.map = opts.map as google.maps.Map | undefined
+    this.map = opts.map
   }
 }
 
@@ -85,6 +85,19 @@ class PlacesService {
   map: google.maps.Map
   constructor(map: google.maps.Map) {
     this.map = map
+  }
+}
+
+class Rectangle {
+  map?: google.maps.Map | google.maps.StreetViewPanorama
+  opts: google.maps.RectangleOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.RectangleOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.RectangleOptions) {
+    this.opts = opts
+    this.map = opts.map
   }
 }
 
@@ -201,6 +214,7 @@ const defineGlobalVariable = () => {
         OverlayView: OverlayView,
         Polygon: Polygon,
         Polyline: Polyline,
+        Rectangle: Rectangle,
         StreetViewPanorama: StreetViewPanorama,
       },
     },

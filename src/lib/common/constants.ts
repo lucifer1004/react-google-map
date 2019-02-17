@@ -10,6 +10,12 @@ const NYC_POLYGON: google.maps.LatLngLiteral[] = [
   {lat: 40.7138, lng: -74.001},
   {lat: 40.7128, lng: -74.005},
 ]
+const NYC_RECTANGLE: google.maps.LatLngBoundsLiteral = {
+  east: -73.98,
+  west: -74.01,
+  north: 40.706,
+  south: 40.702,
+}
 
 const DEFAULT_MAP_ZOOM = 14
 
@@ -51,6 +57,10 @@ export const DEFAULT_POLYLINE_OPTIONS: google.maps.PolylineOptions = {
     lat: latLng.lat + 0.01,
     lng: latLng.lng + 0.01,
   })),
+}
+
+export const DEFAULT_RECTANGLE_OPTIONS: google.maps.RectangleOptions = {
+  bounds: NYC_RECTANGLE,
 }
 
 export const DEFAULT_STREET_VIEW_OPTIONS: google.maps.StreetViewPanoramaOptions = {

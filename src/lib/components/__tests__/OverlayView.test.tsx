@@ -46,8 +46,8 @@ describe('OverlayView', () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <OverlayView position={{lat: 39, lng: 116}} disableMapHits>
-          <p>This is an overlay</p>
+        <OverlayView disableMapHits>
+          <p>This is an overlay with hits disabled</p>
         </OverlayView>
       </GoogleMapProvider>,
     )
@@ -59,8 +59,8 @@ describe('OverlayView', () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <OverlayView position={{lat: 39, lng: 116}} disableMapHitsAndGestures>
-          <p>This is an overlay</p>
+        <OverlayView disableMapHitsAndGestures>
+          <h1>This is an overlay with hits and gestures disabled</h1>
         </OverlayView>
       </GoogleMapProvider>,
     )

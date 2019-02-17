@@ -1,5 +1,5 @@
 import React from 'react'
-import {Circle, MapBox, OverlayView, Polygon} from './lib'
+import {Circle, MapBox, OverlayView, Polygon, Rectangle, Polyline} from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
 import './App.css'
@@ -23,6 +23,8 @@ const App = () => {
         />
         <Circle id="circle" />
         <Polygon id="polygon" />
+        <Polyline id="polyline" />
+        <Rectangle id="rectangle" />
         <StreetViewControl />
         <StreetViewControl bindToMap />
       </div>

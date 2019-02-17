@@ -19,7 +19,7 @@ module.exports = {
         {
           name: 'Attachments',
           components:
-            'src/lib/components/{Circle,InfoWindow,Marker,OverlayView,Polygon}.tsx',
+            'src/lib/components/{Circle,InfoWindow,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
           // exampleMode: 'collapse', // 'hide' | 'collapse' | 'expand'
           // usageMode: 'collapse', // 'hide' | 'collapse' | 'expand'
         },

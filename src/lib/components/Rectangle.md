@@ -1,7 +1,7 @@
-A simple Polyline:
+A simple Rectangle:
 
 ```jsx
-const {GoogleMapProvider, MapBox, Polyline} = require('../')
+const {GoogleMapProvider, MapBox, Rectangle} = require('../')
 
 ;<GoogleMapProvider>
   <MapBox
@@ -10,6 +10,6 @@ const {GoogleMapProvider, MapBox, Polyline} = require('../')
       width: '100%',
     }}
   />
-  <Polyline id="polyline" />
+  <Rectangle id="rectangle" />
 </GoogleMapProvider>
 ```
