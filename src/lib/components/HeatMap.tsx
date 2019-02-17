@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {GoogleMapContext} from '../contexts/GoogleMapContext'
+import {DEFAULT_HEAT_MAP_OPTIONS} from '../common/constants'
 import {HeatMapProps, WeightedLatLng} from '../common/types'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import withSecurityBounder from '../hocs/SecurityBounder'
 
 const transformLatLng = (
@@ -10,14 +11,7 @@ const transformLatLng = (
   weight: orig.weight || 1,
 })
 
-export const HeatMap = ({
-  data,
-  dissipating = false,
-  gradient,
-  maxIntensity,
-  opacity,
-  radius,
-}: HeatMapProps) => {
+export const HeatMap = ({opts = DEFAULT_HEAT_MAP_OPTIONS}: HeatMapProps) => {
   const {state} = useContext(GoogleMapContext)
   const [heatMap, setHeatMap] = useState(
     (undefined as unknown) as google.maps.visualization.HeatmapLayer,
@@ -26,25 +20,21 @@ export const HeatMap = ({
     if (state.map === undefined) return
     setHeatMap(
       new google.maps.visualization.HeatmapLayer({
-        data: data.map(latLng => transformLatLng(latLng)),
-        dissipating: dissipating,
-        gradient: gradient,
+        ...opts,
+        data: opts.data.map(latLng => transformLatLng(latLng)),
         map: state.map,
-        maxIntensity: maxIntensity,
-        opacity: opacity,
-        radius: radius,
       }),
     )
   }, [state.map])
 
   useEffect(() => {
     if (heatMap === undefined || state.map === undefined) return
-    heatMap.setData(data.map(latLng => transformLatLng(latLng)))
+    heatMap.setData(opts.data.map(latLng => transformLatLng(latLng)))
     heatMap.setMap(state.map)
     return () => {
       heatMap.setMap(null)
     }
-  }, [data])
+  }, [opts.data])
 
   return null
 }

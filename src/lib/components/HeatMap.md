@@ -10,14 +10,10 @@ const {GoogleMapProvider, HeatMap, MapBox} = require('../')
       height: '50vh',
       width: '100%',
     }}
-    opts={{
-      center: {lat: 39, lng: 116},
-      zoom: 14,
-    }}
-    LoadedComponent={() => null}
+    LoadedComponent={null}
     useVisualization
   />
-  <HeatMap data={[{lat: 39, lng: 116}, {lat: 39.01, lng: 116.02}]} />
+  <HeatMap />
 </GoogleMapProvider>
 ```
 

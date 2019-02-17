@@ -16,20 +16,15 @@ describe('HeatMap', () => {
   it('can be rendered', async () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
-        <MapBox
-          apiKey="A_FAKE_API_KEY"
-          opts={{
-            center: {lat: 39, lng: 116},
-            zoom: 14,
-          }}
-          useVisualization
-        />
+        <MapBox apiKey="A_FAKE_API_KEY" useVisualization />
         <HeatMap
-          data={[
-            {lat: 39, lng: 116},
-            {lat: 39.001, lng: 116},
-            {lat: 39.002, lng: 116.001, weight: 1.5},
-          ]}
+          opts={{
+            data: [
+              {lat: 39, lng: 116},
+              {lat: 39.001, lng: 116},
+              {lat: 39.002, lng: 116.001, weight: 1.5},
+            ],
+          }}
         />
       </GoogleMapProvider>,
     )
@@ -39,21 +34,16 @@ describe('HeatMap', () => {
     act(() => {
       rerender(
         <GoogleMapProvider>
-          <MapBox
-            apiKey="A_FAKE_API_KEY"
-            opts={{
-              center: {lat: 39, lng: 116},
-              zoom: 14,
-            }}
-            useVisualization
-          />
+          <MapBox apiKey="A_FAKE_API_KEY" useVisualization />
           <HeatMap
-            data={[
-              {lat: 39, lng: 116},
-              {lat: 39.001, lng: 116},
-              {lat: 39.002, lng: 116.001, weight: 1.5},
-              {lat: 39.002, lng: 116.002, weight: 3.5},
-            ]}
+            opts={{
+              data: [
+                {lat: 39, lng: 116},
+                {lat: 39.001, lng: 116},
+                {lat: 39.002, lng: 116.001, weight: 1.5},
+                {lat: 39.002, lng: 116.002, weight: 3.5},
+              ],
+            }}
           />
         </GoogleMapProvider>,
       )

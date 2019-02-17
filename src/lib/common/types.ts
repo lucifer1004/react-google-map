@@ -47,15 +47,16 @@ export interface GoogleMapProviderProps {
 
 export interface MapBoxProps {
   apiKey?: string
-  opts?: google.maps.MapOptions
+  language?: string
   mapClass?: string
   mapStyle?: object
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
   useVisualization?: boolean
-  LoadingComponent?: React.FunctionComponent
-  LoadedComponent?: React.FunctionComponent
+  LoadingComponent?: React.ReactNode
+  LoadedComponent?: React.ReactNode
+  opts?: google.maps.MapOptions
   onBoundsChanged?: () => any
   onCenterChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
@@ -116,8 +117,6 @@ export interface InfoWindowProps {
 export interface PolygonProps {
   id: string
   opts?: google.maps.PolygonOptions
-  paths?: google.maps.LatLngLiteral[]
-  visible?: boolean
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
   onDrag?: (event: google.maps.MouseEvent) => any
@@ -134,9 +133,13 @@ export interface WeightedLatLng extends google.maps.LatLngLiteral {
   weight?: number
 }
 
-export interface HeatMapProps
+export interface HeatmapLayerOptions
   extends google.maps.visualization.HeatmapLayerOptions {
   data: WeightedLatLng[]
+}
+
+export interface HeatMapProps {
+  opts: HeatmapLayerOptions
 }
 
 export interface OverlayViewProps {
@@ -159,7 +162,7 @@ export interface StreetViewProps {
   mapClass?: string
   mapStyle?: object
   opts?: google.maps.StreetViewPanoramaOptions
-  visible?: boolean
+  bindToMap?: boolean
   onCloseClick?: (event: google.maps.MouseEvent) => any
   onPanoChanged?: () => any
   onPositionChanged?: () => any

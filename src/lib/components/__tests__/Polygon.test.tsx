@@ -20,7 +20,9 @@ describe('Polygon', () => {
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Polygon
           id="polygon"
-          paths={[{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+          opts={{
+            paths: [{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}],
+          }}
         />
       </GoogleMapProvider>,
     )
@@ -33,9 +35,13 @@ describe('Polygon', () => {
           <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
           <Polygon
             id="polygon"
-            paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
-            opts={{}}
-            visible
+            opts={{
+              paths: [
+                {lat: 31, lng: 18},
+                {lat: 36, lng: 19},
+                {lat: 39, lng: 20},
+              ],
+            }}
           />
         </GoogleMapProvider>,
       ),
@@ -48,11 +54,15 @@ describe('Polygon', () => {
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <Polygon
           id="polygon"
-          paths={[{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+          opts={{
+            paths: [{lat: 35, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}],
+          }}
         />
         <Polygon
           id="polygon"
-          paths={[{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}]}
+          opts={{
+            paths: [{lat: 31, lng: 18}, {lat: 36, lng: 19}, {lat: 39, lng: 20}],
+          }}
         />
       </GoogleMapProvider>,
     )

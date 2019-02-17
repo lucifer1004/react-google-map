@@ -28,7 +28,12 @@ export default () => {
           </li>
         ))}
       </ul>
-      <HeatMap data={positions.slice(0, num)} />
+      <HeatMap
+        opts={{
+          data: positions.slice(0, num),
+          radius: 100,
+        }}
+      />
     </>
   )
 }

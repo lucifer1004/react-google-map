@@ -1,27 +1,26 @@
 import React, {useEffect, useContext, useState} from 'react'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
-import {GOOGLE_MAP_LIBRARY_NAMES} from '../common/constants'
+import {
+  DEFAULT_MAP_OPTIONS,
+  DEFAULT_MAP_STYLE,
+  GOOGLE_MAP_LIBRARY_NAMES,
+} from '../common/constants'
 import {MapBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
 
 export default ({
   apiKey = '',
+  language,
   mapClass,
-  mapStyle = {
-    height: '100vh',
-    width: '100vw',
-  },
-  opts = {
-    center: {lat: 40.7128, lng: -74.006},
-    zoom: 10,
-  },
+  mapStyle = DEFAULT_MAP_STYLE,
+  opts = DEFAULT_MAP_OPTIONS,
   useDrawing = false,
   useGeometry = false,
   usePlaces = false,
   useVisualization = false,
-  LoadedComponent = () => <h1>This is a map</h1>,
-  LoadingComponent = () => <p>Loading...</p>,
+  LoadedComponent = <h1>This is a map</h1>,
+  LoadingComponent = <p>Loading...</p>,
   onBoundsChanged,
   onCenterChanged,
   onClick,
@@ -64,10 +63,11 @@ export default ({
   const libraryParam = GOOGLE_MAP_LIBRARY_NAMES.filter(
     library => libraries[library],
   ).join(',')
-  const loaded = useGoogleAPI(
-    apiKey,
-    libraryParam === '' ? '' : `&libraries=${libraryParam}`,
-  )
+  const loaded = useGoogleAPI({
+    apiKey: apiKey,
+    libraryParam: libraryParam === '' ? '' : `&libraries=${libraryParam}`,
+    languageParam: language === undefined ? '' : `&language=${language}`,
+  })
 
   // Load Google Map
   useEffect(() => {
@@ -111,7 +111,7 @@ export default ({
   // Render <MapBox>
   return (
     <>
-      {loaded ? <LoadedComponent /> : <LoadingComponent />}
+      {loaded ? LoadedComponent : LoadingComponent}
       <div id={mapItemId} style={mapStyle} className={mapClass} />
     </>
   )

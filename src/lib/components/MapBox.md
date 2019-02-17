@@ -10,11 +10,7 @@ const {GoogleMapProvider, MapBox} = require('../')
       height: '50vh',
       width: '100%',
     }}
-    opts={{
-      center: {lat: 39, lng: 116},
-      zoom: 14,
-    }}
-    LoadedComponent={() => null}
+    LoadedComponent={null}
   />
 </GoogleMapProvider>
 ```

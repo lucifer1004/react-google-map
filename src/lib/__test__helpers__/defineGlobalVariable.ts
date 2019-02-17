@@ -30,6 +30,7 @@ class Marker {
 class Map {
   opts: google.maps.MapOptions
   streetView?: google.maps.StreetViewPanorama
+  getStreetView = () => this.streetView
   setOptions = (opts: google.maps.MapOptions) => {
     this.opts = opts
   }
@@ -63,8 +64,12 @@ class PlacesService {
 
 class StreetViewPanorama {
   opts?: google.maps.StreetViewPanoramaOptions
+  visible?: boolean
   setOptions = (opts: google.maps.StreetViewPanoramaOptions) => {
     this.opts = opts
+  }
+  setVisible = (visible: boolean) => {
+    this.visible = visible
   }
   constructor(
     container: HTMLElement,

@@ -1,7 +1,9 @@
 import React from 'react'
-import {MapBox, OverlayView, Polygon, StreetView} from './lib'
+import {MapBox, OverlayView, Polygon} from './lib'
 import MarkerPanel from './components/MarkerPanel'
-import {NYC_LATLNG, NYC_POLYGON} from './common/constants'
+import StreetViewControl from './components/StreetViewControl'
+import {NYC_LATLNG} from './common/constants'
+import './App.css'
 
 const App = () => {
   return (
@@ -19,40 +21,11 @@ const App = () => {
       <div className="App-header">
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
-          mapStyle={{
-            height: '50vh',
-            width: '100vw',
-          }}
-          opts={{
-            center: NYC_LATLNG,
-            zoom: 14,
-          }}
-          useDrawing
-          useGeometry
-          usePlaces
           useVisualization
-          onCenterChanged={() => {
-            console.log('The center of the map has changed.')
-          }}
         />
-        <Polygon
-          id="polygon"
-          opts={{
-            draggable: true,
-          }}
-          paths={NYC_POLYGON}
-          visible
-        />
-        <StreetView
-          mapStyle={{
-            height: '50vh',
-            width: '100vw',
-          }}
-          opts={{
-            position: NYC_LATLNG,
-          }}
-          visible
-        />
+        <Polygon id="polygon" />
+        <StreetViewControl />
+        <StreetViewControl bindToMap />
       </div>
     </div>
   )

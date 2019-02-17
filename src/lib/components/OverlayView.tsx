@@ -1,11 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
 import ReactDOM from 'react-dom'
+import {NYC_LATLNG} from '../common/constants'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {OverlayViewProps} from '../common/types'
 
 export default ({
   pane = 'overlayMouseTarget',
-  position,
+  position = NYC_LATLNG,
   children,
   onClick,
   onDoubleClick,

@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {useGoogleListener} from '../hooks'
-import {GoogleMapContext} from '../contexts/GoogleMapContext'
+import {DEFAULT_INFO_WINDOW_OPTIONS} from '../common/constants'
 import {InfoWindowProps} from '../common/types'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
+import {useGoogleListener} from '../hooks'
 
 export default ({
   anchor,
-  opts = {
-    position: {lat: 40.7128, lng: -74.006},
-  },
+  opts = DEFAULT_INFO_WINDOW_OPTIONS,
   visible,
   onCloseClick,
   onContentChanged,

@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useGoogleListener} from '../hooks'
+import {DEFAULT_POLYGON_OPTIONS} from '../common/constants'
 import {PolygonProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 export default ({
   id,
-  opts,
-  paths,
-  visible = false,
+  opts = DEFAULT_POLYGON_OPTIONS,
   onClick,
   onDoubleClick,
   onDrag,
@@ -35,8 +34,6 @@ export default ({
       new google.maps.Polygon({
         ...opts,
         map: state.map,
-        paths: paths,
-        visible: visible,
       }),
     )
   }, [state.map])
@@ -68,8 +65,8 @@ export default ({
   // Modify the google.maps.Polygon object when component props change
   useEffect(() => {
     if (polygon === undefined) return
-    polygon.setOptions({...opts, paths: paths, visible: visible})
-  }, [opts, paths, visible])
+    polygon.setOptions(opts)
+  }, [opts])
 
   return null
 }

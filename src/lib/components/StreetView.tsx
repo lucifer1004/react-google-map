@@ -1,4 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
+import {
+  DEFAULT_MAP_STYLE,
+  DEFAULT_STREET_VIEW_OPTIONS,
+} from '../common/constants'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 import {StreetViewProps} from '../common/types'
@@ -6,14 +10,9 @@ import RandomId from '../helpers/generateRandomId'
 
 export default ({
   mapClass,
-  mapStyle = {
-    height: '100vh',
-    width: '100vw',
-  },
-  opts = {
-    position: {lat: 40.7128, lng: -74.006},
-  },
-  visible = false,
+  mapStyle = DEFAULT_MAP_STYLE,
+  opts = DEFAULT_STREET_VIEW_OPTIONS,
+  bindToMap = false,
   onCloseClick,
   onPanoChanged,
   onPositionChanged,
@@ -31,15 +30,39 @@ export default ({
   // Generate a random id for the DOM node where Google Map will be inserted
   const [containerId] = useState(`street-view-${RandomId()}`)
 
+  const resetMap = () => {
+    if (state.map && (bindToMap || state.map.getStreetView() === streetView)) {
+      state.map.setOptions({streetView: undefined})
+    }
+  }
+
+  const bind = () => {
+    state.map && state.map.setOptions({streetView: streetView})
+    streetView.setVisible(true)
+  }
+
+  const unbind = () => {
+    resetMap()
+    streetView.setVisible(true)
+  }
+
+  // Handle StreetView creation and unregister
   useEffect(() => {
     if (state.map === undefined) return
     const streetView = new google.maps.StreetViewPanorama(
       document.getElementById(containerId) as HTMLElement,
-      {...opts, visible: visible},
+      opts,
     )
-    state.map.setOptions({streetView: streetView})
     setStreetView(streetView)
+    return () => resetMap()
   }, [state.map])
+
+  // Handle `bindToMap` prop change
+  useEffect(() => {
+    if (streetView === undefined) return
+    if (!bindToMap) unbind()
+    else bind()
+  }, [streetView, bindToMap])
 
   useGoogleListener(streetView, [
     {name: 'closeclick', handler: onCloseClick},
@@ -55,8 +78,8 @@ export default ({
   // Modify the google.maps.StreetViewPanorama object when component props change
   useEffect(() => {
     if (streetView === undefined) return
-    streetView.setOptions({...opts, visible: visible})
-  }, [opts, visible])
+    streetView.setOptions(opts)
+  }, [opts])
 
   return <div className={mapClass} id={containerId} style={mapStyle} />
 }

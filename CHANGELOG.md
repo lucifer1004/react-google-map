@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## [3.0.0] - In progress
+
+### CHANGED
+
+- Now, `react` and `react-dom` are peer dependencies.
+- For all components, Google Map options should be pass via the `opts` prop.
+  This affects the following components:
+  - `HeatMap` now only has one prop `opts`.
+  - `Polygon`'s `paths` and `visible` props have been removed.
+  - `StreetView`'s `visible` prop has been removed.
+- `StreetView` now has a `bindToMap` prop to define whether it should be bound
+  to the map. **Note:** There should be no more than one bound `StreetView` in
+  the context of a `GoogleMapProvider`
+
 ## [2.6.1] - <2019-02-16>
 
 ### FIXED

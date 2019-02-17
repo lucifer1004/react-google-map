@@ -10,13 +10,9 @@ const {GoogleMapProvider, MapBox, OverlayView} = require('../')
       height: '50vh',
       width: '100%',
     }}
-    opts={{
-      center: {lat: 39, lng: 116},
-      zoom: 14,
-    }}
-    LoadedComponent={() => null}
+    LoadedComponent={null}
   />
-  <OverlayView position={{lat: 39, lng: 116}}>
+  <OverlayView>
     <h1 style={{fontSize: '40px'}}>This is an overlay🌈</h1>
   </OverlayView>
 </GoogleMapProvider>

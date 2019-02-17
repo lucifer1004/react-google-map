@@ -81,4 +81,15 @@ describe('MapBox', () => {
     })
     expect(container.innerHTML).toMatch('This is a map')
   })
+
+  it('supports localization', async () => {
+    const {container} = render(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" language="fr" />
+      </GoogleMapProvider>,
+    )
+    await wait(() => {
+      expect(container.innerHTML).not.toMatch('Loading...')
+    })
+  })
 })

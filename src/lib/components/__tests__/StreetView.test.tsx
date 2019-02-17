@@ -14,7 +14,7 @@ describe('StreetView', () => {
   })
 
   it('can be rendered', async () => {
-    const {container} = render(
+    const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
         <StreetView />
@@ -23,5 +23,11 @@ describe('StreetView', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    rerender(
+      <GoogleMapProvider>
+        <MapBox apiKey="A_FAKE_API_KEY" opts={{}} />
+        <StreetView bindToMap opts={{position: {lat: 39, lng: 116}}} />
+      </GoogleMapProvider>,
+    )
   })
 })

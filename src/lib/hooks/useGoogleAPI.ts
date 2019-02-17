@@ -2,10 +2,20 @@ import {useState, useEffect} from 'react'
 import loadjs from 'loadjs'
 import {GOOGLE_MAP_BASE_URI} from '../common/constants'
 
-const useGoogleAPI = (apiKey: string, libraryParam: string) => {
+interface GoogleAPIProps {
+  apiKey: string
+  libraryParam: string
+  languageParam: string
+}
+
+const useGoogleAPI = ({
+  apiKey,
+  libraryParam,
+  languageParam,
+}: GoogleAPIProps) => {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    const googleMapScriptUri = `${GOOGLE_MAP_BASE_URI}?key=${apiKey}${libraryParam}`
+    const googleMapScriptUri = `${GOOGLE_MAP_BASE_URI}?key=${apiKey}${libraryParam}${languageParam}`
     if (!loadjs.isDefined('gmap')) loadjs(googleMapScriptUri, 'gmap')
     loadjs.ready('gmap', {
       success: () => {

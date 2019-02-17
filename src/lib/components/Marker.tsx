@@ -1,13 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {useGoogleListener} from '../hooks'
-import {GoogleMapContext} from '../contexts/GoogleMapContext'
+import {DEFAULT_MARKER_OPTIONS} from '../common/constants'
 import {MarkerProps} from '../common/types'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
+import {useGoogleListener} from '../hooks'
 
 export default ({
   id,
-  opts = {
-    position: {lat: 40.7128, lng: -74.006},
-  },
+  opts = DEFAULT_MARKER_OPTIONS,
   onAnimationChanged,
   onClick,
   onClickableChanged,
