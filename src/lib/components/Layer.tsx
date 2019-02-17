@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {GoogleMapLayer, Layers, LayerProps} from '../common/types'
+import {GoogleMapLayer, LayerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({type}: LayerProps) => {
+export default ({type, opts}: LayerProps) => {
   const layerId = `${type}-layer`
   const {state, dispatch} = useContext(GoogleMapContext)
   const [layer, setLayer] = useState((undefined as unknown) as GoogleMapLayer)
@@ -24,7 +24,10 @@ export default ({type}: LayerProps) => {
       traffic: google.maps.TrafficLayer,
       transit: google.maps.TransitLayer,
     }
-    const layer = new layerNameToClass[type]()
+    const layer =
+      type === 'traffic'
+        ? new layerNameToClass[type](opts)
+        : new layerNameToClass[type]()
     layer.setMap(state.map)
     setLayer(layer)
   }, [state.map])
@@ -38,6 +41,11 @@ export default ({type}: LayerProps) => {
     // Remove the layer when the component is unmounted
     return () => removeLayer()
   }, [layer])
+
+  useEffect(() => {
+    if (type !== 'traffic' || opts === undefined) return
+    ;(layer as google.maps.TrafficLayer).setOptions(opts)
+  }, [opts])
 
   return null
 }

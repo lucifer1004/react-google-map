@@ -12,6 +12,17 @@ class BicyclingLayer extends Layer {
   }
 }
 
+class TrafficLayer extends Layer {
+  opts?: google.maps.TrafficLayerOptions
+  setOptions = (opts: google.maps.TrafficLayerOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.TrafficLayerOptions) {
+    super()
+    this.opts = opts
+  }
+}
+
 class TransitLayer extends Layer {
   constructor() {
     super()
@@ -237,6 +248,7 @@ const defineGlobalVariable = () => {
         Polyline: Polyline,
         Rectangle: Rectangle,
         StreetViewPanorama: StreetViewPanorama,
+        TrafficLayer: TrafficLayer,
         TransitLayer: TransitLayer,
       },
     },

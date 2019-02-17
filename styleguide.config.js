@@ -23,7 +23,7 @@ module.exports = {
         },
         {
           name: 'Layers',
-          components: 'src/lib/components/{BicyclingLayer,TransitLayer}.tsx',
+          components: 'src/lib/components/{BicyclingLayer,TrafficLayer,TransitLayer}.tsx',
         },
       ],
     },

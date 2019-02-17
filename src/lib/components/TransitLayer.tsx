@@ -1,4 +1,4 @@
 import React from 'react'
 import Layer from './Layer'
 
-export default () => <Layer type="transit" />
+export default ({}) => <Layer type="transit" />

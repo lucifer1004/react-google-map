@@ -218,6 +218,7 @@ export interface StreetViewProps {
 
 export interface LayerProps {
   type: Layers
+  opts?: google.maps.TrafficLayerOptions
 }
 
 export interface TrafficLayerProps {

@@ -1,12 +1,14 @@
 import React from 'react'
 import {
+  BicyclingLayer,
   Circle,
   MapBox,
   OverlayView,
   Polygon,
   Rectangle,
   Polyline,
-  BicyclingLayer,
+  TrafficLayer,
+  TransitLayer,
 } from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
@@ -31,6 +33,8 @@ const App = () => {
         <StreetViewControl />
         <StreetViewControl bindToMap />
         <BicyclingLayer />
+        <TrafficLayer />
+        <TransitLayer />
       </div>
     </div>
   )

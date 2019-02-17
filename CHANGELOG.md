@@ -20,6 +20,7 @@
 - `Circle`
 - `Polyline`
 - `Rectangle`
+- `TrafficLayer`
 - `TransitLayer`
 
 ## [2.6.1] - <2019-02-16>
