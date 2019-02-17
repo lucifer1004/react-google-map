@@ -2,7 +2,7 @@ import React from 'react'
 import 'jest-dom/extend-expect'
 import loadjs from 'loadjs'
 import 'react-testing-library/cleanup-after-each'
-import {cleanup, render, wait} from 'react-testing-library'
+import {cleanup, render, wait, act} from 'react-testing-library'
 import MapBox from '../MapBox'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
@@ -37,7 +37,7 @@ describe('MapBox', () => {
   })
 
   it('renders map after fetch succeeded', async () => {
-    const {container} = render(
+    const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
       </GoogleMapProvider>,
@@ -47,6 +47,13 @@ describe('MapBox', () => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
     expect(loadjs.reset).not.toHaveBeenCalled()
+    act(() =>
+      rerender(
+        <GoogleMapProvider>
+          <MapBox opts={{center: {lat: 39, lng: 116}}} />
+        </GoogleMapProvider>,
+      ),
+    )
   })
 
   it('registers event listeners properly', async () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
-import {cleanup, render, wait} from 'react-testing-library'
+import {cleanup, render, wait, act} from 'react-testing-library'
 import {MapBox, StreetView} from '../..'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
@@ -23,11 +23,13 @@ describe('StreetView', () => {
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
-    rerender(
-      <GoogleMapProvider>
-        <MapBox apiKey="FAKE_KEY" />
-        <StreetView bindToMap opts={{position: {lat: 39, lng: 116}}} />
-      </GoogleMapProvider>,
+    act(() =>
+      rerender(
+        <GoogleMapProvider>
+          <MapBox apiKey="FAKE_KEY" />
+          <StreetView bindToMap opts={{position: {lat: 39, lng: 116}}} />
+        </GoogleMapProvider>,
+      ),
     )
   })
 })
