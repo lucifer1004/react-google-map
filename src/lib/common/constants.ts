@@ -46,6 +46,13 @@ export const DEFAULT_POLYGON_OPTIONS: google.maps.PolygonOptions = {
   paths: NYC_POLYGON,
 }
 
+export const DEFAULT_POLYLINE_OPTIONS: google.maps.PolylineOptions = {
+  path: NYC_POLYGON.map(latLng => ({
+    lat: latLng.lat + 0.01,
+    lng: latLng.lng + 0.01,
+  })),
+}
+
 export const DEFAULT_STREET_VIEW_OPTIONS: google.maps.StreetViewPanoramaOptions = {
   position: NYC_LATLNG,
 }

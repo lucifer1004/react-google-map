@@ -68,6 +68,19 @@ class Polygon {
   }
 }
 
+class Polyline {
+  map?: google.maps.Map
+  opts: google.maps.PolylineOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.PolylineOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.PolylineOptions) {
+    this.opts = opts
+    this.map = opts.map as google.maps.Map | undefined
+  }
+}
+
 class PlacesService {
   map: google.maps.Map
   constructor(map: google.maps.Map) {
@@ -187,6 +200,7 @@ const defineGlobalVariable = () => {
         InfoWindow: InfoWindow,
         OverlayView: OverlayView,
         Polygon: Polygon,
+        Polyline: Polyline,
         StreetViewPanorama: StreetViewPanorama,
       },
     },

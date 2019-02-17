@@ -43,7 +43,7 @@ export default ({
   useEffect(() => {
     if (circle === undefined) return
 
-    // Add the circle to state.circles
+    // Add the circle to state.objects
     addCircle(circle)
 
     // Remove the circle when the component is unmounted

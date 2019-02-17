@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {useGoogleListener} from '../hooks'
-import {DEFAULT_POLYGON_OPTIONS} from '../common/constants'
-import {PolygonProps} from '../common/types'
+import {DEFAULT_POLYLINE_OPTIONS} from '../common/constants'
+import {PolylineProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 export default ({
   id,
-  opts = DEFAULT_POLYGON_OPTIONS,
+  opts = DEFAULT_POLYLINE_OPTIONS,
   onClick,
   onDoubleClick,
   onDrag,
@@ -17,21 +17,21 @@ export default ({
   onMouseOver,
   onMouseUp,
   onRightClick,
-}: PolygonProps) => {
+}: PolylineProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [polygon, setPolygon] = useState(
-    (undefined as unknown) as google.maps.Polygon,
+  const [polyline, setPolyline] = useState(
+    (undefined as unknown) as google.maps.Polyline,
   )
-  const addPolygon = (polygon: google.maps.Polygon) => {
+  const addPolyline = (polyline: google.maps.Polyline) => {
     if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: polygon, id: id})
+      dispatch({type: 'add_object', object: polyline, id: id})
   }
-  const removePolygon = () => dispatch({type: 'remove_object', id: id})
+  const removePolyline = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
-    setPolygon(
-      new google.maps.Polygon({
+    setPolyline(
+      new google.maps.Polyline({
         ...opts,
         map: state.map,
       }),
@@ -39,17 +39,17 @@ export default ({
   }, [state.map])
 
   useEffect(() => {
-    if (polygon === undefined) return
+    if (polyline === undefined) return
 
-    // Add the polygon to state.objects
-    addPolygon(polygon)
+    // Add the polyline to state.objects
+    addPolyline(polyline)
 
-    // Remove the polygon when the component is unmounted
-    return () => removePolygon()
-  }, [polygon])
+    // Remove the polyline when the component is unmounted
+    return () => removePolyline()
+  }, [polyline])
 
   // Register google map event listeners
-  useGoogleListener(polygon, [
+  useGoogleListener(polyline, [
     {name: 'click', handler: onClick},
     {name: 'dblclick', handler: onDoubleClick},
     {name: 'drag', handler: onDrag},
@@ -62,10 +62,10 @@ export default ({
     {name: 'rightclick', handler: onRightClick},
   ])
 
-  // Modify the google.maps.Polygon object when component props change
+  // Modify the google.maps.Polyline object when component props change
   useEffect(() => {
-    if (polygon === undefined) return
-    polygon.setOptions(opts)
+    if (polyline === undefined) return
+    polyline.setOptions(opts)
   }, [opts])
 
   return null

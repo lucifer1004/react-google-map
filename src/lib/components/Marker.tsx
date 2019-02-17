@@ -47,7 +47,7 @@ export default ({
   useEffect(() => {
     if (marker === undefined) return
 
-    // Add the marker to state.markers
+    // Add the marker to state.objects
     addMarker(marker)
 
     // Remove the marker when the component is unmounted
