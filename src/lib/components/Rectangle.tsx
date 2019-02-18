@@ -20,8 +20,8 @@ export default ({
   onRightClick,
 }: RectangleProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [rectangle, setRectangle] = useState(
-    (undefined as unknown) as google.maps.Rectangle,
+  const [rectangle, setRectangle] = useState<google.maps.Rectangle | undefined>(
+    undefined,
   )
   const addRectangle = (rectangle: google.maps.Rectangle) => {
     if (!state.objects.has(id))

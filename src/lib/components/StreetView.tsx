@@ -23,9 +23,9 @@ export default ({
   onZoomChanged,
 }: StreetViewProps) => {
   const {state} = useContext(GoogleMapContext)
-  const [streetView, setStreetView] = useState(
-    (undefined as unknown) as google.maps.StreetViewPanorama,
-  )
+  const [streetView, setStreetView] = useState<
+    google.maps.StreetViewPanorama | undefined
+  >(undefined)
 
   // Generate a random id for the DOM node where Google Map will be inserted
   const [containerId] = useState(`street-view-${RandomId()}`)
@@ -38,12 +38,12 @@ export default ({
 
   const bind = () => {
     state.map && state.map.setOptions({streetView: streetView})
-    streetView.setVisible(true)
+    streetView && streetView.setVisible(true)
   }
 
   const unbind = () => {
     resetMap()
-    streetView.setVisible(true)
+    streetView && streetView.setVisible(true)
   }
 
   // Handle StreetView creation and unregister

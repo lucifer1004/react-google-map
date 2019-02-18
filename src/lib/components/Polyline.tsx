@@ -19,8 +19,8 @@ export default ({
   onRightClick,
 }: PolylineProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [polyline, setPolyline] = useState(
-    (undefined as unknown) as google.maps.Polyline,
+  const [polyline, setPolyline] = useState<google.maps.Polyline | undefined>(
+    undefined,
   )
   const addPolyline = (polyline: google.maps.Polyline) => {
     if (!state.objects.has(id))

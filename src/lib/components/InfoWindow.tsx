@@ -15,9 +15,9 @@ export default ({
   onZIndexChanged,
 }: InfoWindowProps) => {
   const {state} = useContext(GoogleMapContext)
-  const [infoWindow, setInfoWindow] = useState(
-    (undefined as unknown) as google.maps.InfoWindow,
-  )
+  const [infoWindow, setInfoWindow] = useState<
+    google.maps.InfoWindow | undefined
+  >(undefined)
 
   useEffect(() => {
     if (state.map === undefined) return

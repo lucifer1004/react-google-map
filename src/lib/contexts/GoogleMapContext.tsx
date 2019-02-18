@@ -15,7 +15,7 @@ const initialState: GoogleMapState = {
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
   state: initialState,
-  dispatch: (null as unknown) as React.Dispatch<GoogleMapAction>,
+  dispatch: (undefined as unknown) as React.Dispatch<GoogleMapAction>,
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {

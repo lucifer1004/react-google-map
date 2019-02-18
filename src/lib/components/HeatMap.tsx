@@ -13,9 +13,9 @@ const transformLatLng = (
 
 export const HeatMap = ({opts = DEFAULT_HEAT_MAP_OPTIONS}: HeatMapProps) => {
   const {state} = useContext(GoogleMapContext)
-  const [heatMap, setHeatMap] = useState(
-    (undefined as unknown) as google.maps.visualization.HeatmapLayer,
-  )
+  const [heatMap, setHeatMap] = useState<
+    google.maps.visualization.HeatmapLayer | undefined
+  >(undefined)
   useEffect(() => {
     if (state.map === undefined) return
     setHeatMap(

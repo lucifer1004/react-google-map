@@ -21,8 +21,8 @@ export default ({
 }: OverlayViewProps) => {
   const {state} = useContext(GoogleMapContext)
   const [container] = useState<HTMLDivElement>(document.createElement('div'))
-  const [_overlay, setOverlay] = useState(
-    (undefined as unknown) as google.maps.OverlayView,
+  const [_overlay, setOverlay] = useState<google.maps.OverlayView | undefined>(
+    undefined,
   )
 
   useEffect(() => {

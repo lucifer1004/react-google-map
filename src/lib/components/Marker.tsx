@@ -30,8 +30,8 @@ export default ({
   onZIndexChanged,
 }: MarkerProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [marker, setMarker] = useState(
-    (undefined as unknown) as google.maps.Marker,
+  const [marker, setMarker] = useState<google.maps.Marker | undefined>(
+    undefined,
   )
   const addMarker = (marker: google.maps.Marker) => {
     if (!state.objects.has(id))

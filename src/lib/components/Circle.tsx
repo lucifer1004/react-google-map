@@ -21,8 +21,8 @@ export default ({
   onRightClick,
 }: CircleProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [circle, setCircle] = useState(
-    (undefined as unknown) as google.maps.Circle,
+  const [circle, setCircle] = useState<google.maps.Circle | undefined>(
+    undefined,
   )
   const addCircle = (circle: google.maps.Circle) => {
     if (!state.objects.has(id))

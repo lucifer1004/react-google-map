@@ -5,7 +5,7 @@ import {GoogleMapContext} from '../contexts/GoogleMapContext'
 export default ({type, opts}: LayerProps) => {
   const layerId = `${type}-layer`
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [layer, setLayer] = useState((undefined as unknown) as GoogleMapLayer)
+  const [layer, setLayer] = useState<GoogleMapLayer | undefined>(undefined)
 
   const addLayer = (layer: GoogleMapLayer) => {
     if (!state.objects.has(type))

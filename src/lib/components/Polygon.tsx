@@ -19,8 +19,8 @@ export default ({
   onRightClick,
 }: PolygonProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
-  const [polygon, setPolygon] = useState(
-    (undefined as unknown) as google.maps.Polygon,
+  const [polygon, setPolygon] = useState<google.maps.Polygon | undefined>(
+    undefined,
   )
   const addPolygon = (polygon: google.maps.Polygon) => {
     if (!state.objects.has(id))
