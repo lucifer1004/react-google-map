@@ -23,7 +23,7 @@ const App = () => {
       <OverlayView disableMapHitsAndGestures>
         <h2>{`⚑ This is a custom overlay 🙌`}</h2>
       </OverlayView>
-      <div className="App-header">
+      <div className="Map">
         <SearchBox
           id="search-box"
           placeholder="Search..."
@@ -43,18 +43,7 @@ const App = () => {
         <BicyclingLayer />
         <TrafficLayer />
         <TransitLayer />
-        <GroundOverlay
-          id="image"
-          opts={{
-            url: 'https://placehold.it/256x256',
-            bounds: {
-              east: -73.98,
-              west: -73.985,
-              north: 40.706,
-              south: 40.702,
-            },
-          }}
-        />
+        <GroundOverlay id="image" />
       </div>
     </div>
   )

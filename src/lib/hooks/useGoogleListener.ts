@@ -13,10 +13,10 @@ const useGoogleListener = (
     if (instance === undefined) return
     const listeners: google.maps.MapsEventListener[] = []
     events.forEach(event => {
-      if (event.handler === undefined) return
-      listeners.push(
-        google.maps.event.addListener(instance, event.name, event.handler),
-      )
+      if (event.handler)
+        listeners.push(
+          google.maps.event.addListener(instance, event.name, event.handler),
+        )
     })
     return () => {
       listeners.forEach(listener => listener.remove())

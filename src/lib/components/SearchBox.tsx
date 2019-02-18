@@ -20,12 +20,10 @@ export default ({
   useEffect(() => {
     if (state.map === undefined || state.places === undefined) return
     setSearchBox(new google.maps.places.SearchBox(inputNode, opts))
-    if (bindingPosition) {
+    bindingPosition &&
       state.map.controls[google.maps.ControlPosition[bindingPosition]].push(
         inputNode,
       )
-      inputNode.hidden = restProps.hidden ? restProps.hidden : false
-    }
   }, [state.places])
 
   useGoogleListener(searchBox, [
@@ -35,16 +33,9 @@ export default ({
   // Modify the google.maps.places.SearchBox object when component props change
   useEffect(() => {
     if (searchBox === undefined || opts.bounds === undefined) return
-    console.log(searchBox)
     searchBox.setBounds(opts.bounds)
   }, [opts.bounds])
 
   // If `hidden` is not defined in props, search boxes bound to map will be hidden at first.
-  return (
-    <input
-      id={id}
-      hidden={restProps.hidden ? restProps.hidden : !!bindingPosition}
-      {...restProps}
-    />
-  )
+  return <input id={id} {...restProps} />
 }

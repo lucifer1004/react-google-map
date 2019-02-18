@@ -62,9 +62,9 @@ export interface GoogleMapProviderProps {
 
 export interface MapBoxProps {
   apiKey?: string
+  className?: string
+  style?: React.CSSProperties
   language?: string
-  mapClass?: string
-  mapStyle?: object
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
@@ -201,8 +201,8 @@ export interface OverlayViewProps {
 
 // StreetView
 export interface StreetViewProps {
-  mapClass?: string
-  mapStyle?: object
+  className?: string
+  style?: React.CSSProperties
   opts?: google.maps.StreetViewPanoramaOptions
   bindToMap?: boolean
   onCloseClick?: (event: google.maps.MouseEvent) => any
@@ -244,7 +244,7 @@ export interface GroundOverlayProps {
 
 // SearchBox
 
-declare type ControlPosition =
+declare type ControlPositionName =
   | 'BOTTOM_CENTER'
   | 'BOTTOM_LEFT'
   | 'BOTTOM_RIGHT'
@@ -269,5 +269,5 @@ export interface StandaloneSearchBoxProps
 }
 
 export interface SearchBoxProps extends StandaloneSearchBoxProps {
-  bindingPosition?: ControlPosition
+  bindingPosition?: ControlPositionName
 }

@@ -38,7 +38,12 @@ module.exports = {
     },
   ],
   pagePerSection: true,
-  propsParser: require('react-docgen-typescript').parse,
+  propsParser: require('react-docgen-typescript').withDefaultConfig({
+    propFilter: prop =>
+      prop.parent === null
+        ? true
+        : prop.parent.fileName.indexOf('node_modules/@types/react') < 0,
+  }).parse,
   webpackConfig: require('react-scripts/config/webpack.config')('development'),
 }
 

@@ -15,22 +15,16 @@ describe('GroundOverlay', () => {
   })
 
   it('can be rendered', async () => {
+    const bounds = {
+      east: 116,
+      west: 115.9,
+      north: 39,
+      south: 38.8,
+    }
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <GroundOverlay
-          id="ground-overlay"
-          opts={{
-            url: 'https://placehold.it/256x256',
-            bounds: {
-              east: 116,
-              west: 115.9,
-              north: 39,
-              south: 38.9,
-            },
-            opacity: 0.8,
-          }}
-        />
+        <GroundOverlay id="ground-overlay" />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -44,13 +38,40 @@ describe('GroundOverlay', () => {
             id="ground-overlay"
             opts={{
               url: 'https://placehold.it/256x256',
-              bounds: {
-                east: 116,
-                west: 115.9,
-                north: 39,
-                south: 38.9,
-              },
+              bounds: bounds,
               opacity: 0.5,
+            }}
+          />
+        </GoogleMapProvider>,
+      ),
+    ),
+      act(() =>
+        rerender(
+          <GoogleMapProvider>
+            <MapBox apiKey="FAKE_KEY" />
+            <GroundOverlay
+              id="ground-overlay"
+              opts={{
+                url: 'https://placehold.it/512x512',
+                bounds: bounds,
+                opacity: 0.8,
+                clickable: true,
+              }}
+            />
+          </GoogleMapProvider>,
+        ),
+      )
+    act(() =>
+      rerender(
+        <GoogleMapProvider>
+          <MapBox apiKey="FAKE_KEY" />
+          <GroundOverlay
+            id="ground-overlay"
+            opts={{
+              url: 'https://placehold.it/512x512',
+              bounds: bounds,
+              opacity: 0.8,
+              clickable: false,
             }}
           />
         </GoogleMapProvider>,
@@ -63,14 +84,8 @@ describe('GroundOverlay', () => {
           <GroundOverlay
             id="ground-overlay"
             opts={{
-              url: 'https://placehold.it/256x256',
-              bounds: {
-                east: 116,
-                west: 115.9,
-                north: 39,
-                south: 38.8,
-              },
-              opacity: 0.5,
+              url: 'https://placehold.it/512x512',
+              bounds: bounds,
             }}
           />
         </GoogleMapProvider>,

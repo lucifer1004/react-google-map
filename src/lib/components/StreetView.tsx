@@ -9,8 +9,8 @@ import {StreetViewProps} from '../common/types'
 import RandomId from '../helpers/generateRandomId'
 
 export default ({
-  mapClass,
-  mapStyle = DEFAULT_MAP_STYLE,
+  className,
+  style = DEFAULT_MAP_STYLE,
   opts = DEFAULT_STREET_VIEW_OPTIONS,
   bindToMap = false,
   onCloseClick,
@@ -81,5 +81,5 @@ export default ({
     streetView.setOptions(opts)
   }, [opts])
 
-  return <div className={mapClass} id={containerId} style={mapStyle} />
+  return <div className={className} id={containerId} style={style} />
 }

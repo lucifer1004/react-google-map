@@ -12,8 +12,8 @@ import RandomId from '../helpers/generateRandomId'
 export default ({
   apiKey = '',
   language,
-  mapClass,
-  mapStyle = DEFAULT_MAP_STYLE,
+  className,
+  style = DEFAULT_MAP_STYLE,
   opts = DEFAULT_MAP_OPTIONS,
   useDrawing = false,
   useGeometry = false,
@@ -112,7 +112,7 @@ export default ({
   return (
     <>
       {loaded ? LoadedComponent : LoadingComponent}
-      <div id={mapItemId} style={mapStyle} className={mapClass} />
+      <div id={mapItemId} style={style} className={className} />
     </>
   )
 }

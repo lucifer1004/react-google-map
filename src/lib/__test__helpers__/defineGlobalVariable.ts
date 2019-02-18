@@ -99,21 +99,8 @@ class LatLng {
   constructor(lat: number, lng: number) {}
 }
 
-class Marker {
-  map?: google.maps.Map | google.maps.StreetViewPanorama
-  opts: google.maps.MarkerOptions
-  setMap = (map: google.maps.Map) => (this.map = map)
-  setOptions = (opts: google.maps.MarkerOptions) => {
-    this.opts = opts
-  }
-  constructor(opts: google.maps.MarkerOptions) {
-    this.opts = opts
-    this.map = opts.map
-  }
-}
-
 class Map {
-  controls: google.maps.MVCArray<Node>[]
+  controls: Array<Node[]>
   opts: google.maps.MapOptions
   streetView?: google.maps.StreetViewPanorama
   getStreetView = () => this.streetView
@@ -125,9 +112,20 @@ class Map {
   }
   constructor(mapDiv: HTMLElement, opts: google.maps.MapOptions) {
     this.opts = opts
-    this.controls = Array(ControlPosition.TOP_RIGHT + 1).fill(
-      document.createElement('div'),
-    )
+    this.controls = Array(ControlPosition.TOP_RIGHT + 1).fill([])
+  }
+}
+
+class Marker {
+  map?: google.maps.Map | google.maps.StreetViewPanorama
+  opts: google.maps.MarkerOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.MarkerOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.MarkerOptions) {
+    this.opts = opts
+    this.map = opts.map
   }
 }
 
@@ -174,6 +172,19 @@ class Rectangle {
   constructor(opts: google.maps.RectangleOptions) {
     this.opts = opts
     this.map = opts.map
+  }
+}
+
+class SearchBox {
+  bounds?: google.maps.LatLngBoundsLiteral
+  setBounds = (bounds: google.maps.LatLngBoundsLiteral) => {
+    this.bounds = bounds
+  }
+  constructor(
+    inputNode: HTMLInputElement,
+    opts: google.maps.places.SearchBoxOptions,
+  ) {
+    this.bounds = opts.bounds as google.maps.LatLngBoundsLiteral
   }
 }
 
@@ -274,6 +285,7 @@ const defineGlobalVariable = () => {
         },
         places: {
           PlacesService: PlacesService,
+          SearchBox: SearchBox,
         },
         visualization: {
           HeatmapLayer: HeatmapLayer,
@@ -284,6 +296,7 @@ const defineGlobalVariable = () => {
         },
         BicyclingLayer: BicyclingLayer,
         Circle: Circle,
+        ControlPosition: ControlPosition,
         GroundOverlay: GroundOverlay,
         LatLng: LatLng,
         Map: Map,

@@ -6,7 +6,7 @@ const {GoogleMapProvider, MapBox, StreetView} = require('../')
 ;<GoogleMapProvider>
   <MapBox />
   <StreetView
-    mapStyle={{
+    style={{
       height: '50vh',
       width: '100%',
     }}

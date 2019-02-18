@@ -17,9 +17,7 @@ export default ({
   const [prevBounds, setPrevBounds] = useState<
     google.maps.LatLngBoundsLiteral | undefined
   >(undefined)
-  const [prevClickable, setPrevClickable] = useState<boolean | undefined>(
-    undefined,
-  )
+  const [prevClickable, setPrevClickable] = useState(true)
   const addGroundOverlay = (groundOverlay: google.maps.GroundOverlay) => {
     if (!state.objects.has(id))
       dispatch({type: 'add_object', object: groundOverlay, id: id})
@@ -36,7 +34,6 @@ export default ({
       }),
     )
     setPrevBounds(opts.bounds)
-    setPrevClickable(opts.clickable)
   }, [state.map])
 
   useEffect(() => {
@@ -65,12 +62,14 @@ export default ({
   // Recreate the object when url/bounds/clickable change
   useEffect(() => {
     if (state.map === undefined || groundOverlay === undefined) return
+    const clickable = opts.clickable === undefined ? true : opts.clickable
     if (
       opts.url !== groundOverlay.getUrl() ||
       !Object.is(JSON.stringify(opts.bounds), JSON.stringify(prevBounds)) ||
-      opts.clickable !== prevClickable
+      clickable !== prevClickable
     ) {
-      console.log('handle recreation')
+      setPrevBounds(opts.bounds)
+      setPrevClickable(clickable)
       setGroundOverlay(
         new google.maps.GroundOverlay(opts.url, opts.bounds, {
           clickable: opts.clickable,
@@ -78,7 +77,6 @@ export default ({
           map: state.map,
         }),
       )
-      console.log(state.objects)
     }
   }, [opts.url, opts.bounds, opts.clickable])
 

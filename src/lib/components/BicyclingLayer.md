@@ -5,7 +5,7 @@ const {BicyclingLayer, GoogleMapProvider, MapBox} = require('../')
 
 ;<GoogleMapProvider>
   <MapBox
-    mapStyle={{
+    style={{
       height: '50vh',
       width: '100%',
     }}
