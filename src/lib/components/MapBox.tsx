@@ -49,8 +49,8 @@ export default ({
   // Define action dispatchers
   const initMap = (
     map: google.maps.Map,
-    service?: google.maps.places.PlacesService,
-  ) => dispatch({type: 'init_map', map: map, service: service})
+    places?: google.maps.places.PlacesService,
+  ) => dispatch({type: 'init_map', map: map, places: places})
   const reset = () => dispatch({type: 'reset'})
 
   // Construct the library param
@@ -74,8 +74,8 @@ export default ({
     if (!loaded) return
     const map = new google.maps.Map(document.getElementById(mapItemId), opts)
     if (usePlaces) {
-      const service = new google.maps.places.PlacesService(map)
-      initMap(map, service)
+      const places = new google.maps.places.PlacesService(map)
+      initMap(map, places)
     } else initMap(map)
     return () => reset()
   }, [loaded])

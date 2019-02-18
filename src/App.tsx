@@ -10,6 +10,7 @@ import {
   TrafficLayer,
   TransitLayer,
   GroundOverlay,
+  SearchBox,
 } from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
@@ -23,8 +24,14 @@ const App = () => {
         <h2>{`⚑ This is a custom overlay 🙌`}</h2>
       </OverlayView>
       <div className="App-header">
+        <SearchBox
+          id="search-box"
+          placeholder="Search..."
+          bindingPosition="BOTTOM_CENTER"
+        />
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+          usePlaces
           useVisualization
         />
         <Circle id="circle" />

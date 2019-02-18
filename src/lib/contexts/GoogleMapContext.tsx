@@ -10,7 +10,7 @@ import {
 const initialState: GoogleMapState = {
   map: undefined,
   objects: new Map<string, GoogleMapObject>(),
-  service: undefined,
+  places: undefined,
 }
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
@@ -29,7 +29,7 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (state.map !== undefined) {
         throw new Error('There can only be one map instance in a context')
       }
-      return {...state, map: action.map, service: action.service}
+      return {...state, map: action.map, places: action.places}
     case 'add_object':
       if (action.object === undefined) {
         throw new Error('You should specify an object instance')

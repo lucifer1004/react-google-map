@@ -39,7 +39,7 @@ export interface GoogleMapReducer {
 export interface GoogleMapState {
   map: google.maps.Map | undefined
   objects: Map<string, GoogleMapObject>
-  service: google.maps.places.PlacesService | undefined
+  places: google.maps.places.PlacesService | undefined
 }
 
 export interface GoogleMapAction {
@@ -47,7 +47,7 @@ export interface GoogleMapAction {
   map?: google.maps.Map
   object?: GoogleMapObject
   id?: string
-  service?: google.maps.places.PlacesService
+  places?: google.maps.places.PlacesService
 }
 
 export interface GoogleMapProviderProps {
@@ -167,7 +167,7 @@ export interface RectangleProps extends ShapeProps {
   onBoundsChanged?: () => any
 }
 
-// Heat Map
+// HeatMap
 
 export interface WeightedLatLng extends google.maps.LatLngLiteral {
   weight?: number
@@ -181,7 +181,7 @@ export interface HeatMapProps {
   opts: HeatmapLayerOptions
 }
 
-// Overlay View
+// OverlayView
 
 export interface OverlayViewProps {
   pane?: MapPanes
@@ -240,4 +240,34 @@ export interface GroundOverlayProps {
   opts?: GroundOverlayOptions
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
+}
+
+// SearchBox
+
+declare type ControlPosition =
+  | 'BOTTOM_CENTER'
+  | 'BOTTOM_LEFT'
+  | 'BOTTOM_RIGHT'
+  | 'LEFT_BOTTOM'
+  | 'LEFT_CENTER'
+  | 'LEFT_TOP'
+  | 'RIGHT_BOTTOM'
+  | 'RIGHT_CENTER'
+  | 'RIGHT_TOP'
+  | 'TOP_CENTER'
+  | 'TOP_LEFT'
+  | 'TOP_RIGHT'
+
+export interface StandaloneSearchBoxProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  id: string
+  opts?: google.maps.places.SearchBoxOptions
+  onPlacesChanged?: () => any
+}
+
+export interface SearchBoxProps extends StandaloneSearchBoxProps {
+  bindingPosition?: ControlPosition
 }

@@ -29,6 +29,23 @@ class TransitLayer extends Layer {
   }
 }
 
+// Others
+
+enum ControlPosition {
+  BOTTOM_CENTER,
+  BOTTOM_LEFT,
+  BOTTOM_RIGHT,
+  LEFT_BOTTOM,
+  LEFT_CENTER,
+  LEFT_TOP,
+  RIGHT_BOTTOM,
+  RIGHT_CENTER,
+  RIGHT_TOP,
+  TOP_CENTER,
+  TOP_LEFT,
+  TOP_RIGHT,
+}
+
 class Circle {
   map?: google.maps.Map | google.maps.StreetViewPanorama
   opts: google.maps.CircleOptions
@@ -96,6 +113,7 @@ class Marker {
 }
 
 class Map {
+  controls: google.maps.MVCArray<Node>[]
   opts: google.maps.MapOptions
   streetView?: google.maps.StreetViewPanorama
   getStreetView = () => this.streetView
@@ -107,6 +125,9 @@ class Map {
   }
   constructor(mapDiv: HTMLElement, opts: google.maps.MapOptions) {
     this.opts = opts
+    this.controls = Array(ControlPosition.TOP_RIGHT + 1).fill(
+      document.createElement('div'),
+    )
   }
 }
 

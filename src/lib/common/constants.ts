@@ -72,6 +72,10 @@ export const DEFAULT_RECTANGLE_OPTIONS: google.maps.RectangleOptions = {
   bounds: NYC_RECTANGLE,
 }
 
+export const DEFAULT_SEARCH_BOX_OPTIONS: google.maps.places.SearchBoxOptions = {
+  bounds: NYC_RECTANGLE,
+}
+
 export const DEFAULT_STREET_VIEW_OPTIONS: google.maps.StreetViewPanoramaOptions = {
   position: NYC_LATLNG,
 }

@@ -29,6 +29,10 @@ module.exports = {
       ],
     },
     {
+      name: 'Places',
+      components: 'src/lib/components/{SearchBox,StandaloneSearchBox}.tsx',
+    },
+    {
       name: 'Visualization',
       components: 'src/lib/components/HeatMap.tsx',
     },
