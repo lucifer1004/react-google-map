@@ -42,6 +42,30 @@ class Circle {
   }
 }
 
+class GroundOverlay {
+  bounds: google.maps.LatLngBoundsLiteral
+  clickable?: boolean
+  map?: google.maps.Map | google.maps.StreetViewPanorama
+  opacity?: number
+  url: string
+  getBounds = () => this.bounds
+  getOpacity = () => this.opacity
+  getUrl = () => this.url
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOpacity = (opacity: number) => (this.opacity = opacity)
+  constructor(
+    url: string,
+    bounds: google.maps.LatLngBoundsLiteral,
+    opts: google.maps.GroundOverlayOptions,
+  ) {
+    this.url = url
+    this.bounds = bounds
+    this.opacity = opts.opacity
+    this.clickable = opts.clickable
+    this.map = opts.map
+  }
+}
+
 class InfoWindow {
   close = () => {}
   open = (map?: google.maps.Map, anchor?: google.maps.Marker) => {}
@@ -239,6 +263,7 @@ const defineGlobalVariable = () => {
         },
         BicyclingLayer: BicyclingLayer,
         Circle: Circle,
+        GroundOverlay: GroundOverlay,
         LatLng: LatLng,
         Map: Map,
         Marker: Marker,

@@ -9,6 +9,7 @@ import {
   Polyline,
   TrafficLayer,
   TransitLayer,
+  GroundOverlay,
 } from './lib'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
@@ -35,6 +36,18 @@ const App = () => {
         <BicyclingLayer />
         <TrafficLayer />
         <TransitLayer />
+        <GroundOverlay
+          id="image"
+          opts={{
+            url: 'https://placehold.it/256x256',
+            bounds: {
+              east: -73.98,
+              west: -73.985,
+              north: 40.706,
+              south: 40.702,
+            },
+          }}
+        />
       </div>
     </div>
   )

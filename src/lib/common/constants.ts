@@ -1,4 +1,8 @@
-import {GoogleMapLibrary, HeatmapLayerOptions} from './types'
+import {
+  GoogleMapLibrary,
+  GroundOverlayOptions,
+  HeatmapLayerOptions,
+} from './types'
 
 export const NYC_LATLNG: google.maps.LatLngLiteral = {
   lat: 40.7128,
@@ -12,7 +16,7 @@ const NYC_POLYGON: google.maps.LatLngLiteral[] = [
 ]
 const NYC_RECTANGLE: google.maps.LatLngBoundsLiteral = {
   east: -73.98,
-  west: -74.01,
+  west: -73.985,
   north: 40.706,
   south: 40.702,
 }
@@ -22,6 +26,11 @@ const DEFAULT_MAP_ZOOM = 14
 export const DEFAULT_CIRCLE_OPTIONS: google.maps.CircleOptions = {
   center: {lat: NYC_LATLNG.lat - 0.01, lng: NYC_LATLNG.lng - 0.01},
   radius: 200,
+}
+
+export const DEFAULT_GROUND_OVERLAY_OPTIONS: GroundOverlayOptions = {
+  url: 'https://placehold.it/256x256',
+  bounds: NYC_RECTANGLE,
 }
 
 export const DEFAULT_HEAT_MAP_OPTIONS: HeatmapLayerOptions = {

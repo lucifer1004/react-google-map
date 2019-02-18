@@ -13,6 +13,7 @@ export declare type GoogleMapObject =
   | google.maps.BicyclingLayer
   | google.maps.TrafficLayer
   | google.maps.TransitLayer
+  | google.maps.GroundOverlay
 
 export declare type GoogleMapLayer =
   | google.maps.BicyclingLayer
@@ -223,4 +224,20 @@ export interface LayerProps {
 
 export interface TrafficLayerProps {
   opts?: google.maps.TrafficLayerOptions
+}
+
+// GroundOverlay
+
+export interface GroundOverlayOptions {
+  url: string
+  bounds: google.maps.LatLngBoundsLiteral
+  clickable?: boolean
+  opacity?: number
+}
+
+export interface GroundOverlayProps {
+  id: string
+  opts?: GroundOverlayOptions
+  onClick?: (event: google.maps.MouseEvent) => any
+  onDoubleClick?: (event: google.maps.MouseEvent) => any
 }

@@ -18,6 +18,7 @@
 
 - `BicyclingLayer`
 - `Circle`
+- `GroundOverlay`
 - `Polyline`
 - `Rectangle`
 - `TrafficLayer`
