@@ -43,6 +43,10 @@ export const DEFAULT_INFO_WINDOW_OPTIONS: google.maps.InfoWindowOptions = {
   position: NYC_LATLNG,
 }
 
+export const DEFAULT_KML_LAYER_OPTIONS: google.maps.KmlLayerOptions = {
+  url: 'http://kmlscribe.googlepages.com/SamplesInMaps.kml',
+}
+
 export const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {
   center: NYC_LATLNG,
   zoom: DEFAULT_MAP_ZOOM,

@@ -14,6 +14,7 @@ export declare type GoogleMapObject =
   | google.maps.TrafficLayer
   | google.maps.TransitLayer
   | google.maps.GroundOverlay
+  | google.maps.KmlLayer
 
 export declare type GoogleMapLayer =
   | google.maps.BicyclingLayer
@@ -270,4 +271,14 @@ export interface StandaloneSearchBoxProps
 
 export interface SearchBoxProps extends StandaloneSearchBoxProps {
   bindingPosition?: ControlPositionName
+}
+
+// KmlLayer
+
+export interface KmlLayerProps {
+  id: string
+  opts?: google.maps.KmlLayerOptions
+  onClick?: (event: google.maps.KmlMouseEvent) => any
+  onDefaultViewportChanged?: () => any
+  onStatusChanged?: () => any
 }

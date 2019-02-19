@@ -18,11 +18,15 @@
 
 - `BicyclingLayer`
 - `Circle`
+- TODO: `CustomControl`
 - `GroundOverlay`
+- TODO: `KmlLayer`
 - `Polyline`
 - `Rectangle`
 - `TrafficLayer`
 - `TransitLayer`
+- `SearchBox`
+- `StandaloneSearchBox`
 
 ## [2.6.1] - <2019-02-16>
 

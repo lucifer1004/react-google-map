@@ -95,6 +95,18 @@ class InfoWindow {
   }
 }
 
+class KmlLayer {
+  map?: google.maps.Map | google.maps.StreetViewPanorama
+  opts: google.maps.KmlLayerOptions
+  setMap = (map: google.maps.Map) => (this.map = map)
+  setOptions = (opts: google.maps.KmlLayerOptions) => {
+    this.opts = opts
+  }
+  constructor(opts: google.maps.KmlLayerOptions) {
+    this.opts = opts
+  }
+}
+
 class LatLng {
   constructor(lat: number, lng: number) {}
 }
@@ -298,10 +310,11 @@ const defineGlobalVariable = () => {
         Circle: Circle,
         ControlPosition: ControlPosition,
         GroundOverlay: GroundOverlay,
+        InfoWindow: InfoWindow,
+        KmlLayer: KmlLayer,
         LatLng: LatLng,
         Map: Map,
         Marker: Marker,
-        InfoWindow: InfoWindow,
         OverlayView: OverlayView,
         Polygon: Polygon,
         Polyline: Polyline,
