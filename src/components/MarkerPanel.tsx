@@ -11,7 +11,9 @@ const MarkerPanel = () => {
   }))
   const addMarker = () => setNum(num => (num < 10 ? num + 1 : 10))
   const removeMarker = () => setNum(num => (num > 3 ? num - 1 : 3))
-  const [positions, setPositions] = useState(initialPositions)
+  const [positions, setPositions] = useState<google.maps.LatLngLiteral[]>(
+    initialPositions,
+  )
   return (
     <>
       <button onClick={addMarker}>Add a marker</button>

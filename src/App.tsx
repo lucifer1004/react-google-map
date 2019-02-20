@@ -1,10 +1,8 @@
 import React from 'react'
 import {
   BicyclingLayer,
-  Circle,
   MapBox,
   OverlayView,
-  Rectangle,
   TrafficLayer,
   TransitLayer,
   GroundOverlay,
