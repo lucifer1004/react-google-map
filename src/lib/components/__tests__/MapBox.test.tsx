@@ -7,16 +7,16 @@ import MapBox from '../MapBox'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
+defineGlobalVariable()
+
 describe('MapBox', () => {
   beforeEach(() => {
-    defineGlobalVariable()
     jest.spyOn(console, 'error')
     jest.spyOn(loadjs, 'reset')
   })
 
   afterEach(() => {
     cleanup()
-    Object.defineProperty(global, 'google', {value: undefined})
     jest.restoreAllMocks()
   })
 

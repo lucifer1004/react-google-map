@@ -4,15 +4,10 @@ import 'react-testing-library/cleanup-after-each'
 import {render, cleanup} from 'react-testing-library'
 import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
 
-beforeEach(() => {
-  defineGlobalVariable()
-  console.error = jest.fn()
-})
+defineGlobalVariable()
 
 afterEach(() => {
   cleanup()
-  Object.defineProperty(global, 'google', {value: undefined})
-  jest.restoreAllMocks()
 })
 
 describe('The dispatcher throws an error when trying to', () => {

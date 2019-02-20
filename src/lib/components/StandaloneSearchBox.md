@@ -11,6 +11,6 @@ const {GoogleMapProvider, MapBox, StandaloneSearchBox} = require('../')
     }}
     usePlaces
   />
-  <StandaloneSearchBox id="search-box" placeholder="Search..." />
+  <StandaloneSearchBox id="standalone-search-box" placeholder="Search..." />
 </GoogleMapProvider>
 ```

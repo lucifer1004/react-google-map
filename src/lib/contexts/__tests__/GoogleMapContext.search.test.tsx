@@ -11,22 +11,24 @@ afterEach(() => {
 })
 
 describe('The dispatcher throws an error when trying to', () => {
-  it('add an object without an object instance', () => {
+  it('add a search without a search instance', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_object'}} />
+          <FakeComponent action={{type: 'add_search'}} />
         </GoogleMapProvider>,
       )
-    }).toThrowError(new Error('You should specify an object instance'))
+    }).toThrowError(new Error('You should specify a search instance'))
   })
 
-  it('add an object without an id', () => {
+  it('add a search without an id', () => {
     expect(() => {
-      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
+      const search = new google.maps.places.SearchBox(
+        document.createElement('input'),
+      )
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_object', object: marker}} />
+          <FakeComponent action={{type: 'add_search', search: search}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify an id'))
@@ -34,52 +36,56 @@ describe('The dispatcher throws an error when trying to', () => {
 
   it('use the same id more than once', () => {
     expect(() => {
-      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
+      const search = new google.maps.places.SearchBox(
+        document.createElement('input'),
+      )
       render(
         <GoogleMapProvider>
           <FakeComponent
-            action={{type: 'add_object', object: marker, id: 'marker'}}
+            action={{type: 'add_search', search: search, id: 'search'}}
           />
           <FakeComponent
-            action={{type: 'add_object', object: marker, id: 'marker'}}
+            action={{type: 'add_search', search: search, id: 'search'}}
           />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('The id has already been taken'))
   })
 
-  it('remove an object without an id', () => {
+  it('remove a search without an id', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_object'}} />
+          <FakeComponent action={{type: 'remove_search'}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify an id'))
   })
 
-  it.concurrent('remove a non-existing object', async () => {
+  it.concurrent('remove a non-existing search', async () => {
     console.error = jest.fn()
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_object', id: 'marker'}} />
+          <FakeComponent action={{type: 'remove_search', id: 'search'}} />
         </GoogleMapProvider>,
       )
-    }).toThrowError(new Error('There is no object with the given id'))
+    }).toThrowError(new Error('There is no search with the given id'))
   })
 })
 
 describe('The dispatcher will', () => {
   it.concurrent('add and remove an object', async () => {
     expect(() => {
-      const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
+      const search = new google.maps.places.SearchBox(
+        document.createElement('input'),
+      )
       render(
         <GoogleMapProvider>
           <FakeComponent
-            action={{type: 'add_object', object: marker, id: 'marker'}}
+            action={{type: 'add_search', search: search, id: 'search'}}
           />
-          <FakeComponent action={{type: 'remove_object', id: 'marker'}} />
+          <FakeComponent action={{type: 'remove_search', id: 'search'}} />
         </GoogleMapProvider>,
       )
     }).not.toThrow()

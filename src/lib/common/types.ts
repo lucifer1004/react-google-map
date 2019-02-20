@@ -1,3 +1,5 @@
+import {string} from 'prop-types'
+
 export declare type GoogleMapLibrary =
   | 'drawing'
   | 'geometry'
@@ -38,9 +40,10 @@ export interface GoogleMapReducer {
 }
 
 export interface GoogleMapState {
-  map: google.maps.Map | undefined
+  map?: google.maps.Map
   objects: Map<string, GoogleMapObject>
-  places: google.maps.places.PlacesService | undefined
+  places?: google.maps.places.PlacesService
+  searches: Map<string, google.maps.places.SearchBox>
 }
 
 export interface GoogleMapAction {
@@ -49,6 +52,7 @@ export interface GoogleMapAction {
   object?: GoogleMapObject
   id?: string
   places?: google.maps.places.PlacesService
+  search?: google.maps.places.SearchBox
 }
 
 export interface GoogleMapProviderProps {

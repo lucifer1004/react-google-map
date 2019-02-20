@@ -195,9 +195,7 @@ class SearchBox {
   constructor(
     inputNode: HTMLInputElement,
     opts: google.maps.places.SearchBoxOptions,
-  ) {
-    this.bounds = opts.bounds as google.maps.LatLngBoundsLiteral
-  }
+  ) {}
 }
 
 class StreetViewPanorama {
@@ -325,6 +323,13 @@ const defineGlobalVariable = () => {
       },
     },
     writable: true,
+  })
+  Object.defineProperty((global as any).document, 'createRange', {
+    value: () => ({
+      createContextualFragment: (fragment: string) => ({
+        firstElementChild: document.createElement('input'),
+      }),
+    }),
   })
 }
 

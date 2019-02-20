@@ -20,7 +20,7 @@
 - `Circle`
 - TODO: `CustomControl`
 - `GroundOverlay`
-- TODO: `KmlLayer`
+- `KmlLayer`
 - `Polyline`
 - `Rectangle`
 - `TrafficLayer`

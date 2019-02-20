@@ -74,6 +74,7 @@
       "src/**/*.{ts,tsx}",
       "!node_modules/",
       "!src/*.tsx",
+      "!src/common/*.{ts,tsx}",
       "!src/components/*.tsx",
       "!src/lib/dist/**",
       "!src/lib/__test__helpers__/**"
