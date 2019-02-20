@@ -4,9 +4,7 @@ import {
   Circle,
   MapBox,
   OverlayView,
-  Polygon,
   Rectangle,
-  Polyline,
   TrafficLayer,
   TransitLayer,
   GroundOverlay,
@@ -34,10 +32,6 @@ const App = () => {
           usePlaces
           useVisualization
         />
-        <Circle id="circle" />
-        <Polygon id="polygon" />
-        <Polyline id="polyline" />
-        <Rectangle id="rectangle" />
         <StreetViewControl />
         <StreetViewControl bindToMap />
         <BicyclingLayer />
