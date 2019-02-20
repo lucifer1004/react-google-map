@@ -4,7 +4,7 @@ import {DEFAULT_RECTANGLE_OPTIONS} from '../common/constants'
 import {RectangleProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const Rectangle = ({
   id,
   opts = DEFAULT_RECTANGLE_OPTIONS,
   onBoundsChanged,
@@ -72,3 +72,7 @@ export default ({
 
   return null
 }
+
+Rectangle.displayName = 'Rectangle'
+
+export default Rectangle

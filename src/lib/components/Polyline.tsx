@@ -4,7 +4,7 @@ import {DEFAULT_POLYLINE_OPTIONS} from '../common/constants'
 import {PolylineProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const Polyline = ({
   id,
   opts = DEFAULT_POLYLINE_OPTIONS,
   onClick,
@@ -70,3 +70,7 @@ export default ({
 
   return null
 }
+
+Polyline.displayName = 'Polyline'
+
+export default Polyline

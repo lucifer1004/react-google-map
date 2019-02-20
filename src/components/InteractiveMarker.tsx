@@ -9,7 +9,11 @@ interface InteractiveMarkerProps {
   >
 }
 
-export default ({num, positions, setPositions}: InteractiveMarkerProps) => {
+const InteractiveMarker = ({
+  num,
+  positions,
+  setPositions,
+}: InteractiveMarkerProps) => {
   const {state} = useContext(GoogleMapContext)
   const [infoDisplay, setInfoDisplay] = useState(false)
   const changeInfoDisplay = () => setInfoDisplay(display => !display)
@@ -44,3 +48,7 @@ export default ({num, positions, setPositions}: InteractiveMarkerProps) => {
     </>
   )
 }
+
+InteractiveMarker.displayName = 'InteractiveMarker'
+
+export default InteractiveMarker

@@ -4,7 +4,7 @@ import {KmlLayerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 
-export default ({
+const KmlLayer = ({
   id,
   opts = DEFAULT_KML_LAYER_OPTIONS,
   onClick,
@@ -55,3 +55,7 @@ export default ({
 
   return null
 }
+
+KmlLayer.displayName = 'KmlLayer'
+
+export default KmlLayer

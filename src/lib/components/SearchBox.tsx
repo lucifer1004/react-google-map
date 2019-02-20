@@ -5,7 +5,7 @@ import {DEFAULT_SEARCH_BOX_OPTIONS} from '../common/constants'
 import {SearchBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const SearchBox = ({
   id,
   opts = DEFAULT_SEARCH_BOX_OPTIONS,
   onPlacesChanged,
@@ -56,3 +56,7 @@ export default ({
 
   return bindingPosition ? null : <input id={id} {...restProps} />
 }
+
+SearchBox.displayName = 'SearchBox'
+
+export default SearchBox

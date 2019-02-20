@@ -30,20 +30,16 @@ export default ({type, opts}: LayerProps) => {
         : new layerNameToClass[type]()
     layer.setMap(state.map)
     setLayer(layer)
-  }, [state.map])
-
-  useEffect(() => {
-    if (layer === undefined) return
 
     // Add the layer to state.objects
     addLayer(layer)
 
     // Remove the layer when the component is unmounted
     return () => removeLayer()
-  }, [layer])
+  }, [state.map])
 
   useEffect(() => {
-    if (type !== 'traffic' || opts === undefined) return
+    if (type !== 'traffic' || opts === undefined || layer === undefined) return
     ;(layer as google.maps.TrafficLayer).setOptions(opts)
   }, [opts])
 

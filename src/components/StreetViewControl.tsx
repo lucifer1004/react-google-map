@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {StreetView} from '../lib'
 
-export default ({bindToMap}: {bindToMap?: boolean}) => {
+const StreetViewControl = ({bindToMap}: {bindToMap?: boolean}) => {
   const [show, setShow] = useState(false)
   return (
     <>
@@ -13,3 +13,7 @@ export default ({bindToMap}: {bindToMap?: boolean}) => {
     </>
   )
 }
+
+StreetViewControl.displayName = 'StreetViewControl'
+
+export default StreetViewControl

@@ -8,7 +8,7 @@ import {useGoogleListener} from '../hooks'
 import {StreetViewProps} from '../common/types'
 import RandomId from '../helpers/generateRandomId'
 
-export default ({
+const StreetView = ({
   className,
   style = DEFAULT_MAP_STYLE,
   opts = DEFAULT_STREET_VIEW_OPTIONS,
@@ -83,3 +83,7 @@ export default ({
 
   return <div className={className} id={containerId} style={style} />
 }
+
+StreetView.displayName = 'StreetView'
+
+export default StreetView

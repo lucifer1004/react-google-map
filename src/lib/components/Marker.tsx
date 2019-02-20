@@ -4,7 +4,7 @@ import {MarkerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 
-export default ({
+const Marker = ({
   id,
   opts = DEFAULT_MARKER_OPTIONS,
   onAnimationChanged,
@@ -87,3 +87,7 @@ export default ({
 
   return null
 }
+
+Marker.displayName = 'Marker'
+
+export default Marker

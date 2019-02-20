@@ -1,4 +1,8 @@
 import React from 'react'
 import Layer from './Layer'
 
-export default ({}) => <Layer type="bicycling" />
+const BicyclingLayer = ({}) => <Layer type="bicycling" />
+
+BicyclingLayer.displayName = 'BicyclingLayer'
+
+export default BicyclingLayer

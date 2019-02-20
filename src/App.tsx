@@ -2,7 +2,6 @@ import React from 'react'
 import {
   BicyclingLayer,
   Circle,
-  KmlLayer,
   MapBox,
   OverlayView,
   Polygon,

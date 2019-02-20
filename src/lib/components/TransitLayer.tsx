@@ -1,4 +1,8 @@
 import React from 'react'
 import Layer from './Layer'
 
-export default ({}) => <Layer type="transit" />
+const TransitLayer = ({}) => <Layer type="transit" />
+
+TransitLayer.displayName = 'TransitLayer'
+
+export default TransitLayer

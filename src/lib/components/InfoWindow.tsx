@@ -4,7 +4,7 @@ import {InfoWindowProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 
-export default ({
+const InfoWindow = ({
   anchor,
   opts = DEFAULT_INFO_WINDOW_OPTIONS,
   visible,
@@ -52,3 +52,7 @@ export default ({
 
   return null
 }
+
+InfoWindow.displayName = 'InfoWindow'
+
+export default InfoWindow

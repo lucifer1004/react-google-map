@@ -4,7 +4,7 @@ import {DEFAULT_GROUND_OVERLAY_OPTIONS} from '../common/constants'
 import {GroundOverlayProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const GroundOverlay = ({
   id,
   opts = DEFAULT_GROUND_OVERLAY_OPTIONS,
   onClick,
@@ -18,33 +18,33 @@ export default ({
     google.maps.LatLngBoundsLiteral | undefined
   >(undefined)
   const [prevClickable, setPrevClickable] = useState(true)
-  const addGroundOverlay = (groundOverlay: google.maps.GroundOverlay) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: groundOverlay, id: id})
-  }
+  const addGroundOverlay = (groundOverlay: google.maps.GroundOverlay) =>
+    dispatch({type: 'add_object', object: groundOverlay, id: id})
   const removeGroundOverlay = () => dispatch({type: 'remove_object', id: id})
 
-  useEffect(() => {
-    if (state.map === undefined) return
-    setGroundOverlay(
-      new google.maps.GroundOverlay(opts.url, opts.bounds, {
-        clickable: opts.clickable,
-        opacity: opts.opacity,
-        map: state.map,
-      }),
-    )
-    setPrevBounds(opts.bounds)
-  }, [state.map])
+  const createGroundOverlay = () => {
+    const groundOverlay = new google.maps.GroundOverlay(opts.url, opts.bounds, {
+      clickable: opts.clickable,
+      opacity: opts.opacity,
+      map: state.map,
+    })
+    setGroundOverlay(groundOverlay)
 
-  useEffect(() => {
-    if (groundOverlay === undefined) return
+    // Record bounds and clickable
+    setPrevBounds(opts.bounds)
+    setPrevClickable(opts.clickable === undefined ? true : opts.clickable)
 
     // Add the groundOverlay to state.objects
     addGroundOverlay(groundOverlay)
+  }
+
+  useEffect(() => {
+    if (state.map === undefined) return
+    createGroundOverlay()
 
     // Remove the groundOverlay when the component is unmounted
     return () => removeGroundOverlay()
-  }, [groundOverlay])
+  }, [state.map])
 
   // Register google map event listeners
   useGoogleListener(groundOverlay, [
@@ -68,17 +68,14 @@ export default ({
       !Object.is(JSON.stringify(opts.bounds), JSON.stringify(prevBounds)) ||
       clickable !== prevClickable
     ) {
-      setPrevBounds(opts.bounds)
-      setPrevClickable(clickable)
-      setGroundOverlay(
-        new google.maps.GroundOverlay(opts.url, opts.bounds, {
-          clickable: opts.clickable,
-          opacity: opts.opacity,
-          map: state.map,
-        }),
-      )
+      removeGroundOverlay()
+      createGroundOverlay()
     }
   }, [opts.url, opts.bounds, opts.clickable])
 
   return null
 }
+
+GroundOverlay.displayName = 'GroundOverlay'
+
+export default GroundOverlay

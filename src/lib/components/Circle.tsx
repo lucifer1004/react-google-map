@@ -4,7 +4,7 @@ import {DEFAULT_CIRCLE_OPTIONS} from '../common/constants'
 import {CircleProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const Circle = ({
   id,
   opts = DEFAULT_CIRCLE_OPTIONS,
   onCenterChanged,
@@ -24,31 +24,24 @@ export default ({
   const [circle, setCircle] = useState<google.maps.Circle | undefined>(
     undefined,
   )
-  const addCircle = (circle: google.maps.Circle) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: circle, id: id})
-  }
+  const addCircle = (circle: google.maps.Circle) =>
+    dispatch({type: 'add_object', object: circle, id: id})
   const removeCircle = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
-    setCircle(
-      new google.maps.Circle({
-        ...opts,
-        map: state.map,
-      }),
-    )
-  }, [state.map])
-
-  useEffect(() => {
-    if (circle === undefined) return
+    const circle = new google.maps.Circle({
+      ...opts,
+      map: state.map,
+    })
+    setCircle(circle)
 
     // Add the circle to state.objects
     addCircle(circle)
 
     // Remove the circle when the component is unmounted
     return () => removeCircle()
-  }, [circle])
+  }, [state.map])
 
   // Register google map event listeners
   useGoogleListener(circle, [
@@ -74,3 +67,7 @@ export default ({
 
   return null
 }
+
+Circle.displayName = 'Circle'
+
+export default Circle

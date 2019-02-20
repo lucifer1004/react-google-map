@@ -3,7 +3,7 @@ import {HeatMap} from '../lib'
 import InteractiveMarker from './InteractiveMarker'
 import {NYC_LATLNG} from '../common/constants'
 
-export default () => {
+const MarkerPanel = () => {
   const [num, setNum] = useState(1)
   const initialPositions = Array.from({length: 10}, () => ({
     lat: NYC_LATLNG.lat + Math.random() / 100,
@@ -37,3 +37,7 @@ export default () => {
     </>
   )
 }
+
+MarkerPanel.displayName = 'MarkerPanel'
+
+export default MarkerPanel

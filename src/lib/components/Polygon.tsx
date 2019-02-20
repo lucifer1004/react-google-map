@@ -4,7 +4,7 @@ import {DEFAULT_POLYGON_OPTIONS} from '../common/constants'
 import {PolygonProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({
+const Polygon = ({
   id,
   opts = DEFAULT_POLYGON_OPTIONS,
   onClick,
@@ -70,3 +70,7 @@ export default ({
 
   return null
 }
+
+Polygon.displayName = 'Polygon'
+
+export default Polygon

@@ -4,7 +4,7 @@ import {NYC_LATLNG} from '../common/constants'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {OverlayViewProps} from '../common/types'
 
-export default ({
+const OverlayView = ({
   pane = 'overlayMouseTarget',
   position = NYC_LATLNG,
   children,
@@ -69,3 +69,7 @@ export default ({
 
   return ReactDOM.createPortal(children, container)
 }
+
+OverlayView.displayName = 'OverlayView'
+
+export default OverlayView

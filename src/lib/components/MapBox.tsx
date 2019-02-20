@@ -9,7 +9,7 @@ import {MapBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import RandomId from '../helpers/generateRandomId'
 
-export default ({
+const MapBox = ({
   apiKey = '',
   language,
   className,
@@ -116,3 +116,7 @@ export default ({
     </>
   )
 }
+
+MapBox.displayName = 'MapBox'
+
+export default MapBox
