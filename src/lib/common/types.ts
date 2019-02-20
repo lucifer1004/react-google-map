@@ -285,3 +285,10 @@ export interface KmlLayerProps {
   onDefaultViewportChanged?: () => any
   onStatusChanged?: () => any
 }
+
+// CustomControl
+
+export interface CustomControlProps {
+  bindingPosition?: ControlPositionName
+  children: React.ReactNode
+}

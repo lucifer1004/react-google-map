@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {HeatMap, Polygon, Polyline} from '../lib'
+import {CustomControl, HeatMap, Polygon, Polyline} from '../lib'
 import InteractiveMarker from './InteractiveMarker'
 import {NYC_LATLNG} from '../common/constants'
 
@@ -16,9 +16,11 @@ const MarkerPanel = () => {
   )
   return (
     <>
-      <button onClick={addMarker}>Add a marker</button>
-      <button onClick={removeMarker}>Remove a marker</button>
-      <p>Current markers: {num}</p>
+      <CustomControl bindingPosition="LEFT_TOP">
+        <button onClick={addMarker}>Add a marker</button>
+        <button onClick={removeMarker}>Remove a marker</button>
+        <h2>Current markers: {num}</h2>
+      </CustomControl>
       <ul>
         {Array.from({length: num}, (value, index) => index).map(num => (
           <li hidden key={num}>

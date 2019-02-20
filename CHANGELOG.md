@@ -18,7 +18,8 @@
 
 - `BicyclingLayer`
 - `Circle`
-- TODO: `CustomControl`
+- `CustomControl`
+- TODO `DrawingManager`
 - `GroundOverlay`
 - `KmlLayer`
 - `Polyline`

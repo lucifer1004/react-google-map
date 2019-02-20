@@ -8,6 +8,7 @@ import {
   GroundOverlay,
   SearchBox,
 } from './lib'
+import CenterButton from './components/CenterButton'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
 import './App.css'
@@ -17,7 +18,7 @@ const App = () => {
     <div className="App">
       <MarkerPanel />
       <OverlayView disableMapHitsAndGestures>
-        <h2>{`⚑ This is a custom overlay 🙌`}</h2>
+        <h2>This is an OverlayView 🙌</h2>
       </OverlayView>
       <div className="Map">
         <SearchBox
@@ -27,9 +28,19 @@ const App = () => {
         />
         <MapBox
           apiKey={process.env.REACT_APP_GOOGLE_MAP_API_KEY || ''}
+          opts={{
+            center: {
+              lat: 40.7128,
+              lng: -74.006,
+            },
+            disableDefaultUI: true,
+            streetViewControl: true,
+            zoom: 14,
+          }}
           usePlaces
           useVisualization
         />
+        <CenterButton />
         <StreetViewControl />
         <StreetViewControl bindToMap />
         <BicyclingLayer />

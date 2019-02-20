@@ -19,7 +19,7 @@ module.exports = {
         {
           name: 'Attachments',
           components:
-            'src/lib/components/{Circle,GroundOverlay,InfoWindow,KmlLayer,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
+            'src/lib/components/{Circle,CustomControl,GroundOverlay,InfoWindow,KmlLayer,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
         },
         {
           name: 'Layers',
