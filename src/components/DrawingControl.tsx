@@ -13,12 +13,13 @@ const DrawingControl = () => {
             setState(state => (state === 'DRAWING' ? 'PAUSED' : 'DRAWING'))
           }
         >
-          {state === 'INITIAL'
-            ? 'Start'
-            : state === 'DRAWING'
-            ? 'Pause'
-            : 'Resume'}{' '}
-          Drawing
+          {`${
+            state === 'INITIAL'
+              ? 'Start'
+              : state === 'DRAWING'
+              ? 'Pause'
+              : 'Resume'
+          } Drawing`}
         </button>
         {state !== 'INITIAL' ? (
           <button onClick={() => setState('INITIAL')}>Stop Drawing</button>

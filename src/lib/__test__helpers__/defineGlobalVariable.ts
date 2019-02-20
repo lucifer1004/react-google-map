@@ -1,3 +1,5 @@
+import {EventEmitter} from 'events'
+
 // layers
 
 class Layer {
@@ -59,9 +61,11 @@ class Circle {
   }
 }
 
-class DrawingManager {
+class DrawingManager extends EventEmitter {
   setOptions = (opts: google.maps.drawing.DrawingManagerOptions) => {}
-  constructor() {}
+  constructor() {
+    super()
+  }
 }
 
 class GroundOverlay {
@@ -288,8 +292,11 @@ const defineGlobalVariable = () => {
           addListener(
             instance: google.maps.MVCObject,
             eventName: string,
-            handler: Function,
+            handler: (...args: any[]) => any,
           ): google.maps.MapsEventListener {
+            if (eventName === 'overlaycomplete') {
+              ;((instance as unknown) as EventEmitter).on(eventName, handler)
+            }
             return {remove: () => {}}
           },
           addDomListener(
@@ -299,6 +306,15 @@ const defineGlobalVariable = () => {
             capture?: boolean,
           ): google.maps.MapsEventListener {
             return {remove: () => {}}
+          },
+          trigger(
+            instance: google.maps.MVCObject,
+            eventName: string,
+            ...args: any[]
+          ) {
+            if (eventName === 'overlaycomplete') {
+              ;((instance as unknown) as EventEmitter).emit(eventName, ...args)
+            }
           },
         },
         places: {

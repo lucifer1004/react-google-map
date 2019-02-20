@@ -5,7 +5,7 @@ import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
 import {DrawingManager, MapBox} from '../..'
 import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
-import {defineGlobalVariable} from '../../__test__helpers__'
+import {defineGlobalVariable, EventEmitter} from '../../__test__helpers__'
 
 defineGlobalVariable()
 
@@ -19,16 +19,20 @@ describe('DrawingManager', () => {
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" useDrawing />
         <DrawingManager />
+        <EventEmitter />
       </GoogleMapProvider>,
     )
     await wait(() => {
       expect(container.innerHTML).not.toMatch('Loading...')
     })
+    await wait(() => {
+      expect(container.innerHTML).toMatch('event emitted')
+    })
     act(() =>
       rerender(
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" useDrawing />
-          <DrawingManager opts={{}} />
+          <DrawingManager opts={{drawingControl: false}} />
         </GoogleMapProvider>,
       ),
     )

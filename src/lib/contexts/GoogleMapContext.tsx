@@ -20,7 +20,6 @@ const GoogleMapContext = React.createContext<GoogleMapReducer>({
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
-  console.log(action)
   switch (action.type) {
     case 'reset':
       return initialState()

@@ -65,31 +65,16 @@ const DrawingManager = ({
 
   useGoogleListener(drawingManager, [
     {name: 'circlecomplete', handler: onCircleComplete},
-    {
-      name: 'circlecomplete',
-      handler: (circle: google.maps.Circle) => addShape(circle),
-    },
     {name: 'markercomplete', handler: onMarkerComplete},
-    {
-      name: 'markercomplete',
-      handler: (marker: google.maps.Marker) => addShape(marker),
-    },
     {name: 'overlaycomplete', handler: onOverlayComplete},
+    {
+      name: 'overlaycomplete',
+      handler: (event: google.maps.drawing.OverlayCompleteEvent) =>
+        addShape(event.overlay),
+    },
     {name: 'polygoncomplete', handler: onPolygonComplete},
-    {
-      name: 'polygoncomplete',
-      handler: (polygon: google.maps.Polygon) => addShape(polygon),
-    },
     {name: 'polylinecomplete', handler: onPolylineComplete},
-    {
-      name: 'polylinecomplete',
-      handler: (polyline: google.maps.Polyline) => addShape(polyline),
-    },
     {name: 'rectanglecomplete', handler: onRectangleComplete},
-    {
-      name: 'rectanglecomplete',
-      handler: (rectangle: google.maps.Rectangle) => addShape(rectangle),
-    },
   ])
 
   useEffect(() => {
