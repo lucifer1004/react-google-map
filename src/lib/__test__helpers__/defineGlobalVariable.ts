@@ -59,6 +59,11 @@ class Circle {
   }
 }
 
+class DrawingManager {
+  setOptions = (opts: google.maps.drawing.DrawingManagerOptions) => {}
+  constructor() {}
+}
+
 class GroundOverlay {
   bounds: google.maps.LatLngBoundsLiteral
   clickable?: boolean
@@ -276,6 +281,9 @@ const defineGlobalVariable = () => {
   Object.defineProperty(global, 'google', {
     value: {
       maps: {
+        drawing: {
+          DrawingManager: DrawingManager,
+        },
         event: {
           addListener(
             instance: google.maps.MVCObject,

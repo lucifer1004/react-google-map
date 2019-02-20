@@ -16,10 +16,14 @@ const MarkerPanel = () => {
   )
   return (
     <>
-      <CustomControl bindingPosition="LEFT_TOP">
-        <button onClick={addMarker}>Add a marker</button>
-        <button onClick={removeMarker}>Remove a marker</button>
-        <h2>Current markers: {num}</h2>
+      <CustomControl bindingPosition="LEFT_BOTTOM">
+        <h1>Current markers: {num}</h1>
+        <button onClick={addMarker} disabled={num >= 10}>
+          Add a marker
+        </button>
+        <button onClick={removeMarker} disabled={num <= 3}>
+          Remove a marker
+        </button>
       </CustomControl>
       <ul>
         {Array.from({length: num}, (value, index) => index).map(num => (
@@ -46,6 +50,7 @@ const MarkerPanel = () => {
         }}
       />
       <HeatMap
+        id="heat-map"
         opts={{
           data: positions.slice(0, num),
           radius: 100,

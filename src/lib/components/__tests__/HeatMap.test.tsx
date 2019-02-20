@@ -17,7 +17,7 @@ describe('HeatMap', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" useVisualization />
-        <HeatMap />
+        <HeatMap id="heat-map" />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -28,6 +28,7 @@ describe('HeatMap', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" useVisualization />
           <HeatMap
+            id="heat-map"
             opts={{
               data: [
                 {lat: 39, lng: 116},

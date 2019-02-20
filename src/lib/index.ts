@@ -1,6 +1,7 @@
 export {default as BicyclingLayer} from './components/BicyclingLayer'
 export {default as Circle} from './components/Circle'
 export {default as CustomControl} from './components/CustomControl'
+export {default as DrawingManager} from './components/DrawingManager'
 export {default as GroundOverlay} from './components/GroundOverlay'
 export {SafeHeatMap as HeatMap} from './components/HeatMap'
 export {default as InfoWindow} from './components/InfoWindow'

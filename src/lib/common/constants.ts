@@ -28,6 +28,8 @@ export const DEFAULT_CIRCLE_OPTIONS: google.maps.CircleOptions = {
   radius: 200,
 }
 
+export const DEFAULT_DRAWING_MANAGER_OPTIONS: google.maps.drawing.DrawingManagerOptions = {}
+
 export const DEFAULT_GROUND_OVERLAY_OPTIONS: GroundOverlayOptions = {
   url: 'https://placehold.it/256x256',
   bounds: NYC_RECTANGLE,

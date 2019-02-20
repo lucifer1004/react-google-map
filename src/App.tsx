@@ -5,10 +5,10 @@ import {
   OverlayView,
   TrafficLayer,
   TransitLayer,
-  GroundOverlay,
   SearchBox,
 } from './lib'
 import CenterButton from './components/CenterButton'
+import DrawingControl from './components/DrawingControl'
 import MarkerPanel from './components/MarkerPanel'
 import StreetViewControl from './components/StreetViewControl'
 import './App.css'
@@ -16,6 +16,7 @@ import './App.css'
 const App = () => {
   return (
     <div className="App">
+      <DrawingControl />
       <MarkerPanel />
       <OverlayView disableMapHitsAndGestures>
         <h2>This is an OverlayView 🙌</h2>
@@ -37,6 +38,7 @@ const App = () => {
             streetViewControl: true,
             zoom: 14,
           }}
+          useDrawing
           usePlaces
           useVisualization
         />
@@ -46,7 +48,6 @@ const App = () => {
         <BicyclingLayer />
         <TrafficLayer />
         <TransitLayer />
-        <GroundOverlay id="image" />
       </div>
     </div>
   )

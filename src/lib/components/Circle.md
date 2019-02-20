@@ -1,7 +1,7 @@
 A simple Circle:
 
 ```jsx
-const {Circle, GoogleMapProvider, MapBox} = require('../')
+const {GoogleMapProvider, MapBox} = require('../')
 
 ;<GoogleMapProvider>
   <MapBox

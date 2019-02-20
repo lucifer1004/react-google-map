@@ -11,29 +11,32 @@ const transformLatLng = (
   weight: orig.weight || 1,
 })
 
-export const HeatMap = ({opts = DEFAULT_HEAT_MAP_OPTIONS}: HeatMapProps) => {
-  const {state} = useContext(GoogleMapContext)
+export const HeatMap = ({
+  id,
+  opts = DEFAULT_HEAT_MAP_OPTIONS,
+}: HeatMapProps) => {
+  const {state, dispatch} = useContext(GoogleMapContext)
   const [heatMap, setHeatMap] = useState<
     google.maps.visualization.HeatmapLayer | undefined
   >(undefined)
+  const addHeatMap = (groundOverlay: google.maps.visualization.HeatmapLayer) =>
+    dispatch({type: 'add_object', object: groundOverlay, id: id})
+  const removeHeatMap = () => dispatch({type: 'remove_object', id: id})
   useEffect(() => {
     if (state.map === undefined) return
-    setHeatMap(
-      new google.maps.visualization.HeatmapLayer({
-        ...opts,
-        data: opts.data.map(latLng => transformLatLng(latLng)),
-        map: state.map,
-      }),
-    )
+    const heatMap = new google.maps.visualization.HeatmapLayer({
+      ...opts,
+      data: opts.data.map(latLng => transformLatLng(latLng)),
+      map: state.map,
+    })
+    setHeatMap(heatMap)
+    addHeatMap(heatMap)
+    return () => removeHeatMap()
   }, [state.map])
 
   useEffect(() => {
-    if (heatMap === undefined || state.map === undefined) return
+    if (heatMap === undefined || opts.data === undefined) return
     heatMap.setData(opts.data.map(latLng => transformLatLng(latLng)))
-    heatMap.setMap(state.map)
-    return () => {
-      heatMap.setMap(null)
-    }
   }, [opts.data])
 
   return null

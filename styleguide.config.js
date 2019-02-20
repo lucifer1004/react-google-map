@@ -29,6 +29,10 @@ module.exports = {
       ],
     },
     {
+      name: 'Drawing',
+      components: 'src/lib/components/DrawingManager.tsx',
+    },
+    {
       name: 'Places',
       components: 'src/lib/components/{SearchBox,StandaloneSearchBox}.tsx',
     },

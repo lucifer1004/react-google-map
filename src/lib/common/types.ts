@@ -4,22 +4,25 @@ export declare type GoogleMapLibrary =
   | 'places'
   | 'visualization'
 
-export declare type GoogleMapObject =
+export declare type GoogleMapShape =
   | google.maps.Marker
   | google.maps.Polygon
   | google.maps.Polyline
   | google.maps.Circle
   | google.maps.Rectangle
-  | google.maps.BicyclingLayer
-  | google.maps.TrafficLayer
-  | google.maps.TransitLayer
-  | google.maps.GroundOverlay
-  | google.maps.KmlLayer
 
 export declare type GoogleMapLayer =
   | google.maps.BicyclingLayer
   | google.maps.TrafficLayer
   | google.maps.TransitLayer
+
+export declare type GoogleMapObject =
+  | GoogleMapShape
+  | GoogleMapLayer
+  | google.maps.GroundOverlay
+  | google.maps.KmlLayer
+  | google.maps.drawing.DrawingManager
+  | google.maps.visualization.HeatmapLayer
 
 declare type MapPanes =
   | 'floatPane'
@@ -182,6 +185,7 @@ export interface HeatmapLayerOptions
 }
 
 export interface HeatMapProps {
+  id: string
   opts: HeatmapLayerOptions
 }
 
@@ -291,4 +295,16 @@ export interface KmlLayerProps {
 export interface CustomControlProps {
   bindingPosition?: ControlPositionName
   children: React.ReactNode
+}
+
+// DrawingManager
+
+export interface DrawingManagerProps {
+  opts?: google.maps.drawing.DrawingManagerOptions
+  onCircleComplete?: (circle: google.maps.Circle) => any
+  onMarkerComplete?: (marker: google.maps.Marker) => any
+  onOverlayComplete?: (event: google.maps.drawing.OverlayCompleteEvent) => any
+  onPolygonComplete?: (polygon: google.maps.Polygon) => any
+  onPolylineComplete?: (polyline: google.maps.Polyline) => any
+  onRectangleComplete?: (rectangle: google.maps.Rectangle) => any
 }
