@@ -1,5 +1,5 @@
 A simple KmlLayer
-([data source](http://kmlscribe.googlepages.com/SamplesInMaps.kml)):
+([data source](http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss)):
 
 ```jsx
 const {GoogleMapProvider, KmlLayer, MapBox} = require('../')

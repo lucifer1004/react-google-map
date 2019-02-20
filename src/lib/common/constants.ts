@@ -44,7 +44,8 @@ export const DEFAULT_INFO_WINDOW_OPTIONS: google.maps.InfoWindowOptions = {
 }
 
 export const DEFAULT_KML_LAYER_OPTIONS: google.maps.KmlLayerOptions = {
-  url: 'http://kmlscribe.googlepages.com/SamplesInMaps.kml',
+  url:
+    'http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss',
 }
 
 export const DEFAULT_MAP_OPTIONS: google.maps.MapOptions = {

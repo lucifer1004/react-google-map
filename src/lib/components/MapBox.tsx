@@ -12,6 +12,7 @@ import RandomId from '../helpers/generateRandomId'
 const MapBox = ({
   apiKey = '',
   language,
+  region,
   className,
   style = DEFAULT_MAP_STYLE,
   opts = DEFAULT_MAP_OPTIONS,
@@ -67,6 +68,7 @@ const MapBox = ({
     apiKey: apiKey,
     libraryParam: libraryParam === '' ? '' : `&libraries=${libraryParam}`,
     languageParam: language === undefined ? '' : `&language=${language}`,
+    regionParam: region === undefined ? '' : `&region=${region}`,
   })
 
   // Load Google Map

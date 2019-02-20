@@ -10,6 +10,14 @@ const {GoogleMapProvider, MapBox, Marker} = require('../')
       width: '100%',
     }}
   />
-  <Marker id="marker" />
+  <Marker
+    id="marker"
+    opts={{
+      position: {
+        lat: 40.7128,
+        lng: -74.006,
+      },
+    }}
+  />
 </GoogleMapProvider>
 ```

@@ -89,7 +89,7 @@ describe('MapBox', () => {
   it('supports localization', async () => {
     const {container} = render(
       <GoogleMapProvider>
-        <MapBox apiKey="FAKE_KEY" language="fr" />
+        <MapBox apiKey="FAKE_KEY" language="fr" region="FR" />
       </GoogleMapProvider>,
     )
     await wait(() => {

@@ -7,22 +7,23 @@ import {
   GoogleMapState,
 } from '../common/types'
 
-const initialState: GoogleMapState = {
+const initialState = (): GoogleMapState => ({
   map: undefined,
   objects: new Map<string, GoogleMapObject>(),
   places: undefined,
   searches: new Map<string, google.maps.places.SearchBox>(),
-}
+})
 
 const GoogleMapContext = React.createContext<GoogleMapReducer>({
-  state: initialState,
+  state: (undefined as unknown) as GoogleMapState,
   dispatch: (undefined as unknown) as React.Dispatch<GoogleMapAction>,
 })
 
 const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
+  console.log(action)
   switch (action.type) {
     case 'reset':
-      return initialState
+      return initialState()
 
     case 'init_map':
       if (action.map === undefined)
@@ -38,8 +39,9 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (action.id === undefined) throw new Error('You should specify an id')
       if (state.objects.has(action.id))
         throw new Error('The id has already been taken')
+      state.objects.set(action.id, action.object)
 
-      return {...state, objects: state.objects.set(action.id, action.object)}
+      return state
 
     case 'remove_object':
       if (action.id === undefined) throw new Error('You should specify an id')
@@ -57,8 +59,9 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       if (action.id === undefined) throw new Error('You should specify an id')
       if (state.searches.has(action.id))
         throw new Error('The id has already been taken')
+      state.searches.set(action.id, action.search)
 
-      return {...state, searches: state.searches.set(action.id, action.search)}
+      return state
 
     case 'remove_search':
       if (action.id === undefined) throw new Error('You should specify an id')
@@ -75,7 +78,7 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
 }
 
 const GoogleMapProvider = ({children}: GoogleMapProviderProps) => {
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [state, dispatch] = useReducer(reducer, initialState())
   const value = {state, dispatch}
 
   return (

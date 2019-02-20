@@ -6,16 +6,18 @@ interface GoogleAPIProps {
   apiKey: string
   libraryParam: string
   languageParam: string
+  regionParam: string
 }
 
 const useGoogleAPI = ({
   apiKey,
   libraryParam,
   languageParam,
+  regionParam,
 }: GoogleAPIProps) => {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    const googleMapScriptUri = `${GOOGLE_MAP_BASE_URI}?key=${apiKey}${libraryParam}${languageParam}`
+    const googleMapScriptUri = `${GOOGLE_MAP_BASE_URI}?key=${apiKey}${libraryParam}${languageParam}${regionParam}`
     if (!loadjs.isDefined('gmap')) loadjs(googleMapScriptUri, 'gmap')
     loadjs.ready('gmap', {
       success: () => {

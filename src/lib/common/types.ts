@@ -68,6 +68,7 @@ export interface MapBoxProps {
   className?: string
   style?: React.CSSProperties
   language?: string
+  region?: string
   useDrawing?: boolean
   useGeometry?: boolean
   usePlaces?: boolean
