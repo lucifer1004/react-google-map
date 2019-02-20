@@ -7,14 +7,12 @@ export default ({type, opts}: LayerProps) => {
   const {state, dispatch} = useContext(GoogleMapContext)
   const [layer, setLayer] = useState<GoogleMapLayer | undefined>(undefined)
 
-  const addLayer = (layer: GoogleMapLayer) => {
-    if (!state.objects.has(type))
-      dispatch({
-        type: 'add_object',
-        object: layer,
-        id: layerId,
-      })
-  }
+  const addLayer = (layer: GoogleMapLayer) =>
+    dispatch({
+      type: 'add_object',
+      object: layer,
+      id: layerId,
+    })
   const removeLayer = () => dispatch({type: 'remove_object', id: layerId})
 
   useEffect(() => {

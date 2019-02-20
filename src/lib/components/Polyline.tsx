@@ -22,10 +22,8 @@ const Polyline = ({
   const [polyline, setPolyline] = useState<google.maps.Polyline | undefined>(
     undefined,
   )
-  const addPolyline = (polyline: google.maps.Polyline) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: polyline, id: id})
-  }
+  const addPolyline = (polyline: google.maps.Polyline) =>
+    dispatch({type: 'add_object', object: polyline, id: id})
   const removePolyline = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {

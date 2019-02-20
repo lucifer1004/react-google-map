@@ -21,11 +21,8 @@ const InfoWindow = ({
 
   useEffect(() => {
     if (state.map === undefined) return
-    setInfoWindow(new google.maps.InfoWindow(opts))
-  }, [state.map])
-
-  useEffect(() => {
-    if (infoWindow === undefined) return
+    const infoWindow = new google.maps.InfoWindow(opts)
+    setInfoWindow(infoWindow)
 
     // Open or close the info window according to the `visible` prop
     if (visible) infoWindow.open(state.map, anchor)
@@ -33,7 +30,7 @@ const InfoWindow = ({
 
     // Close the info window when the component is unmounted
     return () => infoWindow.close()
-  }, [infoWindow, visible])
+  }, [state.map, visible])
 
   // Register event listeners
   useGoogleListener(infoWindow, [

@@ -33,26 +33,22 @@ const Marker = ({
   const [marker, setMarker] = useState<google.maps.Marker | undefined>(
     undefined,
   )
-  const addMarker = (marker: google.maps.Marker) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: marker, id: id})
-  }
+  const addMarker = (marker: google.maps.Marker) =>
+    dispatch({type: 'add_object', object: marker, id: id})
+
   const removeMarker = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
-    setMarker(new google.maps.Marker({...opts, map: state.map}))
-  }, [state.map])
-
-  useEffect(() => {
-    if (marker === undefined) return
+    const marker = new google.maps.Marker({...opts, map: state.map})
+    setMarker(marker)
 
     // Add the marker to state.objects
     addMarker(marker)
 
     // Remove the marker when the component is unmounted
     return () => removeMarker()
-  }, [marker])
+  }, [state.map])
 
   // Register event listeners
   useGoogleListener(marker, [

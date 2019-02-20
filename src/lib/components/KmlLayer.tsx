@@ -16,31 +16,26 @@ const KmlLayer = ({
     undefined,
   )
 
-  const addKmlLayer = (kmlLayer: google.maps.KmlLayer) => {
-    if (!state.objects.has(id))
-      dispatch({
-        type: 'add_object',
-        object: kmlLayer,
-        id: id,
-      })
-  }
+  const addKmlLayer = (kmlLayer: google.maps.KmlLayer) =>
+    dispatch({
+      type: 'add_object',
+      object: kmlLayer,
+      id: id,
+    })
   const removeKmlLayer = () => dispatch({type: 'remove_object', id: id})
 
   // Create KmlLayer when map is ready
   useEffect(() => {
     if (state.map === undefined) return
-    setKmlLayer(new google.maps.KmlLayer({...opts, map: state.map}))
-  }, [state.map])
-
-  useEffect(() => {
-    if (kmlLayer === undefined) return
+    const kmlLayer = new google.maps.KmlLayer({...opts, map: state.map})
+    setKmlLayer(kmlLayer)
 
     // Add the kmlLayer to state.objects
     addKmlLayer(kmlLayer)
 
     // Remove the kmlLayer when the component is unmounted
     return () => removeKmlLayer()
-  }, [kmlLayer])
+  }, [state.map])
 
   useGoogleListener(kmlLayer, [
     {name: 'click', handler: onClick},

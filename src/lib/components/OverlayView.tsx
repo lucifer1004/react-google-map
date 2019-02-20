@@ -4,7 +4,7 @@ import {NYC_LATLNG} from '../common/constants'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {OverlayViewProps} from '../common/types'
 
-const OverlayView = ({
+const OverlayView: React.FC<OverlayViewProps> = ({
   pane = 'overlayMouseTarget',
   position = NYC_LATLNG,
   children,
@@ -18,7 +18,7 @@ const OverlayView = ({
   onTouchStart,
   disableMapHits = false,
   disableMapHitsAndGestures = false,
-}: OverlayViewProps) => {
+}) => {
   const {state} = useContext(GoogleMapContext)
   const [container] = useState<HTMLDivElement>(document.createElement('div'))
   const [_overlay, setOverlay] = useState<google.maps.OverlayView | undefined>(

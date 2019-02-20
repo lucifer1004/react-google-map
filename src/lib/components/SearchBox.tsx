@@ -17,10 +17,8 @@ const SearchBox = ({
     google.maps.places.SearchBox | undefined
   >(undefined)
 
-  const addSearch = (search: google.maps.places.SearchBox) => {
-    if (!state.searches.has(id))
-      dispatch({type: 'add_search', search: search, id: id})
-  }
+  const addSearch = (search: google.maps.places.SearchBox) =>
+    dispatch({type: 'add_search', search: search, id: id})
   const removeSearch = () => dispatch({type: 'remove_search', id: id})
 
   // Create google.maps.places.SearchBox

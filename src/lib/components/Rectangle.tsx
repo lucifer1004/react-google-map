@@ -23,10 +23,8 @@ const Rectangle = ({
   const [rectangle, setRectangle] = useState<google.maps.Rectangle | undefined>(
     undefined,
   )
-  const addRectangle = (rectangle: google.maps.Rectangle) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: rectangle, id: id})
-  }
+  const addRectangle = (rectangle: google.maps.Rectangle) =>
+    dispatch({type: 'add_object', object: rectangle, id: id})
   const removeRectangle = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {

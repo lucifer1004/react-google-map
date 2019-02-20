@@ -22,31 +22,24 @@ const Polygon = ({
   const [polygon, setPolygon] = useState<google.maps.Polygon | undefined>(
     undefined,
   )
-  const addPolygon = (polygon: google.maps.Polygon) => {
-    if (!state.objects.has(id))
-      dispatch({type: 'add_object', object: polygon, id: id})
-  }
+  const addPolygon = (polygon: google.maps.Polygon) =>
+    dispatch({type: 'add_object', object: polygon, id: id})
   const removePolygon = () => dispatch({type: 'remove_object', id: id})
 
   useEffect(() => {
     if (state.map === undefined) return
-    setPolygon(
-      new google.maps.Polygon({
-        ...opts,
-        map: state.map,
-      }),
-    )
-  }, [state.map])
-
-  useEffect(() => {
-    if (polygon === undefined) return
+    const polygon = new google.maps.Polygon({
+      ...opts,
+      map: state.map,
+    })
+    setPolygon(polygon)
 
     // Add the polygon to state.objects
     addPolygon(polygon)
 
     // Remove the polygon when the component is unmounted
     return () => removePolygon()
-  }, [polygon])
+  }, [state.map])
 
   // Register google map event listeners
   useGoogleListener(polygon, [
