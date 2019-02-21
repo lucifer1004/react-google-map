@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_POLYLINE_OPTIONS} from '../common/constants'
 import {PolylineProps} from '../common/types'
@@ -22,9 +23,11 @@ const Polyline = ({
   const [polyline, setPolyline] = useState<google.maps.Polyline | undefined>(
     undefined,
   )
+  const [polylineId] = useState(id ? id : `polyline-${uuid()}`)
+
   const addPolyline = (polyline: google.maps.Polyline) =>
-    dispatch({type: 'add_object', object: polyline, id: id})
-  const removePolyline = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: polyline, id: polylineId})
+  const removePolyline = () => dispatch({type: 'remove_object', id: polylineId})
 
   useEffect(() => {
     if (state.map === undefined) return

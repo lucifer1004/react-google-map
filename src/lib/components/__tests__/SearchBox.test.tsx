@@ -17,7 +17,7 @@ describe('SearchBox', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" usePlaces />
-        <SearchBox id="search-box" bindingPosition="TOP_CENTER" />
+        <SearchBox bindingPosition="TOP_CENTER" />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -28,7 +28,6 @@ describe('SearchBox', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" usePlaces />
           <SearchBox
-            id="search-box"
             bindingPosition="TOP_CENTER"
             opts={{
               bounds: {

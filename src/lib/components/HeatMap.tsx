@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {DEFAULT_HEAT_MAP_OPTIONS} from '../common/constants'
 import {HeatMapProps, WeightedLatLng} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
@@ -19,9 +20,10 @@ export const HeatMap = ({
   const [heatMap, setHeatMap] = useState<
     google.maps.visualization.HeatmapLayer | undefined
   >(undefined)
+  const [heatMapId] = useState(id ? id : `heat-map-${uuid()}`)
   const addHeatMap = (groundOverlay: google.maps.visualization.HeatmapLayer) =>
-    dispatch({type: 'add_object', object: groundOverlay, id: id})
-  const removeHeatMap = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: groundOverlay, id: heatMapId})
+  const removeHeatMap = () => dispatch({type: 'remove_object', id: heatMapId})
   useEffect(() => {
     if (state.map === undefined) return
     const heatMap = new google.maps.visualization.HeatmapLayer({

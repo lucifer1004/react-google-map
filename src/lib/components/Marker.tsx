@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {DEFAULT_MARKER_OPTIONS} from '../common/constants'
 import {MarkerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
@@ -33,10 +34,12 @@ const Marker = ({
   const [marker, setMarker] = useState<google.maps.Marker | undefined>(
     undefined,
   )
-  const addMarker = (marker: google.maps.Marker) =>
-    dispatch({type: 'add_object', object: marker, id: id})
+  const [markerId] = useState(id ? id : `marker-${uuid()}`)
 
-  const removeMarker = () => dispatch({type: 'remove_object', id: id})
+  const addMarker = (marker: google.maps.Marker) =>
+    dispatch({type: 'add_object', object: marker, id: markerId})
+
+  const removeMarker = () => dispatch({type: 'remove_object', id: markerId})
 
   useEffect(() => {
     if (state.map === undefined) return

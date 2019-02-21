@@ -13,6 +13,14 @@
 - `StreetView` now has a `bindToMap` prop to define whether it should be bound
   to the map. **Note:** There should be no more than one bound `StreetView` in
   the context of a `GoogleMapProvider`
+- Reserved ids (these ids are used internally and users should avoid):
+  - `bicycling-layer` for `BicyclingLayer`
+  - `traffic-layer` for `TrafficLayer`
+  - `transit-layer` for `TransitLayer`
+  - `drawing-manager` for `DrawingManager`
+- If no `id` is specified (for
+  Circle/GroundOverlay/HeatMap/KmlLayer/Marker/Polygon/Polyline/Rectangle/SearchBox/StandaloneSearchBox),
+  a uuid will be used, instead of throwing an error.
 
 ### ADDED
 

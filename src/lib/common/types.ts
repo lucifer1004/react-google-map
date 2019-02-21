@@ -102,7 +102,7 @@ export interface MapBoxProps {
 // Marker
 
 export interface MarkerProps {
-  id: string
+  id?: string
   opts?: google.maps.MarkerOptions
   onAnimationChanged?: () => any
   onClick?: (event: google.maps.MouseEvent) => any
@@ -142,7 +142,7 @@ export interface InfoWindowProps {
 // Shapes
 
 interface ShapeProps {
-  id: string
+  id?: string
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
   onDrag?: (event: google.maps.MouseEvent) => any
@@ -185,8 +185,8 @@ export interface HeatmapLayerOptions
 }
 
 export interface HeatMapProps {
-  id: string
-  opts: HeatmapLayerOptions
+  id?: string
+  opts?: HeatmapLayerOptions
 }
 
 // OverlayView
@@ -244,7 +244,7 @@ export interface GroundOverlayOptions {
 }
 
 export interface GroundOverlayProps {
-  id: string
+  id?: string
   opts?: GroundOverlayOptions
   onClick?: (event: google.maps.MouseEvent) => any
   onDoubleClick?: (event: google.maps.MouseEvent) => any
@@ -271,7 +271,7 @@ export interface StandaloneSearchBoxProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
-  id: string
+  id?: string
   opts?: google.maps.places.SearchBoxOptions
   onPlacesChanged?: () => any
 }
@@ -283,7 +283,7 @@ export interface SearchBoxProps extends StandaloneSearchBoxProps {
 // KmlLayer
 
 export interface KmlLayerProps {
-  id: string
+  id?: string
   opts?: google.maps.KmlLayerOptions
   onClick?: (event: google.maps.KmlMouseEvent) => any
   onDefaultViewportChanged?: () => any

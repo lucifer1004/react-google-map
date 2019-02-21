@@ -18,7 +18,7 @@ describe('Circle', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <Circle id="circle" />
+        <Circle />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -29,7 +29,6 @@ describe('Circle', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <Circle
-            id="circle"
             opts={{
               center: {lat: 31, lng: 18},
               radius: 200,

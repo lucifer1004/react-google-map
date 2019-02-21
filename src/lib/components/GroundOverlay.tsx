@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_GROUND_OVERLAY_OPTIONS} from '../common/constants'
 import {GroundOverlayProps} from '../common/types'
@@ -14,13 +15,15 @@ const GroundOverlay = ({
   const [groundOverlay, setGroundOverlay] = useState<
     google.maps.GroundOverlay | undefined
   >(undefined)
+  const [groundOverlayId] = useState(id ? id : `ground-overlay-${uuid()}`)
   const [prevBounds, setPrevBounds] = useState<
     google.maps.LatLngBoundsLiteral | undefined
   >(undefined)
   const [prevClickable, setPrevClickable] = useState(true)
   const addGroundOverlay = (groundOverlay: google.maps.GroundOverlay) =>
-    dispatch({type: 'add_object', object: groundOverlay, id: id})
-  const removeGroundOverlay = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: groundOverlay, id: groundOverlayId})
+  const removeGroundOverlay = () =>
+    dispatch({type: 'remove_object', id: groundOverlayId})
 
   const createGroundOverlay = () => {
     const groundOverlay = new google.maps.GroundOverlay(opts.url, opts.bounds, {

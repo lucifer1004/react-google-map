@@ -37,20 +37,17 @@ const MarkerPanel = () => {
         ))}
       </ul>
       <Polygon
-        id="polygon"
         opts={{
           paths: positions.slice(0, num),
         }}
       />
       <Polyline
-        id="polyline"
         opts={{
           path: positions.slice(0, num),
           strokeColor: 'blue',
         }}
       />
       <HeatMap
-        id="heat-map"
         opts={{
           data: positions.slice(0, num),
           radius: 100,

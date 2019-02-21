@@ -24,7 +24,7 @@ describe('GroundOverlay', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <GroundOverlay id="ground-overlay" />
+        <GroundOverlay />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -35,7 +35,6 @@ describe('GroundOverlay', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <GroundOverlay
-            id="ground-overlay"
             opts={{
               url: 'https://placehold.it/256x256',
               bounds: bounds,
@@ -50,7 +49,6 @@ describe('GroundOverlay', () => {
           <GoogleMapProvider>
             <MapBox apiKey="FAKE_KEY" />
             <GroundOverlay
-              id="ground-overlay"
               opts={{
                 url: 'https://placehold.it/512x512',
                 bounds: bounds,
@@ -66,7 +64,6 @@ describe('GroundOverlay', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <GroundOverlay
-            id="ground-overlay"
             opts={{
               url: 'https://placehold.it/512x512',
               bounds: bounds,
@@ -82,7 +79,6 @@ describe('GroundOverlay', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <GroundOverlay
-            id="ground-overlay"
             opts={{
               url: 'https://placehold.it/512x512',
               bounds: bounds,

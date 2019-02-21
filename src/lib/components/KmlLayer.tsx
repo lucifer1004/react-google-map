@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {DEFAULT_KML_LAYER_OPTIONS} from '../common/constants'
 import {KmlLayerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
@@ -15,14 +16,15 @@ const KmlLayer = ({
   const [kmlLayer, setKmlLayer] = useState<google.maps.KmlLayer | undefined>(
     undefined,
   )
+  const [kmlLayerId] = useState(id ? id : `kml-layer-${uuid()}`)
 
   const addKmlLayer = (kmlLayer: google.maps.KmlLayer) =>
     dispatch({
       type: 'add_object',
       object: kmlLayer,
-      id: id,
+      id: kmlLayerId,
     })
-  const removeKmlLayer = () => dispatch({type: 'remove_object', id: id})
+  const removeKmlLayer = () => dispatch({type: 'remove_object', id: kmlLayerId})
 
   // Create KmlLayer when map is ready
   useEffect(() => {

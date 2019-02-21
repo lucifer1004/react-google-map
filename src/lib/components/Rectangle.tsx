@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_RECTANGLE_OPTIONS} from '../common/constants'
 import {RectangleProps} from '../common/types'
@@ -23,9 +24,12 @@ const Rectangle = ({
   const [rectangle, setRectangle] = useState<google.maps.Rectangle | undefined>(
     undefined,
   )
+  const [rectangleId] = useState(id ? id : `rectangle-${uuid()}`)
+
   const addRectangle = (rectangle: google.maps.Rectangle) =>
-    dispatch({type: 'add_object', object: rectangle, id: id})
-  const removeRectangle = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: rectangle, id: rectangleId})
+  const removeRectangle = () =>
+    dispatch({type: 'remove_object', id: rectangleId})
 
   useEffect(() => {
     if (state.map === undefined) return

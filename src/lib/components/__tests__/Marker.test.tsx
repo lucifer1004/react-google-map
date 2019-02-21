@@ -18,7 +18,7 @@ describe('Marker', () => {
     const {container} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <Marker id="marker" />
+        <Marker />
       </GoogleMapProvider>,
     )
     expect(container.innerHTML).toMatch('Loading...')
@@ -31,7 +31,7 @@ describe('Marker', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <Marker id="my-marker" opts={{position: {lat: 39, lng: 116}}} />
+        <Marker opts={{position: {lat: 39, lng: 116}}} />
       </GoogleMapProvider>,
     )
     await wait(() => {

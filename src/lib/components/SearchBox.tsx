@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react'
 import ReactDOMServer from 'react-dom/server'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_SEARCH_BOX_OPTIONS} from '../common/constants'
 import {SearchBoxProps} from '../common/types'
@@ -16,10 +17,11 @@ const SearchBox = ({
   const [searchBox, setSearchBox] = useState<
     google.maps.places.SearchBox | undefined
   >(undefined)
+  const [searchBoxId] = useState(id ? id : `search-box-${uuid()}`)
 
   const addSearch = (search: google.maps.places.SearchBox) =>
-    dispatch({type: 'add_search', search: search, id: id})
-  const removeSearch = () => dispatch({type: 'remove_search', id: id})
+    dispatch({type: 'add_search', search: search, id: searchBoxId})
+  const removeSearch = () => dispatch({type: 'remove_search', id: searchBoxId})
 
   // Create google.maps.places.SearchBox
   useEffect(() => {
@@ -28,9 +30,11 @@ const SearchBox = ({
       ? document
           .createRange()
           .createContextualFragment(
-            ReactDOMServer.renderToString(<input id={id} {...restProps} />),
+            ReactDOMServer.renderToString(
+              <input id={searchBoxId} {...restProps} />,
+            ),
           ).firstElementChild
-      : document.getElementById(id)) as HTMLInputElement
+      : document.getElementById(searchBoxId)) as HTMLInputElement
     const searchBox = new google.maps.places.SearchBox(inputNode, opts)
     setSearchBox(searchBox)
     addSearch(searchBox)
@@ -52,7 +56,7 @@ const SearchBox = ({
     searchBox.setBounds(opts.bounds)
   }, [opts.bounds])
 
-  return bindingPosition ? null : <input id={id} {...restProps} />
+  return bindingPosition ? null : <input id={searchBoxId} {...restProps} />
 }
 
 SearchBox.displayName = 'SearchBox'

@@ -18,7 +18,7 @@ describe('Rectangle', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <Rectangle id="rectangle" />
+        <Rectangle />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -29,7 +29,6 @@ describe('Rectangle', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <Rectangle
-            id="rectangle"
             opts={{
               bounds: {
                 east: 116,

@@ -18,7 +18,7 @@ describe('KmlLayer', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <KmlLayer id="kml-layer" />
+        <KmlLayer />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -29,7 +29,6 @@ describe('KmlLayer', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <KmlLayer
-            id="kml-layer"
             opts={{
               screenOverlays: false,
             }}

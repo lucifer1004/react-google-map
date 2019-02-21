@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_CIRCLE_OPTIONS} from '../common/constants'
 import {CircleProps} from '../common/types'
@@ -24,9 +25,10 @@ const Circle = ({
   const [circle, setCircle] = useState<google.maps.Circle | undefined>(
     undefined,
   )
+  const [circleId] = useState(id ? id : `circle-${uuid()}`)
   const addCircle = (circle: google.maps.Circle) =>
-    dispatch({type: 'add_object', object: circle, id: id})
-  const removeCircle = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: circle, id: circleId})
+  const removeCircle = () => dispatch({type: 'remove_object', id: circleId})
 
   useEffect(() => {
     if (state.map === undefined) return

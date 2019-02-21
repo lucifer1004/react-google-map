@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleListener} from '../hooks'
 import {DEFAULT_POLYGON_OPTIONS} from '../common/constants'
 import {PolygonProps} from '../common/types'
@@ -22,9 +23,11 @@ const Polygon = ({
   const [polygon, setPolygon] = useState<google.maps.Polygon | undefined>(
     undefined,
   )
+  const [polygonId] = useState(id ? id : `polygon-${uuid()}`)
+
   const addPolygon = (polygon: google.maps.Polygon) =>
-    dispatch({type: 'add_object', object: polygon, id: id})
-  const removePolygon = () => dispatch({type: 'remove_object', id: id})
+    dispatch({type: 'add_object', object: polygon, id: polygonId})
+  const removePolygon = () => dispatch({type: 'remove_object', id: polygonId})
 
   useEffect(() => {
     if (state.map === undefined) return

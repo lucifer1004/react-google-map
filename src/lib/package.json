@@ -14,7 +14,8 @@
   "source": "index.ts",
   "main": "dist/index.js",
   "dependencies": {
-    "loadjs": "^3.5.5"
+    "loadjs": "^3.5.5",
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
     "react": "^16.8.2",

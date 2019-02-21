@@ -18,7 +18,7 @@ describe('Polygon', () => {
     const {container, rerender} = render(
       <GoogleMapProvider>
         <MapBox apiKey="FAKE_KEY" />
-        <Polygon id="polygon" />
+        <Polygon />
       </GoogleMapProvider>,
     )
     await wait(() => {
@@ -29,7 +29,6 @@ describe('Polygon', () => {
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
           <Polygon
-            id="polygon"
             opts={{
               paths: [
                 {lat: 31, lng: 18},
