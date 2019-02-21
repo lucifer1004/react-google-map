@@ -4,6 +4,10 @@
   "description": "Easier-to-use Google Map & React integration",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
+  "homepage": "https://github.com/lucifer1004/react-google-map#readme",
+  "bugs": {
+    "url": "https://github.com/lucifer1004/react-google-map/issues"
+  },
   "license": "MIT",
   "keywords": [
     "google map",
