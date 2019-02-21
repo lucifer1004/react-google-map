@@ -2,7 +2,7 @@ import React from 'react'
 import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
 import {render, cleanup} from 'react-testing-library'
-import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
+import {defineGlobalVariable, ActionDispatcher} from '../../__test__helpers__'
 
 defineGlobalVariable()
 
@@ -15,7 +15,7 @@ describe('The dispatcher throws an error when trying to', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'init_map'}} />
+          <ActionDispatcher action={{type: 'init_map'}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify a map instance'))
@@ -26,8 +26,8 @@ describe('The dispatcher throws an error when trying to', () => {
       const map = new google.maps.Map(document.createElement('div'), {zoom: 14})
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'init_map', map: map}} />
-          <FakeComponent action={{type: 'init_map', map: map}} />
+          <ActionDispatcher action={{type: 'init_map', map: map}} />
+          <ActionDispatcher action={{type: 'init_map', map: map}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(
@@ -42,10 +42,10 @@ describe('The dispatcher will', () => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent
+          <ActionDispatcher
             action={{type: 'add_object', object: marker, id: 'marker'}}
           />
-          <FakeComponent action={{type: 'reset'}} />
+          <ActionDispatcher action={{type: 'reset'}} />
         </GoogleMapProvider>,
       )
     }).not.toThrow()
@@ -55,7 +55,7 @@ describe('The dispatcher will', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'undefined'}} />
+          <ActionDispatcher action={{type: 'undefined'}} />
         </GoogleMapProvider>,
       )
     }).not.toThrow()

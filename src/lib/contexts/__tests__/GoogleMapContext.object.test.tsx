@@ -2,7 +2,7 @@ import React from 'react'
 import {GoogleMapProvider} from '../GoogleMapContext'
 import 'react-testing-library/cleanup-after-each'
 import {render, cleanup} from 'react-testing-library'
-import {defineGlobalVariable, FakeComponent} from '../../__test__helpers__'
+import {defineGlobalVariable, ActionDispatcher} from '../../__test__helpers__'
 
 defineGlobalVariable()
 
@@ -15,7 +15,7 @@ describe('The dispatcher throws an error when trying to', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_object'}} />
+          <ActionDispatcher action={{type: 'add_object'}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify an object instance'))
@@ -26,7 +26,7 @@ describe('The dispatcher throws an error when trying to', () => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'add_object', object: marker}} />
+          <ActionDispatcher action={{type: 'add_object', object: marker}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify an id'))
@@ -37,10 +37,10 @@ describe('The dispatcher throws an error when trying to', () => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent
+          <ActionDispatcher
             action={{type: 'add_object', object: marker, id: 'marker'}}
           />
-          <FakeComponent
+          <ActionDispatcher
             action={{type: 'add_object', object: marker, id: 'marker'}}
           />
         </GoogleMapProvider>,
@@ -52,7 +52,7 @@ describe('The dispatcher throws an error when trying to', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_object'}} />
+          <ActionDispatcher action={{type: 'remove_object'}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('You should specify an id'))
@@ -63,7 +63,7 @@ describe('The dispatcher throws an error when trying to', () => {
     expect(() => {
       render(
         <GoogleMapProvider>
-          <FakeComponent action={{type: 'remove_object', id: 'marker'}} />
+          <ActionDispatcher action={{type: 'remove_object', id: 'marker'}} />
         </GoogleMapProvider>,
       )
     }).toThrowError(new Error('There is no object with the given id'))
@@ -76,10 +76,10 @@ describe('The dispatcher will', () => {
       const marker = new google.maps.Marker({position: {lat: 0, lng: 0}})
       render(
         <GoogleMapProvider>
-          <FakeComponent
+          <ActionDispatcher
             action={{type: 'add_object', object: marker, id: 'marker'}}
           />
-          <FakeComponent action={{type: 'remove_object', id: 'marker'}} />
+          <ActionDispatcher action={{type: 'remove_object', id: 'marker'}} />
         </GoogleMapProvider>,
       )
     }).not.toThrow()

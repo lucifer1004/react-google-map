@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import {GoogleMapAction} from '../common/types'
-import {GoogleMapContext} from '../'
+import {GoogleMapContext} from '..'
 
 export default ({action}: {action: GoogleMapAction}) => {
   const {dispatch} = useContext(GoogleMapContext)
