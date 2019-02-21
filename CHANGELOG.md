@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [3.0.0] - In progress
+## [3.0.0] - <2019-02-21>
 
 ### CHANGED
 
