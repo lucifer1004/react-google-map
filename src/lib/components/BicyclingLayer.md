@@ -1,3 +1,5 @@
+A wrapper around `google.maps.BicyclingLayer`.
+
 Use BicyclingLayer:
 
 ```jsx

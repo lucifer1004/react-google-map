@@ -1,3 +1,9 @@
+A wrapper around `google.maps.visualization.HeatMap`.
+
+- `useVisualization` must be `true` in `MapBox`
+- `id` must be unique. If left out, uuid will be used.
+- `opts` specifies the options you want the heat map to be created with.
+
 A simple HeatMap:
 
 ```jsx

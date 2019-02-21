@@ -5,7 +5,7 @@ import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 
 const InfoWindow = ({
-  anchor,
+  anchorId,
   opts = DEFAULT_INFO_WINDOW_OPTIONS,
   visible,
   onCloseClick,
@@ -24,13 +24,15 @@ const InfoWindow = ({
     const infoWindow = new google.maps.InfoWindow(opts)
     setInfoWindow(infoWindow)
 
+    const anchor = anchorId ? state.objects.get(anchorId) : undefined
+
     // Open or close the info window according to the `visible` prop
     if (visible) infoWindow.open(state.map, anchor)
     else infoWindow.close()
 
     // Close the info window when the component is unmounted
     return () => infoWindow.close()
-  }, [state.map, visible])
+  }, [state.map, visible, anchorId && state.objects.get(anchorId)])
 
   // Register event listeners
   useGoogleListener(infoWindow, [

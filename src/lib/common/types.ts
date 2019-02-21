@@ -129,7 +129,7 @@ export interface MarkerProps {
 
 // InfoWindow
 export interface InfoWindowProps {
-  anchor?: GoogleMapObject
+  anchorId?: string
   opts?: google.maps.InfoWindowOptions
   visible?: boolean
   onCloseClick?: () => any

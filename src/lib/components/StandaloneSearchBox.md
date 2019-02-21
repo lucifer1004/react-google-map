@@ -1,3 +1,6 @@
+It is just like `SearchBox`, however, no `bindingPosition` is needed. It will
+not be placed on the map.
+
 A simple StandaloneSearchBox:
 
 ```jsx

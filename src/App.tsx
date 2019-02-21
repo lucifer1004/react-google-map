@@ -46,20 +46,7 @@ const App = () => {
         <CenterButton />
         <StreetViewControl />
         <StreetViewControl bindToMap />
-        <BicyclingLayer />
         <TrafficLayer />
-        <TransitLayer />
-        <GroundOverlay
-          opts={{
-            url: 'https://placehold.it/256x256',
-            bounds: {
-              east: -73.98,
-              west: -73.985,
-              north: 40.706,
-              south: 40.702,
-            },
-          }}
-        />
       </div>
     </div>
   )

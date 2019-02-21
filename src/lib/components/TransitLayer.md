@@ -1,3 +1,5 @@
+A wrapper around `google.maps.TransitLayer`.
+
 Use TransitLayer:
 
 ```jsx

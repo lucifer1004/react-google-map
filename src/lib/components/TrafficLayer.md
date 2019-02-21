@@ -1,3 +1,5 @@
+A wrapper aroound `google.maps.TrafficLayer`.
+
 Use TrafficLayer:
 
 ```jsx

@@ -7,6 +7,8 @@
 
 Easier Google Map Integration for React projects.
 
+[READ THE DOC](https://react-google-map.gabriel-wu.com/doc)
+
 ## Why a new package
 
 There has been similar packages such as
@@ -16,15 +18,30 @@ There has been similar packages such as
 so why bother writing a new library?
 
 The aim is to make an easier-to-use Google Map library for React users,
-empowered by React's latest features.
+empowered by `React`'s latest features (`React >= 16.8.0` is required) and
+`TypeScript`.
 
-## Prerequisites
+## What is different
 
-- node
+- Component position is free (generally)
+- Direct access to Google Map objects
+- More uniform API
+- Type safe
+
+## Example usage
+
+### Prerequisites
+
 - npm or yarn
-- a valid Google Map API key
 
-## Basic usage
+```sh
+yarn add @lucifer1004/react-google-map
+# Or you can use
+npm install --save @lucifer1004/react-google-map
+```
+
+- a valid Google Map API key (to replace the place holder in the code snippet
+  below)
 
 ```javascript
 import {
@@ -40,7 +57,7 @@ import {
 return (
   <GoogleMapProvider>
     <MapBox
-      apiKey="GOOGLE_MAP_API_KEY"
+      apiKey="YOUR_GOOGLE_MAP_API_KEY"
       opts={{
         center: {lat: 39, lng: 116},
         zoom: 14,
@@ -90,84 +107,14 @@ return (
       }}
     />
     <OverlayView position={{lat: 39, lng: 116}}>
-      <h2>{`⚑ This is a custom overlay 🙌`}</h2>
+      <h2>⚑ This is a custom overlay 🙌</h2>
     </OverlayView>
   </GoogleMapProvider>
 )
 ```
 
-Let's break it up.
-
-### GoogleMapProvider
-
-- You need to wrap your components within `GoogleMapProvider`, so that they will
-  have access to the global state and work fluently.
-
-Under the hood, `React.Context` is used.
-
-Besides `GoogleMapProvider`, `GoogleMapConsumer` and `GoogleMapContext` are also
-exported. You can choose to use the consumer manner, or use `useContext` hook,
-to get access to the context contents in your custom components.
-
-> #### What's inside the context?
->
-> Currently, the context has two properties: `state` and `dispatch`. As the
-> names suggest, `state` stores the context state, and `dispatch` is the reduce
-> function.
->
-> `state` has 3 properties:
->
-> - `map`, which is a reference to the `google.maps.Map` instance.
-> - `objects`, which is a `Map` storing all `google.maps.MVCObject` instances as
->   `id`-`object` pairs
-> - `service`, which is a reference to the `google.maps.places.PlaceService`
->   instance. It will be automatically instantiated when `usingPlaces` is `true`
->   in `MapBox`.
->
-> Users can manipulate Google Map objects directly via these properties.
-
-### MapBox
-
-- `MapBox` is a wrapper of a `google.maps.Map` instance.
-- There can only be one `MapBox` within `GoogleMapProvider`. If you want to have
-  multiple maps, you can handle them with multiple providers.
-- Google Map options should be placed in `opts`.
-
-### Marker
-
-- `Marker` is a wrapper of a `google.maps.Marker` instance.
-- Google Map options should be placed in `opts`.
-- The `id` prop is required and must be unique.
-
-### InfoWindow
-
-- `InfoWindow` is a wrapper of a `google.maps.InfoWindow` instance.
-- Google Map options should be placed in `opts`.
-- `visible` prop determines whether `InfoWindow` is visible.
-
-### Polygon
-
-- `Polygon` is a wrapper of a `google.maps.Polygon` instance.
-- Google Map options should be placed in `opts`.
-- The `id` prop is required and must be unique.
-
-### HeatMap
-
-- `HeatMap` is a wrapper of a `google.maps.visualization.HeatmapLayer` instance
-- `useVisualization` of the `MapBox` instance must be `true`
-- Google Map options should be placed in `opts`
-  > **Note:** `opts.data` is an array of `{lat, lng, weight?}`, which is
-  > different from Google Map API's definition.
-
-### OverlayView
-
-- `OverlayView` is a wrapper of a `google.maps.OverlayView` instance. You can
-  overlay a custom DOM element on the map with this component.
-- `position` prop must be given, which is `google.maps.LatLngLiteral`, so that
-  `OverlayView` can be located
-- `pane` prop defines in which pane this `OverlayView` will be rendered, default
-  is `"overlayMouseTarget"`
-  ([ref](https://developers.google.com/maps/documentation/javascript/reference/overlay-view#MapPanes))
+For more detailed explanation, see the
+[doc](https://react-google-map.garbiel-wu.com/doc).
 
 ## Advanced usage
 
@@ -176,19 +123,23 @@ hooks `useGoogleAPI`, `useGoogleListeners` in your own components.
 
 ## See the examples
 
+First, you need to clone the repository and install the dependencies:
+
 ```sh
 git clone https://github.com/lucifer1004/react-gmap
 cd react-gmap
 yarn install
 ```
 
-### Storybook
+### Styleguide
 
-The best way to learn how to use this package is to use the storybook.
+To read the styleguide locally, simply run:
 
 ```sh
-yarn storybook
+yarn styleguide
 ```
+
+And you can then go to http://localhost:6060 to see the styleguide.
 
 ### App
 

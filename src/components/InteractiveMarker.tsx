@@ -35,7 +35,7 @@ const InteractiveMarker = ({
         }}
       />
       <InfoWindow
-        anchor={state.objects.get(`marker-${num}`)}
+        anchorId={`marker-${num}`}
         opts={{
           content: `marker-${num}
             lat: ${positions[num].lat.toFixed(4)} 
