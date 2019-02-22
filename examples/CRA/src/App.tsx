@@ -1,13 +1,10 @@
 import React from 'react'
 import {
-  BicyclingLayer,
-  GroundOverlay,
   MapBox,
   OverlayView,
   TrafficLayer,
-  TransitLayer,
   SearchBox,
-} from './lib'
+} from '@lucifer1004/react-google-map'
 import CenterButton from './components/CenterButton'
 import DrawingControl from './components/DrawingControl'
 import MarkerPanel from './components/MarkerPanel'

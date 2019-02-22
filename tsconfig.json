@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "isolatedModules": true
   },
-  "include": ["src"],
-  "compileNamespace": "es"
+  "compileNamespace": "es",
+  "include": ["src"]
 }

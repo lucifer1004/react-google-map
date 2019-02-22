@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {StreetView} from '../lib'
+import {StreetView} from '@lucifer1004/react-google-map'
 
 const StreetViewControl = ({bindToMap}: {bindToMap?: boolean}) => {
   const [show, setShow] = useState(false)

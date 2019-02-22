@@ -1,5 +1,6 @@
 {
   "name": "react-google-map",
+  "private": true,
   "description": "Google Map component for React.",
   "repository": "git@github.com:lucifer1004/react-google-map.git",
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
@@ -12,74 +13,28 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-typescript": "7.3.3",
-    "@types/googlemaps": "3.30.16",
-    "@types/jest": "24.0.6",
-    "@types/loadjs": "3.5.0",
-    "@types/node": "11.9.4",
-    "@types/react": "16.8.4",
-    "@types/react-dom": "16.8.2",
-    "@types/uuid": "^3.4.4",
-    "@typescript-eslint/eslint-plugin": "1.4.0",
-    "eslint-plugin-prettier": "3.0.1",
-    "eslint-plugin-react-hooks": "1.0.2",
     "husky": "1.3.1",
-    "jest-dom": "3.1.2",
+    "lerna": "3.13.0",
     "lint-staged": "8.1.4",
-    "microbundle": "0.9.0",
     "prettier": "1.16.4",
-    "react-docgen-typescript": "1.12.3",
-    "react-live": "1.12.0",
-    "react-scripts": "2.1.5",
-    "react-styleguidist": "8.0.6",
-    "react-testing-library": "5.9.0",
-    "typescript": "3.3.3"
+    "react-scripts": "2.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "publish:lib": "cd src/lib && yarn publish",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build",
+    "start:CRA": "cd examples/CRA && yarn start",
+    "build": "cd examples/CRA && yarn build",
+    "publish:lib": "cd packages/lib && yarn publish",
+    "test:lib": "cd packages/lib && yarn test",
+    "styleguide": "cd packages/lib && yarn styleguide",
+    "styleguide:build": "cd packages/lib && yarn styleguide:build",
     "deploy:now": "sh deploy.sh"
   },
-  "eslintConfig": {
-    "extends": "react-app",
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "plugins": [
-      "@typescript-eslint",
-      "prettier",
-      "react-hooks"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    }
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "husky": {
     "hooks": {
       "pre-commit": "yarn test --coverage && lint-staged"
     }
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!node_modules/",
-      "!src/*.tsx",
-      "!src/common/*.{ts,tsx}",
-      "!src/components/*.tsx",
-      "!src/lib/dist/**",
-      "!src/lib/__test__helpers__/**"
-    ]
-  }
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ]
 }

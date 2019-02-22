@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {CustomControl, DrawingManager} from '../lib'
+import {CustomControl, DrawingManager} from '@lucifer1004/react-google-map'
 
 const DrawingControl = () => {
   const [state, setState] = useState<'INITIAL' | 'DRAWING' | 'PAUSED'>(

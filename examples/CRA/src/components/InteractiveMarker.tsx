@@ -1,5 +1,9 @@
 import React, {useState, useContext} from 'react'
-import {GoogleMapContext, InfoWindow, Marker} from '../lib'
+import {
+  GoogleMapContext,
+  InfoWindow,
+  Marker,
+} from '@lucifer1004/react-google-map'
 
 interface InteractiveMarkerProps {
   num: number
