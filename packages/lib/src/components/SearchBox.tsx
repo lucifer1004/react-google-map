@@ -20,8 +20,8 @@ const SearchBox = ({
   const [searchBoxId] = useState(id ? id : `search-box-${uuid()}`)
 
   const addSearch = (search: google.maps.places.SearchBox) =>
-    dispatch({type: 'add_search', search: search, id: searchBoxId})
-  const removeSearch = () => dispatch({type: 'remove_search', id: searchBoxId})
+    dispatch({type: 'add_object', object: search, id: searchBoxId})
+  const removeSearch = () => dispatch({type: 'remove_object', id: searchBoxId})
 
   // Create google.maps.places.SearchBox
   useEffect(() => {

@@ -16,13 +16,18 @@ export declare type GoogleMapLayer =
   | google.maps.TrafficLayer
   | google.maps.TransitLayer
 
-export declare type GoogleMapObject =
+export declare type GoogleMapObjectWithSetMap =
   | GoogleMapShape
   | GoogleMapLayer
   | google.maps.GroundOverlay
   | google.maps.KmlLayer
   | google.maps.drawing.DrawingManager
   | google.maps.visualization.HeatmapLayer
+
+export declare type GoogleMapObject =
+  | GoogleMapObjectWithSetMap
+  | google.maps.StreetViewPanorama
+  | google.maps.places.SearchBox
 
 declare type MapPanes =
   | 'floatPane'
@@ -208,11 +213,11 @@ export interface OverlayViewProps {
 }
 
 // StreetView
+
 export interface StreetViewProps {
   className?: string
   style?: React.CSSProperties
   opts?: google.maps.StreetViewPanoramaOptions
-  bindToMap?: boolean
   onCloseClick?: (event: google.maps.MouseEvent) => any
   onPanoChanged?: () => any
   onPositionChanged?: () => any
@@ -221,6 +226,14 @@ export interface StreetViewProps {
   onStatusChanged?: () => any
   onVisibleChanged?: () => any
   onZoomChanged?: () => any
+}
+
+export interface StandaloneStreetViewProps extends StreetViewProps {
+  id?: string
+}
+
+export interface BasicStreetViewProps extends StandaloneStreetViewProps {
+  bindToMap: boolean
 }
 
 // BicyclingLayer | TransitLayer | TrafficLayer

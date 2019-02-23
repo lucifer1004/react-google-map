@@ -7,7 +7,6 @@
   "author": "Gabriel Wu <qqbbnease1004@126.com>",
   "license": "MIT",
   "dependencies": {
-    "@lucifer1004/react-google-map": "3.0.0",
     "dotenv": "6.2.0",
     "react": "16.8.3",
     "react-dom": "16.8.3"

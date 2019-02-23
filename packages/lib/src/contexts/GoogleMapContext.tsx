@@ -2,6 +2,7 @@ import React, {useReducer} from 'react'
 import {
   GoogleMapAction,
   GoogleMapObject,
+  GoogleMapObjectWithSetMap,
   GoogleMapProviderProps,
   GoogleMapReducer,
   GoogleMapState,
@@ -47,27 +48,9 @@ const reducer = (state: GoogleMapState, action: GoogleMapAction) => {
       const objectToRemove = state.objects.get(action.id)
       if (objectToRemove === undefined)
         throw new Error('There is no object with the given id')
-      objectToRemove.setMap(null)
+      if (objectToRemove.hasOwnProperty('setMap'))
+        (objectToRemove as GoogleMapObjectWithSetMap).setMap(null)
       state.objects.delete(action.id)
-
-      return state
-
-    case 'add_search':
-      if (action.search === undefined)
-        throw new Error('You should specify a search instance')
-      if (action.id === undefined) throw new Error('You should specify an id')
-      if (state.searches.has(action.id))
-        throw new Error('The id has already been taken')
-      state.searches.set(action.id, action.search)
-
-      return state
-
-    case 'remove_search':
-      if (action.id === undefined) throw new Error('You should specify an id')
-      const searchToRemove = state.searches.get(action.id)
-      if (searchToRemove === undefined)
-        throw new Error('There is no search with the given id')
-      state.searches.delete(action.id)
 
       return state
 

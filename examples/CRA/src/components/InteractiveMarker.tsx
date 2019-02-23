@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {InfoWindow, Marker} from '@lucifer1004/react-google-map'
+import {InfoWindow, Marker} from '../lib'
 
 interface InteractiveMarkerProps {
   num: number

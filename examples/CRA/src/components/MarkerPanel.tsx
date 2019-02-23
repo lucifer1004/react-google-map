@@ -1,10 +1,5 @@
 import React, {useState} from 'react'
-import {
-  CustomControl,
-  HeatMap,
-  Polygon,
-  Polyline,
-} from '@lucifer1004/react-google-map'
+import {CustomControl, HeatMap, Polygon, Polyline} from '../lib'
 import InteractiveMarker from './InteractiveMarker'
 import {NYC_LATLNG} from '../common/constants'
 

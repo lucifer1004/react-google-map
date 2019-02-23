@@ -17,6 +17,9 @@ export {default as SearchBox} from './src/components/SearchBox'
 export {
   default as StandaloneSearchBox,
 } from './src/components/StandaloneSearchBox'
+export {
+  default as StandaloneStreetView,
+} from './src/components/StandaloneStreetView'
 export {default as StreetView} from './src/components/StreetView'
 export {default as TrafficLayer} from './src/components/TrafficLayer'
 export {default as TransitLayer} from './src/components/TransitLayer'

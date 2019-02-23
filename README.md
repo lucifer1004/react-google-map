@@ -141,13 +141,14 @@ yarn styleguide
 
 And you can then go to http://localhost:6060 to see the styleguide.
 
-### App
+### CRA (Create-React-App) example
 
 You can also run the example app. Before running it locally, you should copy the
 sample dotenv file, and fill in your Google Map API key to replace the
 placeholder.
 
 ```sh
+cd examples/CRA
 cp .env.sample .env
 ```
 

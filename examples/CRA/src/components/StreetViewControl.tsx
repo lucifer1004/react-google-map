@@ -1,15 +1,14 @@
 import React, {useState} from 'react'
-import {StreetView} from '@lucifer1004/react-google-map'
+import {StreetView} from '../lib'
 
-const StreetViewControl = ({bindToMap}: {bindToMap?: boolean}) => {
+const StreetViewControl = () => {
   const [show, setShow] = useState(false)
   return (
     <>
       <button onClick={() => setShow(show => !show)}>
-        click to {show ? 'close the' : 'open a'}{' '}
-        {bindToMap ? 'bound' : 'separate'} StreetView{' '}
+        click to {show ? 'close the' : 'open a'} StreetView{' '}
       </button>
-      {show ? <StreetView bindToMap={bindToMap} /> : null}
+      {show ? <StreetView /> : null}
     </>
   )
 }

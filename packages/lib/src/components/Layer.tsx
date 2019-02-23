@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react'
 import {GoogleMapLayer, LayerProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
-export default ({type, opts}: LayerProps) => {
+const Layer = ({type, opts}: LayerProps) => {
   const layerId = `${type}-layer`
   const {state, dispatch} = useContext(GoogleMapContext)
   const [layer, setLayer] = useState<GoogleMapLayer | undefined>(undefined)
@@ -43,3 +43,7 @@ export default ({type, opts}: LayerProps) => {
 
   return null
 }
+
+Layer.displayName = 'layer'
+
+export default Layer

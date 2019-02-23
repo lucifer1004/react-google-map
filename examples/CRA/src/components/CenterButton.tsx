@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import {CustomControl, GoogleMapContext} from '@lucifer1004/react-google-map'
+import {CustomControl, GoogleMapContext} from '../lib'
 
 const CenterButton = () => {
   const {state} = useContext(GoogleMapContext)

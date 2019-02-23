@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  MapBox,
-  OverlayView,
-  TrafficLayer,
-  SearchBox,
-} from '@lucifer1004/react-google-map'
+import {MapBox, OverlayView, TrafficLayer, SearchBox} from './lib'
 import CenterButton from './components/CenterButton'
 import DrawingControl from './components/DrawingControl'
 import MarkerPanel from './components/MarkerPanel'
@@ -42,7 +37,6 @@ const App = () => {
         />
         <CenterButton />
         <StreetViewControl />
-        <StreetViewControl bindToMap />
         <TrafficLayer />
       </div>
     </div>
