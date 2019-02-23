@@ -14,31 +14,31 @@ module.exports = {
       sections: [
         {
           name: 'Map Containers',
-          components: './components/{MapBox,StreetView}.tsx',
+          components: './src/components/{MapBox,StreetView}.tsx',
         },
         {
           name: 'Attachments',
           components:
-            './components/{Circle,CustomControl,GroundOverlay,InfoWindow,KmlLayer,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
+            './src/components/{Circle,CustomControl,GroundOverlay,InfoWindow,KmlLayer,Marker,OverlayView,Polygon,Polyline,Rectangle}.tsx',
         },
         {
           name: 'Layers',
           components:
-            './components/{BicyclingLayer,TrafficLayer,TransitLayer}.tsx',
+            './src/components/{BicyclingLayer,TrafficLayer,TransitLayer}.tsx',
         },
       ],
     },
     {
       name: 'Drawing',
-      components: './components/DrawingManager.tsx',
+      components: './src/components/DrawingManager.tsx',
     },
     {
       name: 'Places',
-      components: './components/{SearchBox,StandaloneSearchBox}.tsx',
+      components: './src/components/{SearchBox,StandaloneSearchBox}.tsx',
     },
     {
       name: 'Visualization',
-      components: './components/HeatMap.tsx',
+      components: './src/components/HeatMap.tsx',
     },
   ],
   pagePerSection: true,

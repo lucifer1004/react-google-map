@@ -3,8 +3,8 @@
   "alias": "react-google-map.gabriel-wu.com",
   "version": 2,
   "builds": [
-    {"src": "build/**", "use": "@now/static"},
-    {"src": "styleguide/**", "use": "@now/static"}
+    {"src": "examples/CRA/build/**", "use": "@now/static"},
+    {"src": "packages/lib/styleguide/**", "use": "@now/static"}
   ],
   "routes": [
     {

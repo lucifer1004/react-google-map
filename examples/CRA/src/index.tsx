@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import {GoogleMapProvider} from '../../../src/lib/dist'
+import {GoogleMapProvider} from '@lucifer1004/react-google-map'
 require('dotenv').config()
 
 ReactDOM.render(
