@@ -3,10 +3,10 @@ import {
   DEFAULT_MAP_STYLE,
   DEFAULT_STREET_VIEW_OPTIONS,
 } from '../common/constants'
+import uuid from 'uuid/v1'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
 import {useGoogleListener} from '../hooks'
 import {StreetViewProps} from '../common/types'
-import RandomId from '../helpers/generateRandomId'
 
 const StreetView = ({
   className,
@@ -28,7 +28,7 @@ const StreetView = ({
   >(undefined)
 
   // Generate a random id for the DOM node where Google Map will be inserted
-  const [containerId] = useState(`street-view-${RandomId()}`)
+  const [containerId] = useState(`street-view-${uuid()}`)
 
   const resetMap = () => {
     if (state.map && (bindToMap || state.map.getStreetView() === streetView)) {

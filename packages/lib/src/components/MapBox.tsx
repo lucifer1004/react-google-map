@@ -1,4 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react'
+import uuid from 'uuid/v1'
 import {useGoogleAPI, useGoogleListener} from '../hooks'
 import {
   DEFAULT_MAP_OPTIONS,
@@ -7,7 +8,6 @@ import {
 } from '../common/constants'
 import {MapBoxProps} from '../common/types'
 import {GoogleMapContext} from '../contexts/GoogleMapContext'
-import RandomId from '../helpers/generateRandomId'
 
 const MapBox = ({
   apiKey = '',
@@ -45,7 +45,7 @@ const MapBox = ({
   const {state, dispatch} = useContext(GoogleMapContext)
 
   // Generate a random id for the DOM node where Google Map will be inserted
-  const [mapItemId] = useState(`map-${RandomId()}`)
+  const [mapItemId] = useState(`map-${uuid()}`)
 
   // Define action dispatchers
   const initMap = (

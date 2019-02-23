@@ -12,9 +12,10 @@
     "prettier": "1.16.4"
   },
   "scripts": {
-    "start:CRA": "yarn build:lib && cd examples/CRA && yarn start",
+    "dev:CRA": "cd examples/CRA && yarn start",
     "build:CRA": "yarn build:lib && cd examples/CRA && yarn build",
     "build:lib": "cd packages/lib && yarn build",
+    "dev:lib": "cd packages/lib && yarn dev",
     "publish:lib": "cd packages/lib && yarn publish",
     "test:lib": "cd packages/lib && rm -rf dist && yarn test",
     "styleguide": "cd packages/lib && yarn styleguide",

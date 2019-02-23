@@ -1,9 +1,5 @@
-import React, {useState, useContext} from 'react'
-import {
-  GoogleMapContext,
-  InfoWindow,
-  Marker,
-} from '@lucifer1004/react-google-map'
+import React, {useState} from 'react'
+import {InfoWindow, Marker} from '@lucifer1004/react-google-map'
 
 interface InteractiveMarkerProps {
   num: number
@@ -18,7 +14,6 @@ const InteractiveMarker = ({
   positions,
   setPositions,
 }: InteractiveMarkerProps) => {
-  const {state} = useContext(GoogleMapContext)
   const [infoDisplay, setInfoDisplay] = useState(false)
   const changeInfoDisplay = () => setInfoDisplay(display => !display)
   return (
