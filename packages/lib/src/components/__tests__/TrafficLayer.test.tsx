@@ -2,8 +2,7 @@ import React from 'react'
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup, act} from 'react-testing-library'
-import {TrafficLayer, MapBox} from '../..'
-import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
+import {GoogleMapProvider, MapBox, TrafficLayer} from '../../..'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
 defineGlobalVariable()

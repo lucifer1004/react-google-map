@@ -3,8 +3,7 @@ import {act} from 'react-dom/test-utils'
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 import {render, wait, cleanup} from 'react-testing-library'
-import {Polygon, MapBox} from '../..'
-import {GoogleMapProvider} from '../../contexts/GoogleMapContext'
+import {GoogleMapProvider, MapBox, Polygon} from '../../..'
 import {defineGlobalVariable} from '../../__test__helpers__'
 
 defineGlobalVariable()

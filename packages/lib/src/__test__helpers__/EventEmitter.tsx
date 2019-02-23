@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {GoogleMapContext} from '../'
+import {GoogleMapContext} from '../contexts/GoogleMapContext'
 
 export default () => {
   const {state} = useContext(GoogleMapContext)
