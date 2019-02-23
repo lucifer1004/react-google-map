@@ -16,7 +16,7 @@
     "build:CRA": "yarn build:lib && cd examples/CRA && yarn build",
     "build:lib": "cd packages/lib && yarn build",
     "publish:lib": "cd packages/lib && yarn publish",
-    "test:lib": "cd packages/lib && yarn test",
+    "test:lib": "cd packages/lib && rm -rf dist && yarn test",
     "styleguide": "cd packages/lib && yarn styleguide",
     "styleguide:build": "cd packages/lib && yarn styleguide:build",
     "deploy:now": "sh deploy.sh",

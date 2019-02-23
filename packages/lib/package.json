@@ -24,8 +24,8 @@
     "uuid": "^3.3.2"
   },
   "peerDependencies": {
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "7.3.3",
@@ -50,7 +50,7 @@
     "typescript": "3.3.3333"
   },
   "scripts": {
-    "build": "cp ../../*.md . && rm -rf dist && microbundle && rm -rf .rts2_cache_*",
+    "build": "cp ../../*.md . && rm -rf dist && microbundle --jsx='React.createElement' && rm -rf .rts2_cache_*",
     "prepublish": "yarn build",
     "postpublish": "rm -rf dist",
     "styleguide": "styleguidist server",
