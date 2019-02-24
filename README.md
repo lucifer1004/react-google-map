@@ -7,6 +7,11 @@
 
 Easier Google Map Integration for React projects.
 
+> ## NOTE
+>
+> This project has been moved to
+> [@googlemap-react](https://github.com/googlemap-react/googlemap-react).
+
 [READ THE DOC](https://react-google-map.gabriel-wu.com)
 
 ## Why a new package
