@@ -23,7 +23,7 @@ A wrapper around `google.maps.places.SearchBox`.
 A simple SearchBox:
 
 ```jsx
-const {GoogleMapProvider, MapBox, SearchBox} = require('../')
+const {GoogleMapProvider, MapBox, SearchBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

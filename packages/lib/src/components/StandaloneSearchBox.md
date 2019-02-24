@@ -4,7 +4,7 @@ not be placed on the map.
 A simple StandaloneSearchBox:
 
 ```jsx
-const {GoogleMapProvider, MapBox, StandaloneSearchBox} = require('../')
+const {GoogleMapProvider, MapBox, StandaloneSearchBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

@@ -1,9 +1,9 @@
 import React from 'react'
-import SearchBox from './SearchBox'
+import BasicSearchBox from './BasicSearchBox'
 import {StandaloneSearchBoxProps} from '../common/types'
 
 const StandaloneSearchBox = (props: StandaloneSearchBoxProps) => (
-  <SearchBox {...props} />
+  <BasicSearchBox {...props} />
 )
 
 StandaloneSearchBox.displayName = 'StandaloneSearchBox'

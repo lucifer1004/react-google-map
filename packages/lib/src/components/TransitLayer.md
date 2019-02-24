@@ -3,7 +3,7 @@ A wrapper around `google.maps.TransitLayer`.
 Use TransitLayer:
 
 ```jsx
-const {GoogleMapProvider, MapBox, TransitLayer} = require('../')
+const {GoogleMapProvider, MapBox, TransitLayer} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

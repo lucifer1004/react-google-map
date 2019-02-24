@@ -14,7 +14,7 @@ A wrapper around `google.maps.drawing.DrawingManager`.
 A simple DrawingManager:
 
 ```jsx
-const {DrawingManager, GoogleMapProvider, MapBox} = require('../')
+const {DrawingManager, GoogleMapProvider, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

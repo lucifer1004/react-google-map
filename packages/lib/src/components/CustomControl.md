@@ -24,7 +24,7 @@ const {
   GoogleMapContext,
   GoogleMapProvider,
   MapBox,
-} = require('../')
+} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

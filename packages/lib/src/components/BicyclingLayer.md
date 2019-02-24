@@ -3,7 +3,7 @@ A wrapper around `google.maps.BicyclingLayer`.
 Use BicyclingLayer:
 
 ```jsx
-const {BicyclingLayer, GoogleMapProvider, MapBox} = require('../')
+const {BicyclingLayer, GoogleMapProvider, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

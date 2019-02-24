@@ -8,7 +8,7 @@ A wrapper around `google.maps.Marker`.
 A simple Marker:
 
 ```jsx
-const {GoogleMapProvider, MapBox, Marker} = require('../')
+const {GoogleMapProvider, MapBox, Marker} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

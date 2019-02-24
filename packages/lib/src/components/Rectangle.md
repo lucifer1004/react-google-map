@@ -8,7 +8,7 @@ A wrapper around `google.maps.Rectangle`.
 A simple Rectangle:
 
 ```jsx
-const {GoogleMapProvider, MapBox, Rectangle} = require('../')
+const {GoogleMapProvider, MapBox, Rectangle} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

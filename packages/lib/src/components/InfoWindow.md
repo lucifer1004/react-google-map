@@ -11,7 +11,7 @@ A wrapper around `google.maps.InfoWindow`.
 A simple InfoWindow (without anchor):
 
 ```jsx
-const {GoogleMapProvider, MapBox, InfoWindow} = require('../')
+const {GoogleMapProvider, MapBox, InfoWindow} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox
@@ -27,7 +27,7 @@ const {GoogleMapProvider, MapBox, InfoWindow} = require('../')
 An InfoWindow anchored at a Marker:
 
 ```jsx
-const {GoogleMapProvider, MapBox, Marker, InfoWindow} = require('../')
+const {GoogleMapProvider, MapBox, Marker, InfoWindow} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

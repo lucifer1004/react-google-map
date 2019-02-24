@@ -14,7 +14,8 @@ module.exports = {
       sections: [
         {
           name: 'Map Containers',
-          components: './src/components/{MapBox,StreetView}.tsx',
+          components:
+            './src/components/{MapBox,StreetView,StandaloneStreetView}.tsx',
         },
         {
           name: 'Attachments',

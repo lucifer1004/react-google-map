@@ -13,16 +13,17 @@
     "prettier": "1.16.4"
   },
   "scripts": {
-    "dev:CRA": "cd examples/CRA && yarn start",
     "build:CRA": "yarn build:lib && cd examples/CRA && yarn build",
     "build:lib": "cd packages/lib && yarn build",
+    "deploy:now": "sh deploy.sh",
+    "dev:CRA": "cd examples/CRA && yarn start",
     "dev:lib": "cd packages/lib && yarn dev",
+    "format": "npx prettier \"*.{js,json,md}\" \"{packages/lib,examples/CRA}/src/**/*.{js,jsx,ts,tsx,md,json,vue}\" --write",
     "publish:lib": "cd packages/lib && yarn publish",
-    "test:lib": "cd packages/lib && rm -rf dist && yarn test",
+    "start:CRA": "yarn build:lib && cd examples/CRA && yarn start",
     "styleguide": "cd packages/lib && yarn styleguide",
     "styleguide:build": "cd packages/lib && yarn styleguide:build",
-    "deploy:now": "sh deploy.sh",
-    "format": "npx prettier \"*.{js,json,md}\" \"{packages/lib,examples/CRA}/src/**/*.{js,jsx,ts,tsx,md,json,vue}\" --write"
+    "test:lib": "cd packages/lib && rm -rf dist && yarn test"
   },
   "husky": {
     "hooks": {

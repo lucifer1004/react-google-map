@@ -18,7 +18,7 @@ A wrapper around `google.maps.OverlayView`.
 A simple OverlayView:
 
 ```jsx
-const {GoogleMapProvider, MapBox, OverlayView} = require('../')
+const {GoogleMapProvider, MapBox, OverlayView} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

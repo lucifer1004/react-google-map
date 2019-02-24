@@ -7,7 +7,7 @@ A wrapper around `google.maps.visualization.HeatMap`.
 A simple HeatMap:
 
 ```jsx
-const {GoogleMapProvider, HeatMap, MapBox} = require('../')
+const {GoogleMapProvider, HeatMap, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

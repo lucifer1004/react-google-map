@@ -8,7 +8,7 @@ A wrapper around `google.maps.Polygon`.
 A simple Polygon:
 
 ```jsx
-const {GoogleMapProvider, MapBox, Polygon} = require('../')
+const {GoogleMapProvider, MapBox, Polygon} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

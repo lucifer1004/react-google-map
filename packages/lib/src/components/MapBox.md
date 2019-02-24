@@ -17,7 +17,7 @@ A wrapper around `google.map.Map`.
 Here is a simple example:
 
 ```jsx
-const {GoogleMapProvider, MapBox} = require('../')
+const {GoogleMapProvider, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

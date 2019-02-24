@@ -8,7 +8,7 @@ A wrapper around `google.maps.GroundOverlay`.
 A simple GroundOverlay:
 
 ```jsx
-const {GoogleMapProvider, GroundOverlay, MapBox} = require('../')
+const {GoogleMapProvider, GroundOverlay, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

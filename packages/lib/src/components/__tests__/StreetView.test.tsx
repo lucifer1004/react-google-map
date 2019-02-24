@@ -26,7 +26,7 @@ describe('StreetView', () => {
       rerender(
         <GoogleMapProvider>
           <MapBox apiKey="FAKE_KEY" />
-          <StreetView bindToMap opts={{position: {lat: 39, lng: 116}}} />
+          <StreetView opts={{position: {lat: 39, lng: 116}}} />
         </GoogleMapProvider>,
       ),
     )

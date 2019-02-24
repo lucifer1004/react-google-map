@@ -289,8 +289,12 @@ export interface StandaloneSearchBoxProps
   onPlacesChanged?: () => any
 }
 
-export interface SearchBoxProps extends StandaloneSearchBoxProps {
+export interface BasicSearchBoxProps extends StandaloneSearchBoxProps {
   bindingPosition?: ControlPositionName
+}
+
+export interface SearchBoxProps extends StandaloneSearchBoxProps {
+  bindingPosition: ControlPositionName
 }
 
 // KmlLayer

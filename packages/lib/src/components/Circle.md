@@ -8,7 +8,7 @@ A wrapper around `google.maps.Circle`.
 A simple Circle:
 
 ```jsx
-const {GoogleMapProvider, MapBox} = require('../')
+const {Circle, GoogleMapProvider, MapBox} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox

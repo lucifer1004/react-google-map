@@ -40,5 +40,12 @@ describe('SearchBox', () => {
         </GoogleMapProvider>,
       )
     })
+    act(() => {
+      rerender(
+        <GoogleMapProvider>
+          <MapBox apiKey="FAKE_KEY" usePlaces />
+        </GoogleMapProvider>,
+      )
+    })
   })
 })

@@ -3,7 +3,7 @@ A wrapper aroound `google.maps.TrafficLayer`.
 Use TrafficLayer:
 
 ```jsx
-const {GoogleMapProvider, MapBox, TrafficLayer} = require('../')
+const {GoogleMapProvider, MapBox, TrafficLayer} = require('../../')
 
 ;<GoogleMapProvider>
   <MapBox
