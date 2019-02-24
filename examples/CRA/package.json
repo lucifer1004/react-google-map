@@ -8,8 +8,10 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "6.2.0",
+    "loadjs": "3.5.5",
     "react": "16.8.3",
-    "react-dom": "16.8.3"
+    "react-dom": "16.8.3",
+    "uuid": "3.3.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "7.3.3",

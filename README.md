@@ -7,7 +7,7 @@
 
 Easier Google Map Integration for React projects.
 
-[READ THE DOC](https://react-google-map.gabriel-wu.com/doc)
+[READ THE DOC](https://react-google-map.gabriel-wu.com)
 
 ## Why a new package
 
@@ -114,7 +114,7 @@ return (
 ```
 
 For more detailed explanation, see the
-[doc](https://react-google-map.garbiel-wu.com/doc).
+[doc](https://react-google-map.garbiel-wu.com).
 
 ## Advanced usage
 
